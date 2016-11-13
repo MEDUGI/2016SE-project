@@ -39,13 +39,13 @@ public class ApplicationDAO {
             i = ps.executeUpdate();
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-
+                //TODO:
             }
             ps.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return i;
+        return null;
     }
 
     public int updateStatus(String appid,String newstatus) {

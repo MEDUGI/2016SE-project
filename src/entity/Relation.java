@@ -1,7 +1,7 @@
 package entity;
-import Student;
-import Professor;
-import Application;
+import entity.Student;
+import entity.Professor;
+import entity.Application;
 
 /**
  * Created by 李沅泽 on 2016/11/13.
