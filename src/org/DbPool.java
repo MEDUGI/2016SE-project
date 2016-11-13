@@ -12,9 +12,9 @@ public class DbPool {
     private  Connection conn;
     public void createConn(){
         try{
-            String url="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_lab2forlyz";
-            String user = "kokl1l0yy2";
-            String password = "4kj2m0h2151033mml1l31i0m4jzkkli5hm4whkil";
+            String url="jdbc:mysql://localhost/selab2";
+            String user = "modugi";
+            String password = "modugi123456";
             Driver driver = new Driver();
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("数据库连接成功！");
