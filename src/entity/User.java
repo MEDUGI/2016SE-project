@@ -4,8 +4,8 @@ package entity;
  * Created by Xiangxi on 2016/11/14.
  */
 public class User {
-    protected String username;
-    protected String password;
+    protected String username;                          // 不多于40个字符
+    protected String password;                          // 不多于20个字符
 
     public User(String username, String password) {
         this.username = username;
