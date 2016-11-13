@@ -29,17 +29,4 @@ public class DbPool {
         }
         return conn;
     }
-    public ResultSet executeQuery(String sql) {
-        ResultSet rs = null;
-        if (conn == null) {
-            createConn();
-        }
-        try {
-            Statement st = this.conn.createStatement();
-            rs = st.executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
 }
