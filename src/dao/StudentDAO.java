@@ -15,7 +15,7 @@ public class StudentDAO {
     PreparedStatement ps = null;
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB(Name) value(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into studentDB(Name) value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
@@ -26,6 +26,8 @@ public class StudentDAO {
             ps.setDouble(6, student.getNeepScore());
             ps.setString(7, student.getAwardsCollection());
             ps.setString(8, student.getEmailAddress());
+            ps.setString(9, student.getWorkingAreas());
+            ps.setString(10, student.getMobileNo());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -49,6 +51,8 @@ public class StudentDAO {
                 student.setNeepScore(rs.getDouble(6));
                 student.setAwardsCollection(rs.getString(7));
                 student.setEmailAddress(rs.getString(8));
+                student.setWorkingAreas(rs.getString(9));
+                student.setMobileNo(rs.getString(10));
             }
         }catch(Exception e){
             e.printStackTrace();

@@ -13,6 +13,24 @@ public class Student extends User{
     protected String awardsCollection;
     protected double gpa;
     protected double neepScore;
+    protected String workingAreas;
+    protected String mobileNo;
+
+    public String getWorkingAreas() {
+        return workingAreas;
+    }
+
+    public void setWorkingAreas(String workingAreas) {
+        this.workingAreas = workingAreas;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
 
     public String getGraduateSchool() {
         return graduateSchool;

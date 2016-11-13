@@ -6,6 +6,6 @@ public class model extends ActionSupport{
 
 
     public String execute() {
-
+        return "SUCCESS";
     }
 }

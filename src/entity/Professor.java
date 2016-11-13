@@ -13,6 +13,24 @@ public class Professor extends User{
     protected String workingArea;
     protected String papersPublished;
     protected int accomodationNumber;
+    protected String emailAddress;
+    protected String mobileNo;
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
 
     public String getEmployerUnit() {
         return employerUnit;

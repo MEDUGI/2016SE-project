@@ -1,6 +1,6 @@
 package entity;
-import Student;
-import Professor;
+import entity.Student;
+import entity.Professor;
 /**
  * Created by 李沅泽 on 2016/11/13.
  */
@@ -23,11 +23,11 @@ public class Application {
         this.stu = stu;
     }
 
-    public Professer getPro() {
+    public Professor getPro() {
         return pro;
     }
 
-    public void setPro(Professer pro) {
+    public void setPro(Professor pro) {
         this.pro = pro;
     }
 
