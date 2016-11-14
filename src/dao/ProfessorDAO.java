@@ -15,7 +15,7 @@ public class ProfessorDAO {
     PreparedStatement ps = null;
     public boolean addProfessor(Professor professor) {
 
-        String sql = "insert into professorDB(Name) value(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into professorDB(Name) value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
@@ -25,6 +25,8 @@ public class ProfessorDAO {
             ps.setString(5, professor.getWorkingArea());
             ps.setString(6, professor.getPapersPublished());
             ps.setInt(7, professor.getAccomodationNumber());
+            ps.setString(8, professor.getEmailAddress());
+            ps.setString(9, professor.getMobileNo());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -47,6 +49,8 @@ public class ProfessorDAO {
                 professor.setWorkingArea(rs.getString(5));
                 professor.setPapersPublished(rs.getString(6));
                 professor.setAccomodationNumber(rs.getInt(7));
+                professor.setEmailAddress(rs.getString(8));
+                professor.setMobileNo(rs.getString(9));
             }
 
         }catch(Exception e){

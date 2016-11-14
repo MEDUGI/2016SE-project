@@ -1,31 +1,33 @@
 package entity;
+import entity.Student;
+import entity.Professor;
 /**
  * Created by 李沅泽 on 2016/11/13.
  */
 public class Application {
-    private String stu;  // 学生，外键，默认为学号
-    private String pro; // 教授，外键，默认为ID号
-    private String applydate;  // 申请日期(精确到小时)
-    private int status;  // 申请状态(未通过，审核中，已接受)
-    private String message;  // 申请信息（限定字数长度和部分内容——考虑安全性）
+    Student stu;  // 学生，外键，默认为ID号
+    Professor pro; // 教授，外键，默认为ID号
+    String applydate;  // 申请日期(精确到小时)
+    int status;  // 申请状态(未通过，审核中，已接受)
+    String message;  // 申请信息（限定字数长度和部分内容——考虑安全性）
 
     public Application() {
 
     }
 
-    public String getStu() {
+    public Student getStu() {
         return stu;
     }
 
-    public void setStu(String stu) {
+    public void setStu(Student stu) {
         this.stu = stu;
     }
 
-    public String getPro() {
+    public Professor getPro() {
         return pro;
     }
 
-    public void setPro(String pro) {
+    public void setPro(Professor pro) {
         this.pro = pro;
     }
 

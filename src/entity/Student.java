@@ -7,12 +7,30 @@ public class Student extends User{
     public Student(String username, String password) {
         super(username, password);
     }
-    protected String graduateSchool;
-    protected String studentNo;
-    protected String emailAddress;
-    protected String awardsCollection;
+    protected String graduateSchool;                        // ??????50?????
+    protected String studentNo;                             // ??????20?????
+    protected String emailAddress;                          // ??????60?????
+    protected String awardsCollection;                      // ??????500?????
     protected double gpa;
     protected double neepScore;
+    protected String workingAreas;                          // ??????60?????
+    protected String mobileNo;                              // ??????30?????
+
+    public String getWorkingAreas() {
+        return workingAreas;
+    }
+
+    public void setWorkingAreas(String workingAreas) {
+        this.workingAreas = workingAreas;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
 
     public String getGraduateSchool() {
         return graduateSchool;
