@@ -65,6 +65,6 @@ public class register_stu extends ActionSupport {
 
         StudentDAO studao = new StudentDAO();
         studao.addStudent(stu);
-        return "SUCESS";
+        return "SUCCESS";
     }
 }
