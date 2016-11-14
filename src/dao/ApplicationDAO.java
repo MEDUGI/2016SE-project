@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import entity.Application;
 import java.util.ArrayList;
+import entity.Application;
 
 import org.DbPool;
 /**
@@ -11,16 +12,16 @@ import org.DbPool;
 public class ApplicationDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
-    public int addApplication(String stuID,String proID,String date,String status,String message) {
+    public int addAppliciation(Application app) {
         int i = 0;
         String sql = "insert into application value(?,?,?,?,?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1,stuID);
-            ps.setString(2,proID);
-            ps.setString(3,date);
-            ps.setString(4,status);
-            ps.setString(5,message);
+            ps.setString(1,app.getStu());
+            ps.setString(2,app.getPro());
+            ps.setString(3,app.getApplydate());
+            ps.setString(4,app.getStatus()+"");
+            ps.setString(5,app.getMessage());
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {
@@ -28,8 +29,12 @@ public class ApplicationDAO {
         }
         return i;
     }
-    // mode = 1, id belongs to student. mode = 0, id belongs to tutor.
-    public ArrayList<Application> findAllApplicationByStudent(String ID, int mode) {
+    /* mode为1，表示调用者为学生，反之为教授。
+       这个函数用于根据用户的ID来找到对应的一个Application的列表。
+       返回值为ArrayList.
+       后续可以考虑将ArrayList泛化为实现了iterable接口的对象.
+     */
+    public ArrayList<Application> findAllApplicationByUser(String ID, int mode) {
         int i = 0;
         String sql = "";
         if (mode == 0) {
@@ -46,6 +51,7 @@ public class ApplicationDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Application Temp = new Application();
+                Temp.setID(Integer.parseInt(rs.getString("id")));
                 Temp.setStu(rs.getString("student"));
                 Temp.setPro(rs.getString("professor"));
                 Temp.setApplydate(rs.getString("date"));
