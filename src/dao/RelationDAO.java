@@ -11,9 +11,14 @@ import org.DbPool;
 public class RelationDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
+
+    public RelationDAO() {
+
+    }
+
     public int deleteRelation(String relationID) {
         int i = 0;
-        String sql = "delete from relation when id=?";
+        String sql = "delete from relation when id=?relation where id=?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, relationID);

@@ -9,14 +9,14 @@ import entity.Professor;
  * Created by forandroid on 16-11-14.
  */
 public class login_admin extends ActionSupport{
-    String account,password;
+    String mail,password;
 
-    public String getAccount() {
-        return account;
+    public String getmail() {
+        return mail;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setmail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
@@ -29,7 +29,7 @@ public class login_admin extends ActionSupport{
 
     @Override
     public String execute() {
-        if (account.equals("admin")) return "ACCOUNT";
+        if (mail.equals("admin")) return "MAIL";
         if (password.equals("123456")) return "PASSWORD";
         return "SUCCESS";
     }

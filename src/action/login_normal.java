@@ -10,14 +10,14 @@ import entity.Student;
  * Created by forandroid on 16-11-14.
  */
 public class login_normal extends ActionSupport{
-    String account,password;
+    String mail,password;
 
-    public String getAccount() {
-        return account;
+    public String getmail() {
+        return mail;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setmail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
@@ -30,17 +30,19 @@ public class login_normal extends ActionSupport{
 
     @Override
     public String execute() {
+
+
         StudentDAO studao = new StudentDAO();
-        if (!studao.getStudent(account).equals("")) {
-            if (studao.getStudent(account).equals(password)) return "STUDENT";
+        if (!studao.getStudent(mail).equals("")) {
+            if (studao.getStudent(mail).equals(password)) return "STUDENT";
             else return "PASSWORD";
         }
 
         ProfessorDAO prodao = new ProfessorDAO();
-        if (!prodao.getProfessor(account).equals("")) {
-            if (prodao.getProfessor(account).equals(password)) return "PROFESSOR";
+        if (!prodao.getProfessor(mail).equals("")) {
+            if (prodao.getProfessor(mail).equals(password)) return "PROFESSOR";
             else return "PASSWORD";
         }
-        else return "ACCOUNT";
+        else return "MAIL";
     }
 }

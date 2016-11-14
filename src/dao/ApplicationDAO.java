@@ -12,6 +12,11 @@ import org.DbPool;
 public class ApplicationDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
+
+    public ApplicationDAO() {
+
+    }
+
     public int addAppliciation(Application app) {
         int i = 0;
         String sql = "insert into application value(?,?,?,?,?)";

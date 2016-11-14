@@ -47,7 +47,15 @@ public class change_password extends ActionSupport {
 
         StudentDAO studao = new StudentDAO();
         ProfessorDAO prodao = new ProfessorDAO();
-        // you need to add change pwd in the dao class;
+        if (!studao.getStudent(mail).equals("")) {
+            studao.updatePassword(mail,secret);
+        }
+
+        else if (!prodao.getProfessor(mail).equals("")) {
+            prodao.updatePassword(mail,secret);
+        }
+
+        else return "ACCOUNT";
         return "SUCCESS";
     }
 }
