@@ -4,11 +4,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
 import entity.Professor;
+import entity.Student;
 
 /**
  * Created by forandroid on 16-11-14.
  */
-public class login_admin extends ActionSupport{
+public class login_normal extends ActionSupport{
     String account,password;
 
     public String getAccount() {
@@ -29,11 +30,17 @@ public class login_admin extends ActionSupport{
 
     @Override
     public String execute() {
-        if (account.equals("admin")) return "ACCOUNT";
-        if (password.equals("123456")) return "PASSWORD";
         StudentDAO studao = new StudentDAO();
+        if (!studao.getStudent(account).equals("")) {
+            if (studao.getStudent(account).equals(password)) return "STUDENT";
+            else return "PASSWORD";
+        }
+
         ProfessorDAO prodao = new ProfessorDAO();
-        // you need to add change pwd in the dao class;
-        return "SUCCESS";
+        if (!prodao.getProfessor(account).equals("")) {
+            if (prodao.getProfessor(account).equals(password)) return "PROFESSOR";
+            else return "PASSWORD";
+        }
+        else return "ACCOUNT";
     }
 }
