@@ -36,7 +36,7 @@ public class ProfessorDAO {
         return true;
     }
     public Professor getProfessor(String username) {
-        String sql = "select * from author where username = ?";
+        String sql = "select * from professorDB where username = ?";
        Professor professor = new Professor(username, "");
         try{
             ps = dbp.getConn().prepareStatement(sql);
@@ -57,5 +57,23 @@ public class ProfessorDAO {
             e.printStackTrace();
         }
         return professor;
+    }
+    public boolean updatePassword(String username, String password) {
+        String sql = "select * from professorDB where username = ?";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if(!rs.next()){
+                return false;
+            }
+            sql = "UPDATE professorDB SET password = " + password + " WHERE username = " + username;
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

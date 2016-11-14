@@ -15,7 +15,7 @@ public class StudentDAO {
     PreparedStatement ps = null;
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB(Name) value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into studentDB value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
@@ -37,7 +37,7 @@ public class StudentDAO {
         return true;
     }
     public Student getStudent(String username) {
-        String sql = "select * from author where username = ?";
+        String sql = "select * from studentDB where username = ?";
         Student student = new Student(username, "");
         try{
             ps = dbp.getConn().prepareStatement(sql);
@@ -58,5 +58,23 @@ public class StudentDAO {
             e.printStackTrace();
         }
         return student;
+    }
+    public boolean updatePassword(String username, String password) {
+        String sql = "select * from studentDB where username = ?";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if(!rs.next()){
+                return false;
+            }
+            sql = "UPDATE studentDB SET password = " + password + " WHERE username = " + username;
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
