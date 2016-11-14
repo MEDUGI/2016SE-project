@@ -7,14 +7,24 @@
 <struts>
     <package name="register-login" extends="struts-default">
         <action name="register_stu" class="action.register_stu">
-            <result name="SUCCESS" type="chain">mainpage</result>
+            <result name="SUCCESS" type="chain">
+                <param name="actionName"> mainpage </param>
+                <param name="isStudent"> true </param>
+                <param name="isProfessor"> false </param>
+                <param name="username"> ${mail}</param>
+            </result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
             <result name="MAIL">/mail.jsp</result>
         </action>
 
         <action name="register_teacher" class="action.register_teacher">
-            <result name="SUCCESS">/index.jsp</result>
+            <result name="SUCCESS" type="chain">
+                <param name="actionName"> mainpage </param>
+                <param name="isStudent"> false </param>
+                <param name="isProfessor"> true </param>
+                <param name="username"> ${mail}</param>
+            </result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
             <result name="MAIL">/mail.jsp</result>
@@ -27,8 +37,18 @@
         </action>
 
         <action name="login_normal" class="action.login_normal">
-            <result name="STUDENT">/student.jsp</result>
-            <result name="TEACHER">/teacher.jsp</result>
+            <result name="STUDENT" type="chain">
+                <param name="actionName"> mainpage </param>
+                <param name="isStudent"> true </param>
+                <param name="isProfessor"> false </param>
+                <param name="username"> ${account}</param>
+            </result>
+            <result name="TEACHER" type="chain">
+                <param name="actionName"> mainpage </param>
+                <param name="isStudent"> false </param>
+                <param name="isProfessor"> true </param>
+                <param name="username"> ${account}</param>
+            </result>
             <result name="PASSWORD">/password.jsp</result>
             <result name="ACCOUNT">/account.jsp</result>
         </action>
