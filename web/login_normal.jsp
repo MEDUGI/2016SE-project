@@ -12,7 +12,7 @@
 </head>
 <body>
 <form action="login_stu" method="post">
-    账号 <input name="account" type="text"> <br>
+    账号 <input name="mail" type="text"> <br>
     密码 <input name="password" type="text"> <br>
     <a href="change_pasword.jsp"> 更改密码 </a>
     <input type="submit" value="登陆喽^_^">

@@ -58,6 +58,7 @@
             <result name="NOT_SAME">/not_same.jsp</result>
             <result name="MAIL">/mail.jsp</result>
             <result name="SUCCESS">/index.jsp</result>
+            <result name="ACCOUNT">/account.jsp</result>
         </action>
     </package>
     <package name="mainpagePack" extends="struts-default">
