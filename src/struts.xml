@@ -5,4 +5,13 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <package name="stu-tea" extends="struts-default">
+        <action name="register_stu" class="action.register_stu">
+            <result name="SUCESS">/index.jsp</result>
+            <result name="NULL">/null.jsp</result>
+            <result name="NOT_SAME">/not_same.jsp</result>
+            <result name="MAIL">/mail.jsp</result>
+        </action>
+
+    </package>
 </struts>

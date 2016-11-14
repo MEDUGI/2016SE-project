@@ -7,14 +7,14 @@ public class Student extends User{
     public Student(String username, String password) {
         super(username, password);
     }
-    protected String graduateSchool;                        // 不多于50个字符
-    protected String studentNo;                             // 不多于20个字符
-    protected String emailAddress;                          // 不多于60个字符
-    protected String awardsCollection;                      // 不多于500个字符
+    protected String graduateSchool;                        // ??????50?????
+    protected String studentNo;                             // ??????20?????
+    protected String emailAddress;                          // ??????60?????
+    protected String awardsCollection;                      // ??????500?????
     protected double gpa;
     protected double neepScore;
-    protected String workingAreas;                          // 不多于60个字符
-    protected String mobileNo;                              // 不多于30个字符
+    protected String workingAreas;                          // ??????60?????
+    protected String mobileNo;                              // ??????30?????
 
     public String getWorkingAreas() {
         return workingAreas;
