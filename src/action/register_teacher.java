@@ -10,6 +10,25 @@ import entity.Professor;
 public class register_teacher extends ActionSupport {
     String mail, secret, secret_repeat, school, teacher_id;
 
+    boolean isStudent = false;
+    boolean isProfessor = true;
+
+    public boolean isStudent() {
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
+    }
+
+    public boolean isProfessor() {
+        return isProfessor;
+    }
+
+    public void setIsProfessor(boolean isProfessor) {
+        this.isProfessor = isProfessor;
+    }
+
     public String getMail() {
         return mail;
     }

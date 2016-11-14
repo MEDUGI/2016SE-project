@@ -9,6 +9,24 @@ import dao.StudentDAO;
 public class register_stu extends ActionSupport {
 
     String mail,secret,secret_repeat,school,stu_number;
+    boolean isStudent = true;
+    boolean isProfessor = false;
+
+    public boolean isStudent() {
+        return isStudent;
+    }
+
+    public void setIsStudent(boolean isStudent) {
+        this.isStudent = isStudent;
+    }
+
+    public boolean isProfessor() {
+        return isProfessor;
+    }
+
+    public void setIsProfessor(boolean isProfessor) {
+        this.isProfessor = isProfessor;
+    }
 
     public String getMail() {
         return mail;
