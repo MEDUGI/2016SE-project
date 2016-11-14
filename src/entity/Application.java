@@ -3,6 +3,7 @@ package entity;
  * Created by 李沅泽 on 2016/11/13.
  */
 public class Application {
+    private int ID;
     private String stu;  // 学生，外键，默认为ID号
     private String pro; // 教授，外键，默认为ID号
     private String applydate;  // 申请日期(精确到小时)
@@ -11,6 +12,14 @@ public class Application {
 
     public Application() {
 
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getStu() {
