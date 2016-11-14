@@ -31,9 +31,6 @@ public class login_admin extends ActionSupport{
     public String execute() {
         if (account.equals("admin")) return "ACCOUNT";
         if (password.equals("123456")) return "PASSWORD";
-        StudentDAO studao = new StudentDAO();
-        ProfessorDAO prodao = new ProfessorDAO();
-        // you need to add change pwd in the dao class;
         return "SUCCESS";
     }
 }

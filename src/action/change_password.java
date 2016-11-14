@@ -1,6 +1,8 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.ProfessorDAO;
+import dao.StudentDAO;
 
 /**
  * Created by forandroid on 16-11-14.
@@ -43,7 +45,9 @@ public class change_password extends ActionSupport {
         String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
         if (!mail.matches(regex)) return "MAIL";
 
-
+        StudentDAO studao = new StudentDAO();
+        ProfessorDAO prodao = new ProfessorDAO();
+        // you need to add change pwd in the dao class;
         return "SUCCESS";
     }
 }

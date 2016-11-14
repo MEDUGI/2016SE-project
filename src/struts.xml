@@ -33,6 +33,11 @@
             <result name="ACCOUNT">/account.jsp</result>
         </action>
 
-
+        <action name="change_password" class="action.change_password">
+            <result name="NULL">/null.jsp</result>
+            <result name="NOT_SAME">/not_same.jsp</result>
+            <result name="MAIL">/mail.jsp</result>
+            <result name="SUCCESS">/index.jsp</result>
+        </action>
     </package>
 </struts>
