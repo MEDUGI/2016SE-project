@@ -16,7 +16,7 @@ public class Message {
 
     }
 
-    public Message(String from,int FromStyle,String to, int ToStyle, String time, String content) {
+    public Message(String from,String FromStyle,String to, String ToStyle, String time, String content) {
         userFrom = Tools.addUserStyleSymbol(from,FromStyle);
         userTo = Tools.addUserStyleSymbol(to,ToStyle);
         date = time;
