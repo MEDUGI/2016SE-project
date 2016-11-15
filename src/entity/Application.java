@@ -4,10 +4,10 @@ package entity;
  */
 public class Application {
     private int ID;
-    private String stu;  // 学生，外键，默认为ID号
-    private String pro; // 教授，外键，默认为ID号
+    private String stu;  // 学生，外键，默认为用户名
+    private String pro; // 教授，外键，默认为用户名
     private String applydate;  // 申请日期(精确到小时)
-    private int status;  // 申请状态(未通过，审核中，已接受)
+    private int status;  // 申请状态(未通过0，审核中1，已接受2)
     private String message;  // 申请信息（限定字数长度和部分内容——考虑安全性）
 
     public Application() {
