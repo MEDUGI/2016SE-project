@@ -72,4 +72,27 @@
             </result>
         </action>
     </package>
+
+    <package name="sendAndReceiveMessage" extends="struts-default">
+        <action name="editMessage" class="action.editMessage">
+            <result name="SUCCESS"> /message.jsp </result>
+        </action>
+        <action name="sendMessage" class="action.sendMessage">
+            <result name="SUCCESS" type="chain">
+                <param name="actionName"> editMessage </param>
+                <param name="isSuccess"> true </param>
+                <param name="returnMessage"> 成功发信 </param>
+            </result>
+            <result name="USER_CANNOT_FIND" type="chain">
+                <param name="actionName"> editMessage</param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> 未找到用户 </param>
+            </result>
+            <result name="MESSAGE_INVALID" type="chain">
+                <param name="actionName"> editMessage</param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> 信息含有威胁或者不合法内容 </param>
+            </result>
+        </action>
+    </package>
 </struts>

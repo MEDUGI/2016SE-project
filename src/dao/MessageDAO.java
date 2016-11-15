@@ -4,6 +4,7 @@ import entity.Tools;
 import org.DbPool;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import entity.Message;
@@ -66,14 +67,38 @@ public class MessageDAO {
         userID = Tools.addUserStyleSymbol(ID,userStyle);
 
         try {
-
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, userID);
+            i = ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Message Temp = new Message();
+                Temp.setID(Integer.parseInt(rs.getString("id")));
+                Temp.setUserFrom(rs.getString("userFrom"));
+                Temp.setUserTo(rs.getString("userTo"));
+                Temp.setDate(rs.getString("date"));
+                Temp.setStatus(Integer.parseInt(rs.getString("status")));
+                Temp.setContent(rs.getString("content"));
+                resultList.add(Temp);
+            }
+            ps.close();
         }catch (Exception e) {
             e.printStackTrace();
         }
         return resultList;
     }
 
-    public int deleteMessage() {
-        return 0;
+    public int deleteMessage(int messageID) {
+        int i = 0;
+        String sql = "delete from message when id=?";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, messageID+"");
+            i = ps.executeUpdate();
+            ps.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
     }
 }
