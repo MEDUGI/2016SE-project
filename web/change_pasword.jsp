@@ -11,7 +11,7 @@
     <title>更改密码</title>
 </head>
 <body>
-    <form action="register_stu" method="post">
+    <form action="change_password" method="post">
     邮箱  <input name="mail" type="text"><br>
     密码    <input name="secret" type="text"><br>
     重复密码 <input name="secret_repeat" type="text"><br>

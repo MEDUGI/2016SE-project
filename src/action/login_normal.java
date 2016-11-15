@@ -34,15 +34,17 @@ public class login_normal extends ActionSupport{
 
         StudentDAO studao = new StudentDAO();
         if (!studao.getStudent(mail).equals("")) {
-            if (studao.getStudent(mail).equals(password)) return "STUDENT";
-            else return "PASSWORD";
+            if (studao.getStudent(mail).equals(password)) {
+                return "STUDENT";
+            } else return "PASSWORD";
         }
+
 
         ProfessorDAO prodao = new ProfessorDAO();
         if (!prodao.getProfessor(mail).equals("")) {
             if (prodao.getProfessor(mail).equals(password)) return "PROFESSOR";
             else return "PASSWORD";
         }
-        else return "MAIL";
+        else return "NULL";
     }
 }

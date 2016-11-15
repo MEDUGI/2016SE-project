@@ -11,7 +11,7 @@
     <title>超级管理员登陆</title>
 </head>
 <body>
-<form action="register_stu" method="post">
+<form action="login_normal" method="post">
     账号 <input name="mail" type="text"> <br>
     密码 <input name="password" type="text"> <br>
     <input type="submit" value="登陆喽^_^">
