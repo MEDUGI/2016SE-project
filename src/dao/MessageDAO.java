@@ -44,7 +44,7 @@ public class MessageDAO {
         FromOrTo=0时，ID表示送的用户；FromOrTo=1时，ID代表收的用户；
         根据提供的ID和MODE，抽取目前未被读取的信息;
      */
-    public ArrayList<Message> getMessageListByUserID(String ID,int status,int FromOrTo,int userStyle) {
+    public ArrayList<Message> getMessageListByUserID(String ID,int status,int FromOrTo,String userStyle) {
         ArrayList<Message> resultList = new ArrayList<Message>();
         String userID;
         int i = 0;
