@@ -74,6 +74,6 @@ public class MessageDAO {
     }
 
     public int deleteMessage() {
-
+        return 0;
     }
 }
