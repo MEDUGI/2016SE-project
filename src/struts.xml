@@ -66,6 +66,11 @@
             <result name="SUCCESS">/mainpage.jsp</result>
             <interceptor-ref name="chain"></interceptor-ref>
         </action>
+        <action name="showGradSchool" class="action.showGradSchoolAction">
+            <result name="success">
+                /mainpageJsps/showGradSchoolJSP.jsp
+            </result>
+        </action>
     </package>
 
     <package name="sendAndReceiveMessage" extends="struts-default">

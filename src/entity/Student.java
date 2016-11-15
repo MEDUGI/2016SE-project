@@ -7,7 +7,7 @@ public class Student extends User{
     public Student(String username, String password) {
         super(username, password);
     }
-    protected String graduateSchool;                        // ??????50?????
+    protected String graduateSchool;                        // 50 characters at most
     protected String studentNo;                             // ??????20?????
     protected String emailAddress;                          // ??????60?????
     protected String awardsCollection;                      // ??????500?????
