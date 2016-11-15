@@ -1,8 +1,13 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.deploy.net.URLEncoder;
 import entity.Student;
 import dao.StudentDAO;
+import org.apache.struts2.ServletActionContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 /**
  * Created by forandroid on 16-11-14.
  */
@@ -68,6 +73,12 @@ public class register_stu extends ActionSupport {
         this.stu_number = stu_number;
     }
 
+    private void addCookie(String name,String value){
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(60*60*24*365);
+        ServletActionContext.getResponse().addCookie(cookie);
+    }
+
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
@@ -83,6 +94,8 @@ public class register_stu extends ActionSupport {
 
         StudentDAO studao = new StudentDAO();
         studao.addStudent(stu);
+        addCookie("userstyle","Student");
+        addCookie("username",mail);
         return "SUCCESS";
     }
 }

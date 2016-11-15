@@ -3,6 +3,9 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import entity.Professor;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.Cookie;
 
 /**
  * Created by forandroid on 16-11-14.
@@ -69,6 +72,11 @@ public class register_teacher extends ActionSupport {
         this.teacher_id = teacher_id;
     }
 
+    private void addCookie(String name,String value){
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(60*60*24*365);
+        ServletActionContext.getResponse().addCookie(cookie);
+    }
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
@@ -85,6 +93,8 @@ public class register_teacher extends ActionSupport {
         ProfessorDAO prodao = new ProfessorDAO();
         prodao.addProfessor(pro);
 
+        addCookie("userstyle","Professor");
+        addCookie("username",mail);
         return "SUCCESS";
     }
 }
