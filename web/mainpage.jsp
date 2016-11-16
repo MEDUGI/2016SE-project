@@ -19,8 +19,7 @@
         用户名：<s:property value="username"/>
       </li>
       <li>
-        <s:url var="showGradSchool_url" action="showGradSchool"/>
-        <s:url id="showGraduateSchoolURL" value="${showGradSchool_url}">
+        <s:url id="showGraduateSchoolURL" value="showGradSchool.action">
         <s:param name="username"><s:property value="username"/></s:param>
       </s:url>
         <s:div id="showGradSchoolDiv" theme="ajax" href="%{showGraduateSchoolURL}"/>

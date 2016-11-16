@@ -7,6 +7,7 @@ import dao.StudentDAO;
 import entity.Professor;
 import entity.Student;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +16,14 @@ import java.util.Map;
 /**
  * Created by Xiangxi on 2016/11/14.
  */
-public class mainpageAction extends ActionSupport{
+public class mainpageAction extends ActionSupport implements SessionAware{
     boolean isStudent;
     boolean isProfessor;
     String username;
     String userstyle;
     Student student;
     Professor professor;
+    Map session;
 
     public String getUserstyle() {
         return userstyle;
@@ -71,11 +73,8 @@ public class mainpageAction extends ActionSupport{
         this.professor = professor;
     }
     public String execute() {
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-        for(Cookie cookie:cookies) {
-            if(cookie.getName().equals("username"))
-                username = cookie.getValue();
-        }
+        username = (String)session.get("username");
+        userstyle = (String)session.get("userstyle");
         if (userstyle.equals("Student"))
             isStudent=true;
         if (userstyle.equals("Professor"))
@@ -91,5 +90,8 @@ public class mainpageAction extends ActionSupport{
             return SUCCESS;
         }
         return ERROR;
+    }
+    public void setSession(Map session) {
+        this.session = session;
     }
 }

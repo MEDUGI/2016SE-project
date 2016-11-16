@@ -15,7 +15,7 @@ public class ProfessorDAO {
     PreparedStatement ps = null;
     public boolean addProfessor(Professor professor) {
 
-        String sql = "insert into professorDB(Name) value(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
