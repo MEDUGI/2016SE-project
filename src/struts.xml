@@ -9,9 +9,6 @@
         <action name="register_stu" class="action.register_stu">
             <result name="SUCCESS" type="chain">
                 <param name="actionName"> mainpage </param>
-                <param name="isStudent"> true </param>
-                <param name="isProfessor"> false </param>
-                <param name="username"> ${mail}</param>
             </result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
@@ -65,6 +62,7 @@
         <action name="mainpage" class="action.mainpageAction">
             <result name="SUCCESS">/mainpage.jsp</result>
             <interceptor-ref name="chain"></interceptor-ref>
+            <result name="error">/index.jsp</result>
         </action>
         <action name="showGradSchool" class="action.showGradSchoolAction">
             <result name="success">

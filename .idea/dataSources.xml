@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - selab2@localhost" uuid="38ee9d31-c3b4-47ab-b662-708c2676c4a3">
+  <component name="DataSourceManagerImpl" format="xml" hash="456653934">
+    <data-source source="LOCAL" name="MySQL - modugi@localhost" uuid="ad73c2e2-4268-4001-9ffb-d2a1f9b9efad">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/selab2</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/modugi</jdbc-url>
       <driver-properties>
-        <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
+      <libraries />
     </data-source>
   </component>
 </project>

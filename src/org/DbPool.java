@@ -12,14 +12,14 @@ public class DbPool {
     private  Connection conn;
     public void createConn(){
         try{
-            String url="jdbc:mysql://localhost/selab2";
+            String url="jdbc:mysql://localhost/modugi";
             String user = "modugi";
-            String password = "modugi123456";
+            String password = "modugi";
             Driver driver = new Driver();
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println("数据库连接成功！");
+            System.out.println("The database is successfully connected!");
         }catch(Exception e){
-            System.out.println("数据库连接失败！");
+            System.out.println("Failed to connect the database!");
             e.printStackTrace();
         }
     }
