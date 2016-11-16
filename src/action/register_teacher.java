@@ -84,7 +84,7 @@ public class register_teacher extends ActionSupport {
             return "NULL";
         if (!secret_repeat.equals(secret)) return "NOT_SAME";
 
-        String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
+        String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
         if (!mail.matches(regex)) return "MAIL";
 
         Professor pro = new Professor(mail, secret);
