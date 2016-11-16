@@ -55,7 +55,7 @@ public class sendMessage extends ActionSupport {
 
     public String execute() {
         if (!Tools.examUserWithStyle(userFrom,userFromStyle)) {
-            return "INVALID USER";
+            return "INVALID_USER";
         }
         if (!Tools.examUserWithStyle(userTo,userToStyle)) {
             return "USER_CANNOT_FIND";

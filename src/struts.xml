@@ -79,17 +79,22 @@
             <result name="SUCCESS" type="chain">
                 <param name="actionName"> editMessage </param>
                 <param name="isSuccess"> true </param>
-                <param name="returnMessage"> 成功发信 </param>
+                <param name="returnMessage"> "成功发信" </param>
             </result>
             <result name="USER_CANNOT_FIND" type="chain">
                 <param name="actionName"> editMessage</param>
                 <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 未找到用户 </param>
+                <param name="returnMessage"> "未找到用户" </param>
+            </result>
+            <result name="INVALID_USER" type="chain">
+                <param name="actionName"> editMessage</param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> "您未登陆" </param>
             </result>
             <result name="MESSAGE_INVALID" type="chain">
                 <param name="actionName"> editMessage</param>
                 <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 信息含有威胁或者不合法内容 </param>
+                <param name="returnMessage"> "信息含有威胁或者不合法内容" </param>
             </result>
         </action>
     </package>
