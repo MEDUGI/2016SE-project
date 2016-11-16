@@ -62,6 +62,10 @@
         <action name="mainpage" class="action.mainpageAction">
             <result name="SUCCESS">/mainpage.jsp</result>
             <interceptor-ref name="chain"></interceptor-ref>
+            <interceptor-ref name="cookie">
+                <param name="cookiesName">*</param>
+                <param name="cookiesValue">*</param>
+            </interceptor-ref>
             <result name="error">/index.jsp</result>
         </action>
         <action name="showGradSchool" class="action.showGradSchoolAction">

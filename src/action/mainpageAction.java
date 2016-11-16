@@ -13,8 +13,17 @@ public class mainpageAction extends ActionSupport{
     boolean isStudent;
     boolean isProfessor;
     String username;
+    String userstyle;
     Student student;
     Professor professor;
+
+    public String getUserstyle() {
+        return userstyle;
+    }
+
+    public void setUserstyle(String userstyle) {
+        this.userstyle = userstyle;
+    }
 
     public boolean isStudent() {
         return isStudent;
@@ -56,6 +65,10 @@ public class mainpageAction extends ActionSupport{
         this.professor = professor;
     }
     public String execute() {
+        if (userstyle.equals("Student"))
+            isStudent=true;
+        if (userstyle.equals("Professor"))
+            isProfessor=true;
         if (isStudent) {
             StudentDAO studentDAO = new StudentDAO();
             student = studentDAO.getStudent(username);
