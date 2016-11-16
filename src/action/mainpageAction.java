@@ -1,10 +1,16 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
 import entity.Professor;
 import entity.Student;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Created by Xiangxi on 2016/11/14.
@@ -65,6 +71,11 @@ public class mainpageAction extends ActionSupport{
         this.professor = professor;
     }
     public String execute() {
+        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+        for(Cookie cookie:cookies) {
+            if(cookie.getName().equals("username"))
+                username = cookie.getValue();
+        }
         if (userstyle.equals("Student"))
             isStudent=true;
         if (userstyle.equals("Professor"))
