@@ -95,4 +95,35 @@
             </result>
         </action>
     </package>
+
+    <package name="Application" extends="struts-default">
+        <action name="editApplicatin" class="action.editApplication">
+            <result name="SUCCESS"> /editApplication.jsp </result>
+        </action>
+        <action name="putUpApplication" class="action.putUpApplication">
+            <result name="SUCCESS" type="chain">
+                <param name="actionName"> successApply </param>
+                <param name="isSuccess"> true </param>
+                <param name="returnMessage"> 申请已成功提交，请等待审核 </param>
+            </result>
+            <result name="OUT_OF_AMOUNT" type="chain">
+                <param name="actionName"> failApply </param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> 申请人数已满 </param>
+            </result>
+            <result name="MESSAGE_INVALID" type="chain">
+                <param name="actionName"> failApply </param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> 信息含有威胁或者不合法内容 </param>
+            </result>
+        </action>
+    </package>
+
+    <package name="Recommand" extends="struts-default">
+        <action name="recommand" class="action.recommand">
+            <result name="SUCCESS">
+                /recommand.jsp
+            </result>
+        </action>
+    </package>
 </struts>
