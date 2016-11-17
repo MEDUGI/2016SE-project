@@ -159,6 +159,18 @@ public class ProfessorDAO {
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {
+        String sql = "select * from professorDB where workingArea = '" + student.getWorkingAreas() +"'";
+        try {
+            Statement st = dbp.getConn().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            ArrayList<Professor> resultList = new ArrayList<>();
+            while(rs.next()) {
+                resultList.add(toProfessor(rs));
+            }
+            return resultList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

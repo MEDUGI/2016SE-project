@@ -159,6 +159,18 @@ public class StudentDAO {
         return null;
     }
     public ArrayList<Student> getStudentRecomentation(Professor professor) {
+        String sql = "select * from studentDB where workingAreas = '" + professor.getWorkingArea() + "';";
+        try {
+            Statement st = dbp.getConn().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            ArrayList<Student> resultList = new ArrayList<>();
+            while(rs.next()) {
+                resultList.add(toStudent(rs));
+            }
+            return resultList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

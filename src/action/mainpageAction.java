@@ -242,7 +242,6 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             emailAddress = mainpageStudent.getEmailAddress();
             workingAreas = mainpageStudent.getWorkingAreas();
             mobileNo = mainpageStudent.getMobileNo();
-            System.out.println(mobileNo);
             fullname = mainpageStudent.getFullname();
             major = mainpageStudent.getMajor();
             introduction = mainpageStudent.getIntroduction();
