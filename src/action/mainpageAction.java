@@ -19,11 +19,15 @@ import java.util.Map;
 public class mainpageAction extends ActionSupport implements SessionAware{
     boolean isStudent;
     boolean isProfessor;
-    String username;
+    String username = "";
     String userstyle;
     Student student;
     Professor professor;
     Map session;
+
+    public Map getSession() {
+        return session;
+    }
 
     public String getUserstyle() {
         return userstyle;
@@ -33,9 +37,15 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
+    public boolean getIsStudent() {
+        return isStudent;
+    }
+
     public boolean isStudent() {
         return isStudent;
     }
+
+    public boolean getIsProfessor(){return isProfessor;}
 
     public void setIsStudent(boolean isStudent) {
         this.isStudent = isStudent;
@@ -73,8 +83,11 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.professor = professor;
     }
     public String execute() {
-        username = (String)session.get("username");
-        userstyle = (String)session.get("userstyle");
+        if (username.equals("")) {
+            username = (String)session.get("username");
+            userstyle = (String)session.get("userstyle");
+        }
+
         if (userstyle.equals("Student"))
             isStudent=true;
         if (userstyle.equals("Professor"))

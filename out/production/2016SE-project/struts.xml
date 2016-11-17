@@ -7,8 +7,8 @@
 <struts>
     <package name="register-login" extends="struts-default">
         <action name="register_stu" class="action.register_stu">
-            <result name="SUCCESS" type="chain">
-                <param name="actionName"> mainpage </param>
+            <result name="SUCCESS" type="redirectAction">
+                mainpage
             </result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
@@ -16,11 +16,8 @@
         </action>
 
         <action name="register_teacher" class="action.register_teacher">
-            <result name="SUCCESS" type="chain">
-                <param name="actionName"> mainpage </param>
-                <param name="isStudent"> false </param>
-                <param name="isProfessor"> true </param>
-                <param name="username"> ${mail}</param>
+            <result name="SUCCESS" type="redirectAction">
+                mainpage
             </result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
@@ -34,17 +31,11 @@
         </action>
 
         <action name="login_normal" class="action.login_normal">
-            <result name="STUDENT" type="chain">
-                <param name="actionName"> mainpage </param>
-                <param name="isStudent"> true </param>
-                <param name="isProfessor"> false </param>
-                <param name="username"> ${account}</param>
+            <result name="STUDENT" type="redirectAction">
+                mainpage
             </result>
-            <result name="TEACHER" type="chain">
-                <param name="actionName"> mainpage </param>
-                <param name="isStudent"> false </param>
-                <param name="isProfessor"> true </param>
-                <param name="username"> ${account}</param>
+            <result name="TEACHER" type="redirectAction">
+                mainpage
             </result>
             <result name="PASSWORD">/password.jsp</result>
             <result name="ACCOUNT">/account.jsp</result>
@@ -60,18 +51,8 @@
     </package>
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
-            <result name="SUCCESS">/mainpage.jsp</result>
-            <interceptor-ref name="chain"></interceptor-ref>
-            <interceptor-ref name="cookie">
-                <param name="cookiesName">username,*</param>
-                <param name="cookiesValue">*</param>
-            </interceptor-ref>
+            <result name="success">/mainpage.jsp</result>
             <result name="error">/index.jsp</result>
-        </action>
-        <action name="showGradSchool" class="action.showGradSchoolAction">
-            <result name="success">
-                /mainpageJsps/showGradSchoolJSP.jsp
-            </result>
         </action>
     </package>
 
@@ -83,17 +64,22 @@
             <result name="SUCCESS" type="chain">
                 <param name="actionName"> editMessage </param>
                 <param name="isSuccess"> true </param>
-                <param name="returnMessage"> 成功发信 </param>
+                <param name="returnMessage"> "成功发信" </param>
             </result>
             <result name="USER_CANNOT_FIND" type="chain">
                 <param name="actionName"> editMessage</param>
                 <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 未找到用户 </param>
+                <param name="returnMessage"> "未找到用户" </param>
+            </result>
+            <result name="INVALID_USER" type="chain">
+                <param name="actionName"> editMessage</param>
+                <param name="isSuccess"> false</param>
+                <param name="returnMessage"> "您未登陆" </param>
             </result>
             <result name="MESSAGE_INVALID" type="chain">
                 <param name="actionName"> editMessage</param>
                 <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 信息含有威胁或者不合法内容 </param>
+                <param name="returnMessage"> "信息含有威胁或者不合法内容" </param>
             </result>
         </action>
     </package>
