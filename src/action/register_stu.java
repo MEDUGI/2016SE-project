@@ -1,19 +1,21 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.deploy.net.URLEncoder;
 import entity.Student;
 import dao.StudentDAO;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
+
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
 /**
  * Created by forandroid on 16-11-14.
  */
-public class register_stu extends ActionSupport {
+public class register_stu extends ActionSupport implements SessionAware{
 
     String mail,secret,secret_repeat,school,stu_number;
+    private Map session;
     boolean isStudent = true;
     boolean isProfessor = false;
 
@@ -94,8 +96,13 @@ public class register_stu extends ActionSupport {
 
         StudentDAO studao = new StudentDAO();
         studao.addStudent(stu);
-        addCookie("userstyle","Student");
-        addCookie("username",mail);
+
+        session.put("username", mail);
+        session.put("userstyle", "Student");
         return "SUCCESS";
+    }
+
+    public void setSession(Map session) {
+        this.session = session;
     }
 }

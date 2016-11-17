@@ -6,20 +6,24 @@ import dao.StudentDAO;
 import entity.Professor;
 import entity.Student;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
+import javax.jms.Session;
 import javax.servlet.http.Cookie;
+import java.util.Map;
 
 /**
  * Created by forandroid on 16-11-14.
  */
-public class login_normal extends ActionSupport{
+public class login_normal extends ActionSupport implements SessionAware{
     String mail,password;
+    Map session;
 
-    public String getmail() {
+    public String getMail() {
         return mail;
     }
 
-    public void setmail(String mail) {
+    public void setMail(String mail) {
         this.mail = mail;
     }
 
@@ -31,21 +35,17 @@ public class login_normal extends ActionSupport{
         this.password = password;
     }
 
-    private void addCookie(String name,String value){
-        Cookie cookie = new Cookie(name, value);
-        cookie.setMaxAge(60*60*24*365);
-        ServletActionContext.getResponse().addCookie(cookie);
+    public void setSession(Map session) {
+        this.session = session;
     }
 
     @Override
     public String execute() {
-
-
         StudentDAO studao = new StudentDAO();
         if (!studao.getStudent(mail).equals("")) {
-            if (studao.getStudent(mail).equals(password)) {
-                addCookie("userstyle","Student");
-                addCookie("username",mail);
+            if (studao.getStudent(mail).getPassword().equals(password)) {
+                session.put("userstyle","Student");
+                session.put("username",mail);
                 return "STUDENT";
             } else return "PASSWORD";
         }
@@ -53,9 +53,9 @@ public class login_normal extends ActionSupport{
 
         ProfessorDAO prodao = new ProfessorDAO();
         if (!prodao.getProfessor(mail).equals("")) {
-            if (prodao.getProfessor(mail).equals(password)) {
-                addCookie("userstyle","Professor");
-                addCookie("username",mail);
+            if (prodao.getProfessor(mail).getPassword().equals(password)) {
+                session.put("userstyle","Student");
+                session.put("username",mail);
                 return "PROFESSOR";
             }
             else return "PASSWORD";

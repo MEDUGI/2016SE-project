@@ -4,15 +4,17 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import entity.Professor;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 import javax.servlet.http.Cookie;
+import java.util.Map;
 
 /**
  * Created by forandroid on 16-11-14.
  */
-public class register_teacher extends ActionSupport {
+public class register_teacher extends ActionSupport implements SessionAware{
     String mail, secret, secret_repeat, school, teacher_id;
-
+    Map session;
     boolean isStudent = false;
     boolean isProfessor = true;
 
@@ -72,11 +74,10 @@ public class register_teacher extends ActionSupport {
         this.teacher_id = teacher_id;
     }
 
-    private void addCookie(String name,String value){
-        Cookie cookie = new Cookie(name, value);
-        cookie.setMaxAge(60*60*24*365);
-        ServletActionContext.getResponse().addCookie(cookie);
+    public void setSession(Map session) {
+        this.session = session;
     }
+
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
@@ -84,7 +85,7 @@ public class register_teacher extends ActionSupport {
             return "NULL";
         if (!secret_repeat.equals(secret)) return "NOT_SAME";
 
-        String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
+        String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
         if (!mail.matches(regex)) return "MAIL";
 
         Professor pro = new Professor(mail, secret);
@@ -92,9 +93,8 @@ public class register_teacher extends ActionSupport {
         pro.setIdentityCardNo(teacher_id);
         ProfessorDAO prodao = new ProfessorDAO();
         prodao.addProfessor(pro);
-
-        addCookie("userstyle","Professor");
-        addCookie("username",mail);
+        session.put("userstyle","Professor");
+        session.put("username",mail);
         return "SUCCESS";
     }
 }
