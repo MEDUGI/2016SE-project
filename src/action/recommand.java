@@ -6,15 +6,26 @@ import dao.StudentDAO;
 import entity.RecommandProfessor;
 import entity.RecommandStudent;
 import entity.Tools;
+import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by 李沅泽 on 2016/11/16.
  */
-public class recommand extends ActionSupport{
+public class recommand extends ActionSupport implements SessionAware {
     private String user, userstyle;
     private ArrayList result;
+    Map session;
+
+    public Map getSession() {
+        return session;
+    }
+
+    public void setSession(Map session) {
+        this.session = session;
+    }
 
     public String getUser() {
         return user;
@@ -41,6 +52,8 @@ public class recommand extends ActionSupport{
     }
 
     public String execute() {
+        user = (String)session.get("username");
+        userstyle = (String)session.get("userstyle");
         if (Tools.examUserWithStyle(user,userstyle)) {
             if (userstyle == "Student") {
                 RecommandStudent recs = new RecommandStudent();
