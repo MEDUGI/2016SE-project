@@ -18,9 +18,9 @@
     <tr>
         <td height="60" bgcolor="#FFFFFF"><table border="0" align="center" cellpadding="0" cellspacing="0">
             <tbody><tr>
-                <td width="230"><a href="#"><img src="http://bbs.moonseo.cn/404.jpg" style="border:0;"></a></td>
+                <td width="230"><a href="#"><img src="/image/error.jpg" style="border:0;"></a></td>
                 <td width="400" align="center" style="color:#333333; font-size:16px; font-weight:bold;"><p><s:property value="errorMessage"/></p>
-                    <button onclick="windows.location.href('index.action')">
+                    <button onclick='window.location.href="/url"'>
                         回到登录界面
                     </button></td>
 

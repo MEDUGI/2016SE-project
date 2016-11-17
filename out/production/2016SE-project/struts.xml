@@ -8,7 +8,11 @@
     <package name="register-login" extends="struts-default">
         <default-action-ref name="index"></default-action-ref>
         <action name="index">
-            <result type="dispatcher">/login_normal.jsp</result>
+            <result type="redirectAction">indexAction</result>
+        </action>
+        <action name="indexAction" class="action.indexActionClass">
+            <result name="logged" type="redirectAction">mainpage</result>
+            <result name="unlogged">/login_normal.jsp</result>
         </action>
         <action name="register_stu" class="action.register_stu">
             <result name="SUCCESS" type="redirectAction">mainpage</result>
@@ -43,6 +47,7 @@
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
             <result name="success">/mainpage.jsp</result>
+            <result name="unlogged">index.action</result>
             <result name="error">/error.jsp</result>
         </action>
         <action name="showChangePage" class="action.showChangePageAction">
@@ -109,7 +114,7 @@
     <package name="Test" extends="struts-default">
         <action name="test" class="action.test">
             <result name="SUCCESS">
-                /mainpage.jsp
+                /mainpagetest.jsp
             </result>
         </action>
     </package>
