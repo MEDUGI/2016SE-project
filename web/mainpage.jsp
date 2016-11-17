@@ -50,6 +50,12 @@
                         <li class="menu-item"><a class="smoothScroll" href="#about" title="个人简介"><i class="icon-user"></i></a></li>
                         <li class="menu-item"><a class="smoothScroll" href="#resume" title="简历"><i class="icon-file"></i></a></li>
                         <li class="menu-item"><a class="smoothScroll" href="#contact" title="联系方式"><i class="icon-envelope"></i></a></li>
+                        <s:if test='userstyle == "Professor"'>
+                            <li class="menu-item"><a class="smoothScroll" href="recommand.action" title="查看推荐学生"><i class="icon-thumbs-up"></i></a></li>
+                        </s:if>
+                        <s:elseif test='userstyle == "Student"'>
+                            <li class="menu-item"><a class="smoothScroll" href="recommand.action" title="查看推荐导师"><i class="icon-thumbs-up"></i></a></li>
+                        </s:elseif>
                         <li class="menu-item"><a class="smoothScroll" href="logout.action" title="注销"><i class="icon-eraser"></i></a></li>
                     </ul><!--/ uL#nav -->
                 </div><!-- /.dropdown -->
