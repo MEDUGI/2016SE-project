@@ -121,6 +121,29 @@ public class ProfessorDAO {
         }
     }
     public ArrayList<Professor> getAllProfessors() {
+        String sql = "select * from professorDB";
+        try {
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Professor> resultList = new ArrayList<>();
+            while(rs.next()) {
+                Professor professor = new Professor(rs.getString(1),"");
+                professor.setPassword(rs.getString(2));
+                professor.setEmployerUnit(rs.getString(3));
+                professor.setIdentityCardNo(rs.getString(4));
+                professor.setWorkingArea(rs.getString(5));
+                professor.setPapersPublished(rs.getString(6));
+                professor.setAccomodationNumber(rs.getInt(7));
+                professor.setEmailAddress(rs.getString(8));
+                professor.setMobileNo(rs.getString(9));
+                professor.setAcceptedNumber(rs.getInt(10));
+                professor.setFullname(rs.getString(11));
+                resultList.add(professor);
+            }
+            return resultList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {

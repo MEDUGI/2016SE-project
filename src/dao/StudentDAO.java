@@ -120,6 +120,29 @@ public class StudentDAO {
         }
     }
     public ArrayList<Student> getAllStudents() {
+        String sql = "select * from studentDB";
+        try {
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Student> resultList = new ArrayList<>();
+            while(rs.next()) {
+                Student student = new Student(rs.getString(1),"");
+                student.setPassword(rs.getString(2));
+                student.setGraduateSchool(rs.getString(3));
+                student.setStudentNo(rs.getString(4));
+                student.setGpa(rs.getDouble(5));
+                student.setNeepScore(rs.getDouble(6));
+                student.setAwardsCollection(rs.getString(7));
+                student.setEmailAddress(rs.getString(8));
+                student.setWorkingAreas(rs.getString(9));
+                student.setMobileNo(rs.getString(10));
+                student.setFullname(rs.getString(11));
+                resultList.add(student);
+            }
+            return resultList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
     public ArrayList<Student> getStudentRecomentation(Professor professor) {
