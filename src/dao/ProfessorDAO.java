@@ -16,7 +16,7 @@ public class ProfessorDAO {
     public boolean addProfessor(Professor professor) {
         String sql;
         try{
-            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.setString(2, professor.getPassword());
@@ -27,6 +27,7 @@ public class ProfessorDAO {
             ps.setInt(7, professor.getAccomodationNumber());
             ps.setString(8, professor.getEmailAddress());
             ps.setString(9, professor.getMobileNo());
+            ps.setInt(10, professor.getAcceptedNumber());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -51,6 +52,7 @@ public class ProfessorDAO {
                 professor.setAccomodationNumber(rs.getInt(7));
                 professor.setEmailAddress(rs.getString(8));
                 professor.setMobileNo(rs.getString(9));
+                professor.setAcceptedNumber(rs.getInt(10));
             }
 
         }catch(Exception e){
@@ -93,7 +95,7 @@ public class ProfessorDAO {
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.setString(2, professor.getPassword());
@@ -104,6 +106,7 @@ public class ProfessorDAO {
             ps.setInt(7, professor.getAccomodationNumber());
             ps.setString(8, professor.getEmailAddress());
             ps.setString(9, professor.getMobileNo());
+            ps.setInt(10, professor.getAcceptedNumber());
             ps.executeUpdate();
             ps.close();
             return true;

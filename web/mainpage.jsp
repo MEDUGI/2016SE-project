@@ -64,6 +64,9 @@
       招生名额: <s:property value="accomodationNumber"/>
     </li>
     <li>
+      已用招生名额：<s:property value="acceptedNumber"/>
+    </li>
+    <li>
       邮件地址：<s:property value="emailAddress"/>
     </li>
     <li>

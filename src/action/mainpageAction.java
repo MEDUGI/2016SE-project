@@ -26,11 +26,64 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     protected String workingArea;
     protected String papersPublished;
     protected int accomodationNumber;
+    protected int acceptedNumber;
     String username = "";
     String userstyle;
     Student mainpageStudent;
     Professor professor;
     Map session;
+
+    public String getEmployerUnit() {
+        return employerUnit;
+    }
+
+    public void setEmployerUnit(String employerUnit) {
+        this.employerUnit = employerUnit;
+    }
+
+    public String getIdentityCardNo() {
+        return identityCardNo;
+    }
+
+    public void setIdentityCardNo(String identityCardNo) {
+        this.identityCardNo = identityCardNo;
+    }
+
+    public String getWorkingArea() {
+        return workingArea;
+    }
+
+    public void setWorkingArea(String workingArea) {
+        this.workingArea = workingArea;
+    }
+
+    public String getPapersPublished() {
+        return papersPublished;
+    }
+
+    public void setPapersPublished(String papersPublished) {
+        this.papersPublished = papersPublished;
+    }
+
+    public int getAccomodationNumber() {
+        return accomodationNumber;
+    }
+
+    public void setAccomodationNumber(int accomodationNumber) {
+        this.accomodationNumber = accomodationNumber;
+    }
+
+    public int getAcceptedNumber() {
+        return acceptedNumber;
+    }
+
+    public void setAcceptedNumber(int acceptedNumber) {
+        this.acceptedNumber = acceptedNumber;
+    }
+
+    public Student getMainpageStudent() {
+        return mainpageStudent;
+    }
 
     public String getGraduateSchool() {
         return graduateSchool;
@@ -163,6 +216,7 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             accomodationNumber = professor.getAccomodationNumber();
             emailAddress = professor.getEmailAddress();
             mobileNo = professor.getMobileNo();
+            acceptedNumber = professor.getAcceptedNumber();
             return SUCCESS;
         }
         return ERROR;
