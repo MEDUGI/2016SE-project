@@ -47,7 +47,10 @@ public class login_normal extends ActionSupport implements SessionAware{
                 session.put("userstyle","Student");
                 session.put("username",mail);
                 return "STUDENT";
-            } else return "PASSWORD";
+            } else {
+                session.put("errorMessage", "√‹¬Î ‰»Î¥ÌŒÛ!");
+                return ERROR;
+            }
         }
 
 
@@ -58,8 +61,14 @@ public class login_normal extends ActionSupport implements SessionAware{
                 session.put("username",mail);
                 return "PROFESSOR";
             }
-            else return "PASSWORD";
+            else {
+                session.put("errorMessage", "√‹¬Î ‰»Î¥ÌŒÛ!");
+                return ERROR;
+            }
         }
-        else return "NULL";
+        else {
+            session.put("errorMessage", "’À∫≈¥ÌŒÛ!");
+            return ERROR;
+        }
     }
 }

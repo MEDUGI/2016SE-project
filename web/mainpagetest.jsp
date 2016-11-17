@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="dropdown">
                     <ul id="nav" class="nav">
-                        <li class="menu-item"><a class="smoothScroll" href="index.jsp" title="主页"><i class="icon-home"></i></a></li>
+                        <li class="menu-item"><a class="smoothScroll" href="/login_normal.jsp" title="主页"><i class="icon-home"></i></a></li>
                         <li class="menu-item"><a class="smoothScroll" href="#about" title="个人简介"><i class="icon-user"></i></a></li>
                         <li class="menu-item"><a class="smoothScroll" href="#resume" title="简历"><i class="icon-file"></i></a></li>
                         <li class="menu-item"><a class="smoothScroll" href="#contact" title="联系方式"><i class="icon-envelope"></i></a></li>

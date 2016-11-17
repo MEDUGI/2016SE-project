@@ -84,11 +84,19 @@ public class register_stu extends ActionSupport implements SessionAware{
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
-                || school.equals("") || mail.equals("") || stu_number.equals(""))
+                || school.equals("") || mail.equals("") || stu_number.equals("")) {
+            session.put("errorMessage", "输入项目不能为空!");
             return "NULL";
-        if (!secret_repeat.equals(secret)) return "NOT_SAME";
+        }
+        if (!secret_repeat.equals(secret)) {
+            session.put("errorMessage", "两次密码不一致!");
+            return "NOT_SAME";
+        }
         String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
-        if (!mail.matches(regex)) return "MAIL";
+        if (!mail.matches(regex)){
+            session.put("errorMessage", "邮箱不符合格式!");
+            return "MAIL";
+        }
 
         Student stu = new Student(mail,secret);
         stu.setEmailAddress(mail);
@@ -101,6 +109,7 @@ public class register_stu extends ActionSupport implements SessionAware{
             session.put("userstyle", "Student");
             return "SUCCESS";
         }
+        session.put("errorMessage", "未知的错误发生了，你行走在互联网的荒野");
         return ERROR;
     }
 

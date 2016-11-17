@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: zxx_1
@@ -11,8 +12,8 @@
     <title>呃唔，出错了。。。</title>
 </head>
 <body>
-出现了一个未知的错误，你现在处在互联网的荒野。<br>
-<button onclick="window.location.href('/login_normal.jsp')">
+<s:property value="errorMessage"/> <br>
+<button onclick="window.open('/login_normal.jsp')">
   回到登录界面
 </button>
 </body>
