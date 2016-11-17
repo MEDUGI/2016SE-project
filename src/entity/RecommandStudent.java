@@ -1,15 +1,15 @@
 package entity;
 
+import dao.ProfessorDAO;
+
 import java.util.ArrayList;
 
 /**
  * Created by 李沅泽 on 2016/11/16.
  */
-public class RecommandStudent extends Recommand {
-    private String username;
+public class RecommandStudent{
 
-    public ArrayList execWithRestraint() {
-        ArrayList<Student> result = new ArrayList<Student>();
-        return result;
+    public ArrayList execWithRestraint(Student stu) {
+        return new ProfessorDAO().getProfessorRecomentation(stu);
     }
 }

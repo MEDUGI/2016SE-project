@@ -1,7 +1,8 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import entity.Recommand;
+import dao.ProfessorDAO;
+import dao.StudentDAO;
 import entity.RecommandProfessor;
 import entity.RecommandStudent;
 import entity.Tools;
@@ -14,16 +15,41 @@ import java.util.ArrayList;
 public class recommand extends ActionSupport{
     private String user, userstyle;
     private ArrayList result;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getUserstyle() {
+        return userstyle;
+    }
+
+    public void setUserstyle(String userstyle) {
+        this.userstyle = userstyle;
+    }
+
+    public ArrayList getResult() {
+        return result;
+    }
+
+    public void setResult(ArrayList result) {
+        this.result = result;
+    }
+
     public String execute() {
         if (Tools.examUserWithStyle(user,userstyle)) {
             if (userstyle == "Student") {
                 RecommandStudent recs = new RecommandStudent();
-                result = recs.execWithRestraint();
+                result = recs.execWithRestraint(new StudentDAO().getStudent(user));
                 return "SUCCESS";
             }
             else {
                 RecommandProfessor recp = new RecommandProfessor();
-                result = recp.execWithRestraint();
+                result = recp.execWithRestraint(new ProfessorDAO().getProfessor(user));
                 return "SUCCESS";
             }
         }
