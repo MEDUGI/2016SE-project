@@ -7,18 +7,14 @@
 <struts>
     <package name="register-login" extends="struts-default">
         <action name="register_stu" class="action.register_stu">
-            <result name="SUCCESS" type="redirectAction">
-                mainpage
-            </result>
+            <result name="SUCCESS" type="redirectAction">mainpage</result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
             <result name="MAIL">/mail.jsp</result>
         </action>
 
         <action name="register_teacher" class="action.register_teacher">
-            <result name="SUCCESS" type="redirectAction">
-                mainpage
-            </result>
+            <result name="SUCCESS" type="redirectAction">mainpage</result>
             <result name="NULL">/null.jsp</result>
             <result name="NOT_SAME">/not_same.jsp</result>
             <result name="MAIL">/mail.jsp</result>
@@ -31,12 +27,8 @@
         </action>
 
         <action name="login_normal" class="action.login_normal">
-            <result name="STUDENT" type="redirectAction">
-                mainpage
-            </result>
-            <result name="TEACHER" type="redirectAction">
-                mainpage
-            </result>
+            <result name="STUDENT" type="redirectAction">mainpage</result>
+            <result name="TEACHER" type="redirectAction">mainpage</result>
             <result name="PASSWORD">/password.jsp</result>
             <result name="ACCOUNT">/account.jsp</result>
         </action>
@@ -52,7 +44,12 @@
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
             <result name="success">/mainpage.jsp</result>
-            <result name="error">/index.jsp</result>
+        </action>
+        <action name="showChangePage" class="action.showChangePageAction">
+            <result name="success">/showChangePage.jsp</result>
+        </action>
+        <action name="changeInformation" class="action.ChangeInformationAction">
+            <result name="success" type="redirectAction">mainpage</result>
         </action>
     </package>
 

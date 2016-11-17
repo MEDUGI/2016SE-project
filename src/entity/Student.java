@@ -8,13 +8,13 @@ public class Student extends User{
         super(username, password);
     }
     protected String graduateSchool;                        // 50 characters at most
-    protected String studentNo;                             // ??????20?????
-    protected String emailAddress;                          // ??????60?????
-    protected String awardsCollection;                      // ??????500?????
+    protected String studentNo;                             // 20 characters at most
+    protected String emailAddress;                          // 60 characters at most
+    protected String awardsCollection;                      // 500 characters at most
     protected double gpa;
     protected double neepScore;
-    protected String workingAreas;                          // ??????60?????
-    protected String mobileNo;                              // ??????30?????
+    protected String workingAreas;                          // 60 characters at most
+    protected String mobileNo;                              // 30 characters at most
 
     public String getWorkingAreas() {
         return workingAreas;

@@ -79,12 +79,22 @@ public class StudentDAO {
         }
     }
     public boolean updateStudent(Student student) {
-        String sql = "delete from studentDB where username = ?";
+        String sql = "select * from studentDB where username = ?";
         try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, student.getUsername());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                student.setPassword(rs.getString(2));
+            }
+            ps.close();
+
+            sql = "delete from studentDB where username = ?";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
             ps.executeUpdate();
             ps.close();
+
             sql = "insert into studentDB values (?,?,?,?,?,?,?,?,?,?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
