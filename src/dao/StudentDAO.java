@@ -6,6 +6,7 @@ import org.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by Xiangxi on 2016/11/14.
@@ -15,7 +16,7 @@ public class StudentDAO {
     PreparedStatement ps = null;
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB values(?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String sql = "insert into studentDB values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
@@ -28,6 +29,7 @@ public class StudentDAO {
             ps.setString(8, student.getEmailAddress());
             ps.setString(9, student.getWorkingAreas());
             ps.setString(10, student.getMobileNo());
+            ps.setString(11, student.getFullname());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -53,6 +55,7 @@ public class StudentDAO {
                 student.setEmailAddress(rs.getString(8));
                 student.setWorkingAreas(rs.getString(9));
                 student.setMobileNo(rs.getString(10));
+                student.setFullname(rs.getString(11));
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -95,7 +98,7 @@ public class StudentDAO {
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into studentDB values (?,?,?,?,?,?,?,?,?,?)";
+            sql = "insert into studentDB values (?,?,?,?,?,?,?,?,?,?,?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
             ps.setString(2, student.getPassword());
@@ -107,6 +110,7 @@ public class StudentDAO {
             ps.setString(8, student.getEmailAddress());
             ps.setString(9, student.getWorkingAreas());
             ps.setString(10, student.getMobileNo());
+            ps.setString(11, student.getFullname());
             ps.executeUpdate();
             ps.close();
             return true;
@@ -114,5 +118,11 @@ public class StudentDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public ArrayList<Student> getAllStudents() {
+        return null;
+    }
+    public ArrayList<Student> getStudentRecomentation(Professor professor) {
+        return null;
     }
 }

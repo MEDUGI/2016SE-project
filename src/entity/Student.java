@@ -15,6 +15,15 @@ public class Student extends User{
     protected double neepScore;
     protected String workingAreas;                          // 60 characters at most
     protected String mobileNo;                              // 30 characters at most
+    protected String fullname;                              // 40 characters at most
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getWorkingAreas() {
         return workingAreas;

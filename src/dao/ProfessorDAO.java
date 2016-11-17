@@ -6,6 +6,7 @@ import org.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by Xiangxi on 2016/11/14.
@@ -16,7 +17,7 @@ public class ProfessorDAO {
     public boolean addProfessor(Professor professor) {
         String sql;
         try{
-            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.setString(2, professor.getPassword());
@@ -28,6 +29,7 @@ public class ProfessorDAO {
             ps.setString(8, professor.getEmailAddress());
             ps.setString(9, professor.getMobileNo());
             ps.setInt(10, professor.getAcceptedNumber());
+            ps.setString(11, professor.getFullname());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -53,6 +55,7 @@ public class ProfessorDAO {
                 professor.setEmailAddress(rs.getString(8));
                 professor.setMobileNo(rs.getString(9));
                 professor.setAcceptedNumber(rs.getInt(10));
+                professor.setFullname(rs.getString(11));
             }
 
         }catch(Exception e){
@@ -86,6 +89,7 @@ public class ProfessorDAO {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 professor.setPassword(rs.getString(2));
+                professor.setAcceptedNumber(rs.getInt(10));
             }
             ps.close();
 
@@ -95,7 +99,7 @@ public class ProfessorDAO {
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.setString(2, professor.getPassword());
@@ -107,6 +111,7 @@ public class ProfessorDAO {
             ps.setString(8, professor.getEmailAddress());
             ps.setString(9, professor.getMobileNo());
             ps.setInt(10, professor.getAcceptedNumber());
+            ps.setString(11, professor.getFullname());
             ps.executeUpdate();
             ps.close();
             return true;
@@ -114,5 +119,11 @@ public class ProfessorDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public ArrayList<Professor> getAllProfessors() {
+        return null;
+    }
+    public ArrayList<Professor> getProfessorRecomentation(Student student) {
+        return null;
     }
 }

@@ -20,6 +20,9 @@
         用户名：<s:property value="username"/>
       </li>
       <li>
+        姓名：<s:property value="fullname"/>
+      </li>
+      <li>
         毕业院校：<s:property value="graduateSchool"/>
       </li>
       <li>
@@ -48,6 +51,9 @@
   <s:elseif test="#session.watchedUserstyle=='Professor'">
     <li>
       用户名：<s:property value="username"/>
+    </li>
+    <li>
+      姓名：<s:property value="fullname"/>
     </li>
     <li>
       工作单位：<s:property value="employerUnit"/>
