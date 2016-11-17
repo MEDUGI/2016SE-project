@@ -13,7 +13,7 @@
 </head>
 <body>
 <s:property value="errorMessage"/> <br>
-<button onclick="window.open('/login_normal.jsp')">
+<button onclick="window.open('index.action')">
   回到登录界面
 </button>
 </body>
