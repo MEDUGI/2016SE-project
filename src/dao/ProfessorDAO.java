@@ -57,7 +57,7 @@ public class ProfessorDAO {
         result += professor.getIntroduction();
         result += "','";
         result += professor.getPhysicalAddress();
-        result += "'"
+        result += "'";
         return result;
     }
     static private Professor toProfessor(ResultSet rs) {
