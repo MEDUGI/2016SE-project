@@ -4,8 +4,10 @@ import entity.Professor;
 import entity.Student;
 import org.DbPool;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -15,34 +17,35 @@ public class StudentDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
     static private String toValueString(Student student) {
-        String result="";
+        String result="'";
         result += student.getUsername();
-        result += ",";
+        result += "','";
         result += student.getPassword();
-        result += ",";
+        result += "','";
         result += student.getGraduateSchool();
-        result += ",";
+        result += "','";
         result += student.getStudentNo();
-        result += ",";
+        result += "','";
         result += student.getGpa();
-        result += ",";
+        result += "','";
         result += student.getNeepScore();
-        result += ",";
+        result += "','";
         result += student.getAwardsCollection();
-        result += ",";
+        result += "','";
         result += student.getEmailAddress();
-        result += ",";
+        result += "','";
         result += student .getWorkingAreas();
-        result += ",";
+        result += "','";
         result += student.getMobileNo();
-        result += ",";
+        result += "','";
         result += student.getFullname();
-        result += ",";
+        result += "','";
         result += student.getMajor();
-        result += ",";
+        result += "','";
         result += student.getIntroduction();
-        result += ",";
+        result += "','";
         result += student.getPhysicalAddress();
+        result += "'";
         return result;
     }
     static private Student toStudent(ResultSet rs) {
@@ -68,11 +71,11 @@ public class StudentDAO {
     }
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB values(" + toValueString(student) + ")";
+        String sql = "insert into studentDB values (" + toValueString(student) + ");";
         try{
-            ps = dbp.getConn().prepareStatement(sql);
-            ps.executeUpdate();
-            ps.close();
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
         }catch(Exception e) {
             e.printStackTrace();
             return false;
@@ -131,9 +134,9 @@ public class StudentDAO {
             ps.close();
 
             sql = "insert into studentDB values ("+toValueString(student)+")";
-            ps = dbp.getConn().prepareStatement(sql);
-            ps.executeUpdate();
-            ps.close();
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
             return true;
         }catch (Exception e) {
             e.printStackTrace();
@@ -143,8 +146,8 @@ public class StudentDAO {
     public ArrayList<Student> getAllStudents() {
         String sql = "select * from studentDB";
         try {
-            ps = dbp.getConn().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            Statement st = dbp.getConn().createStatement();
+            ResultSet rs = st.executeQuery(sql);
             ArrayList<Student> resultList = new ArrayList<>();
             while(rs.next()) {
                 resultList.add(toStudent(rs));

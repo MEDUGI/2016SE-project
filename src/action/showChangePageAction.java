@@ -27,9 +27,36 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
     protected String papersPublished;
     protected String accomodationNumber;
     protected String fullname;
+    protected String major;
+    protected String introduction;
+    protected String physicalAddress;
     Map session;
     String username = "";
     String userstyle;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
 
     public String getFullname() {
         return fullname;
@@ -185,6 +212,9 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
             workingAreas = mainpageStudent.getWorkingAreas();
             mobileNo = mainpageStudent.getMobileNo();
             fullname = mainpageStudent.getFullname();
+            major = mainpageStudent.getMajor();
+            introduction = mainpageStudent.getIntroduction();
+            physicalAddress = mainpageStudent.getPhysicalAddress();
             return SUCCESS;
         }
         if (userstyle.equals("Professor")) {
@@ -198,6 +228,9 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
             emailAddress = professor.getEmailAddress();
             mobileNo = professor.getMobileNo();
             fullname = professor.getFullname();
+            major = professor.getMajor();
+            introduction = professor.getIntroduction();
+            physicalAddress = professor.getPhysicalAddress();
             return SUCCESS;
         }
         return ERROR;

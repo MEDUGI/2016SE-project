@@ -27,9 +27,36 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
     protected String papersPublished;
     protected String accomodationNumber;
     protected String fullname;
+    protected String major;
+    protected String introduction;
+    protected String physicalAddress;
     Map session;
     String username = "";
     String userstyle;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
 
     public String getFullname() {
         return fullname;
@@ -182,6 +209,9 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             student.setWorkingAreas(workingAreas);
             student.setMobileNo(mobileNo);
             student.setFullname(fullname);
+            student.setMajor(major);
+            student.setIntroduction(introduction);
+            student.setPhysicalAddress(physicalAddress);
             StudentDAO studentDAO = new StudentDAO();
             studentDAO.updateStudent(student);
             return SUCCESS;
@@ -196,6 +226,9 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             professor.setEmailAddress(emailAddress);
             professor.setMobileNo(mobileNo);
             professor.setFullname(fullname);
+            professor.setMajor(major);
+            professor.setIntroduction(introduction);
+            professor.setPhysicalAddress(physicalAddress);
             ProfessorDAO professorDAO = new ProfessorDAO();
             professorDAO.updateProfessor(professor);
             return SUCCESS;

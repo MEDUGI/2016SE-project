@@ -6,6 +6,7 @@ import org.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +18,10 @@ public class ProfessorDAO {
     public boolean addProfessor(Professor professor) {
         String sql;
         try{
-            sql = "insert into professorDB value (" + toValueString(professor) + ")";
-            ps = dbp.getConn().prepareStatement(sql);
-            ps.executeUpdate();
-            ps.close();
+            sql = "insert into professorDB value (" + toValueString(professor) + ");";
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
         }catch(Exception e) {
             e.printStackTrace();
             return false;
@@ -28,34 +29,35 @@ public class ProfessorDAO {
         return true;
     }
     static private String toValueString(Professor professor) {
-        String result="";
+        String result="'";
         result += professor.getUsername();
-        result += ",";
+        result += "','";
         result += professor.getPassword();
-        result += ",";
+        result += "','";
         result += professor.getEmployerUnit();
-        result += ",";
+        result += "','";
         result += professor.getIdentityCardNo();
-        result += ",";
+        result += "','";
         result += professor.getWorkingArea();
-        result += ",";
+        result += "','";
         result += professor.getPapersPublished();
-        result += ",";
+        result += "','";
         result += professor.getAccomodationNumber();
-        result += ",";
+        result += "','";
         result += professor.getEmailAddress();
-        result += ",";
+        result += "','";
         result += professor.getMobileNo();
-        result += ",";
+        result += "','";
         result += professor.getAcceptedNumber();
-        result += ",";
+        result += "','";
         result += professor.getFullname();
-        result += ",";
+        result += "','";
         result += professor.getMajor();
-        result += ",";
+        result += "','";
         result += professor.getIntroduction();
-        result += ",";
+        result += "','";
         result += professor.getPhysicalAddress();
+        result += "'"
         return result;
     }
     static private Professor toProfessor(ResultSet rs) {
@@ -104,8 +106,9 @@ public class ProfessorDAO {
                 return false;
             }
             sql = "UPDATE professorDB SET password = " + password + " WHERE username = " + username;
-            ps = dbp.getConn().prepareStatement(sql);
-            ps.executeUpdate();
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
             return true;
         }catch(Exception e){
             e.printStackTrace();
@@ -131,9 +134,9 @@ public class ProfessorDAO {
             ps.close();
 
             sql = "insert into professordb values (" + toValueString(professor) + ")";
-            ps = dbp.getConn().prepareStatement(sql);
-            ps.executeUpdate();
-            ps.close();
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
             return true;
         }catch (Exception e) {
             e.printStackTrace();
@@ -143,8 +146,8 @@ public class ProfessorDAO {
     public ArrayList<Professor> getAllProfessors() {
         String sql = "select * from professorDB";
         try {
-            ps = dbp.getConn().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            Statement st = dbp.getConn().createStatement();
+            ResultSet rs = st.executeQuery(sql);
             ArrayList<Professor> resultList = new ArrayList<>();
             while(rs.next()) {
                 resultList.add(toProfessor(rs));

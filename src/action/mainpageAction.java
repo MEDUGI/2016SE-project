@@ -28,11 +28,38 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     protected int accomodationNumber;
     protected int acceptedNumber;
     protected String fullname;
+    protected String major;
+    protected String introduction;
+    protected String physicalAddress;
     String username = "";
     String userstyle;
     Student mainpageStudent;
     Professor professor;
     Map session;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
 
     public String getFullname() {
         return fullname;
@@ -214,6 +241,9 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             workingAreas = mainpageStudent.getWorkingAreas();
             mobileNo = mainpageStudent.getMobileNo();
             fullname = mainpageStudent.getFullname();
+            major = mainpageStudent.getMajor();
+            introduction = mainpageStudent.getIntroduction();
+            physicalAddress = mainpageStudent.getPhysicalAddress();
             return SUCCESS;
         }
         if (userstyle.equals("Professor")) {
@@ -228,6 +258,9 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             mobileNo = professor.getMobileNo();
             acceptedNumber = professor.getAcceptedNumber();
             fullname = professor.getFullname();
+            major = professor.getMajor();
+            introduction = professor.getIntroduction();
+            physicalAddress = professor.getPhysicalAddress();
             return SUCCESS;
         }
         return ERROR;
