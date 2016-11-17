@@ -13,8 +13,17 @@ public class Professor extends User{
     protected String workingArea;
     protected String papersPublished;
     protected int accomodationNumber;
+    protected int acceptedNumber;
     protected String emailAddress;
     protected String mobileNo;
+
+    public int getAcceptedNumber() {
+        return acceptedNumber;
+    }
+
+    public void setAcceptedNumber(int acceptedNumber) {
+        this.acceptedNumber = acceptedNumber;
+    }
 
     public String getEmailAddress() {
         return emailAddress;
