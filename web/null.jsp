@@ -11,6 +11,9 @@
     <title>为空</title>
 </head>
 <body>
- 输入项目不能为空!
+ 输入项目不能为空!<br>
+<button onclick="window.location.href('/login_normal.jsp')">
+    回到登录界面
+</button>
 </body>
 </html>
