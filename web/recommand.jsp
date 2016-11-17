@@ -36,7 +36,7 @@
             <td><s:property value='gpa'/></td>
             <td><s:property value='neepScore'/></td>
             <td><s:property value="mobileNo" /></td>
-            <td><a href="mainpage.action?watchedUserName=<s:property value="username"/>">详细信息</a> </td>
+            <td><a href="mainpage.action?username=<s:property value='username'/>&userstyle=Student">详细信息</a> </td>
             <td><a href='editApplicatin.action?userTo=<s:property value="username"/>&userStyle=Student' >发出申请</a></td>
             </tr>
         </s:iterator>
@@ -60,7 +60,7 @@
             <td><s:property value='emailAddress'/></td>
             <td><s:property value='mobileNo'/></td>
             <td><s:property value='acceptedNumber'/>/<s:property value="accomodationNumber" /></td>
-            <td><a href="mainpage.action?watchedUserName=<s:property value="username"/>">详细信息</a></td>
+            <td><a href="mainpage.action?username=<s:property value='username'/>&userstyle=Professor">详细信息</a></td>
             <td><a href="editApplicatin.action?userTo=<s:property value="username"/>&userStyle=Professor">发出申请</a> </td>
             </tr>
         </s:iterator>

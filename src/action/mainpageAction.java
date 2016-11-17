@@ -37,6 +37,8 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     Professor professor;
     Map session;
 
+
+
     public String getMajor() {
         return major;
     }
