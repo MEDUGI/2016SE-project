@@ -27,11 +27,20 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     protected String papersPublished;
     protected int accomodationNumber;
     protected int acceptedNumber;
+    protected String fullname;
     String username = "";
     String userstyle;
     Student mainpageStudent;
     Professor professor;
     Map session;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getEmployerUnit() {
         return employerUnit;
@@ -204,6 +213,7 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             emailAddress = mainpageStudent.getEmailAddress();
             workingAreas = mainpageStudent.getWorkingAreas();
             mobileNo = mainpageStudent.getMobileNo();
+            fullname = mainpageStudent.getFullname();
             return SUCCESS;
         }
         if (userstyle.equals("Professor")) {
@@ -217,6 +227,7 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             emailAddress = professor.getEmailAddress();
             mobileNo = professor.getMobileNo();
             acceptedNumber = professor.getAcceptedNumber();
+            fullname = professor.getFullname();
             return SUCCESS;
         }
         return ERROR;

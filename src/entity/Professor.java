@@ -16,6 +16,15 @@ public class Professor extends User{
     protected int acceptedNumber;
     protected String emailAddress;
     protected String mobileNo;
+    protected String fullname;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public int getAcceptedNumber() {
         return acceptedNumber;

@@ -26,9 +26,18 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
     protected String workingArea;
     protected String papersPublished;
     protected String accomodationNumber;
+    protected String fullname;
     Map session;
     String username = "";
     String userstyle;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public String getUsername() {
         return username;
@@ -172,6 +181,7 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             student.setEmailAddress(emailAddress);
             student.setWorkingAreas(workingAreas);
             student.setMobileNo(mobileNo);
+            student.setFullname(fullname);
             StudentDAO studentDAO = new StudentDAO();
             studentDAO.updateStudent(student);
             return SUCCESS;
@@ -185,6 +195,7 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             professor.setAccomodationNumber(Integer.parseInt(accomodationNumber));
             professor.setEmailAddress(emailAddress);
             professor.setMobileNo(mobileNo);
+            professor.setFullname(fullname);
             ProfessorDAO professorDAO = new ProfessorDAO();
             professorDAO.updateProfessor(professor);
             return SUCCESS;
