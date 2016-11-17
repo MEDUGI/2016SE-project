@@ -16,6 +16,33 @@ public class Student extends User{
     protected String workingAreas;                          // 60 characters at most
     protected String mobileNo;                              // 30 characters at most
     protected String fullname;                              // 40 characters at most
+    protected String major;
+    protected String introduction;
+    protected String physicalAddress;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
 
     public String getFullname() {
         return fullname;

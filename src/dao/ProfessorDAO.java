@@ -17,19 +17,8 @@ public class ProfessorDAO {
     public boolean addProfessor(Professor professor) {
         String sql;
         try{
-            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professorDB value (" + toValueString(professor) + ")";
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, professor.getUsername());
-            ps.setString(2, professor.getPassword());
-            ps.setString(3, professor.getEmployerUnit());
-            ps.setString(4, professor.getIdentityCardNo());
-            ps.setString(5, professor.getWorkingArea());
-            ps.setString(6, professor.getPapersPublished());
-            ps.setInt(7, professor.getAccomodationNumber());
-            ps.setString(8, professor.getEmailAddress());
-            ps.setString(9, professor.getMobileNo());
-            ps.setInt(10, professor.getAcceptedNumber());
-            ps.setString(11, professor.getFullname());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -37,6 +26,58 @@ public class ProfessorDAO {
             return false;
         }
         return true;
+    }
+    static private String toValueString(Professor professor) {
+        String result="";
+        result += professor.getUsername();
+        result += ",";
+        result += professor.getPassword();
+        result += ",";
+        result += professor.getEmployerUnit();
+        result += ",";
+        result += professor.getIdentityCardNo();
+        result += ",";
+        result += professor.getWorkingArea();
+        result += ",";
+        result += professor.getPapersPublished();
+        result += ",";
+        result += professor.getAccomodationNumber();
+        result += ",";
+        result += professor.getEmailAddress();
+        result += ",";
+        result += professor.getMobileNo();
+        result += ",";
+        result += professor.getAcceptedNumber();
+        result += ",";
+        result += professor.getFullname();
+        result += ",";
+        result += professor.getMajor();
+        result += ",";
+        result += professor.getIntroduction();
+        result += ",";
+        result += professor.getPhysicalAddress();
+        return result;
+    }
+    static private Professor toProfessor(ResultSet rs) {
+        try {
+            Professor professor = new Professor(rs.getString(1),rs.getString(2));
+            professor.setEmployerUnit(rs.getString(3));
+            professor.setIdentityCardNo(rs.getString(4));
+            professor.setWorkingArea(rs.getString(5));
+            professor.setPapersPublished(rs.getString(6));
+            professor.setAccomodationNumber(rs.getInt(7));
+            professor.setEmailAddress(rs.getString(8));
+            professor.setMobileNo(rs.getString(9));
+            professor.setAcceptedNumber(rs.getInt(10));
+            professor.setFullname(rs.getString(11));
+            professor.setMajor(rs.getString(12));
+            professor.setIntroduction(rs.getString(13));
+            professor.setPhysicalAddress(rs.getString(14));
+            return professor;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     public Professor getProfessor(String username) {
         String sql = "select * from professorDB where username = ?";
@@ -46,22 +87,12 @@ public class ProfessorDAO {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                professor.setPassword(rs.getString(2));
-                professor.setEmployerUnit(rs.getString(3));
-                professor.setIdentityCardNo(rs.getString(4));
-                professor.setWorkingArea(rs.getString(5));
-                professor.setPapersPublished(rs.getString(6));
-                professor.setAccomodationNumber(rs.getInt(7));
-                professor.setEmailAddress(rs.getString(8));
-                professor.setMobileNo(rs.getString(9));
-                professor.setAcceptedNumber(rs.getInt(10));
-                professor.setFullname(rs.getString(11));
+                return toProfessor(rs);
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }
-        return professor;
+        return null;
     }
     public boolean updatePassword(String username, String password) {
         String sql = "select * from professorDB where username = ?";
@@ -99,19 +130,8 @@ public class ProfessorDAO {
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "insert into professordb values (" + toValueString(professor) + ")";
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, professor.getUsername());
-            ps.setString(2, professor.getPassword());
-            ps.setString(3, professor.getEmployerUnit());
-            ps.setString(4, professor.getIdentityCardNo());
-            ps.setString(5, professor.getWorkingArea());
-            ps.setString(6, professor.getPapersPublished());
-            ps.setInt(7, professor.getAccomodationNumber());
-            ps.setString(8, professor.getEmailAddress());
-            ps.setString(9, professor.getMobileNo());
-            ps.setInt(10, professor.getAcceptedNumber());
-            ps.setString(11, professor.getFullname());
             ps.executeUpdate();
             ps.close();
             return true;
@@ -121,6 +141,18 @@ public class ProfessorDAO {
         }
     }
     public ArrayList<Professor> getAllProfessors() {
+        String sql = "select * from professorDB";
+        try {
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Professor> resultList = new ArrayList<>();
+            while(rs.next()) {
+                resultList.add(toProfessor(rs));
+            }
+            return resultList;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {
