@@ -9,7 +9,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -155,9 +154,7 @@
                     <s:property value="username" /> <br/>
                 </p>
                 <p><t>联系地址</t><br/>
-                    House Address <br/>
-                    Street <br/>
-                    Location and Country <br/>
+                    <s:property value="physicalAddress" /><br/>
                 </p>
                 <p><t>电话号码</t><br/>
                     <s:property value="mobileNo" /> <br/>
