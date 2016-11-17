@@ -1,0 +1,26 @@
+#first {
+    z-index: -1;
+    background-image:url(darkblue.png);
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    margin:0 auto;
+    background-position:center center;
+    min-width:1000px;
+    height:108px;
+}
+B {
+    float:right;
+    height:100%;
+}
+#first h1 {
+    font-family:华文行楷;
+    font-size:300%;
+    color:#eeeeff;
+    float:left;
+    text-align: center;
+}
+#first img {
+    float:left;
+    width:10%;
+    height:100%;
+}

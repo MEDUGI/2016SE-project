@@ -42,9 +42,9 @@ public class putUpApplication extends ActionSupport{
         if (!Tools.examMessage(message)) {
             return "MESSAGE_INVALID";
         }
-        /*if (new ProfessorDAO().getProfessor(pro).getStudentLack()) {
+        if (new ProfessorDAO().getProfessor(pro).getAccomodationNumber() != 0) {
             return "OUT_OF_AMOUNT";
-        }*/
+        }
         Application app = new Application();
         app.setStu(stu);
         app.setPro(pro);
