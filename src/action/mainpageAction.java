@@ -222,6 +222,8 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.professor = professor;
     }
     public String execute() {
+        if (!session.containsKey("username"))
+            return "unlogged";
         if (username.equals("")) {
             username = (String)session.get("username");
             userstyle = (String)session.get("userstyle");
