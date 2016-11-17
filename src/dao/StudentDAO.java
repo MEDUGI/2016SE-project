@@ -6,6 +6,7 @@ import org.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by Xiangxi on 2016/11/14.
@@ -114,5 +115,11 @@ public class StudentDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    public ArrayList<Student> getAllStudents() {
+        return null;
+    }
+    public ArrayList<Student> getStudentRecomentation(Professor professor) {
+        return null;
     }
 }
