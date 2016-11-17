@@ -12,6 +12,7 @@
     <title>个人主页</title>
 </head>
 <body>
+  <%@include file="head.jsp"%>
   个人主页
   <s:if test="#session.watchedUserstyle=='Student'">
     <div>
