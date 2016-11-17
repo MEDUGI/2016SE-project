@@ -42,7 +42,7 @@
     </package>
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
-            <result name="success">/mainpagetest.jsp</result>
+            <result name="success">/mainpage.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
         <action name="showChangePage" class="action.showChangePageAction">
@@ -109,7 +109,7 @@
     <package name="Test" extends="struts-default">
         <action name="test" class="action.test">
             <result name="SUCCESS">
-                /mainpagetest.jsp
+                /mainpage.jsp
             </result>
         </action>
     </package>
