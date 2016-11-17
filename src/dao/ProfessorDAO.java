@@ -14,9 +14,9 @@ public class ProfessorDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
     public boolean addProfessor(Professor professor) {
-
-        String sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql;
         try{
+            sql = "insert into professorDB value (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.setString(2, professor.getPassword());
@@ -72,6 +72,42 @@ public class ProfessorDAO {
             ps.executeUpdate();
             return true;
         }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean updateProfessor(Professor professor) {
+        String sql = "select * from professorDB where username = ?";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, professor.getUsername());
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                professor.setPassword(rs.getString(2));
+            }
+            ps.close();
+
+            sql = "delete from professorDB where username = ?";
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, professor.getUsername());
+            ps.executeUpdate();
+            ps.close();
+
+            sql = "insert into professordb values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setString(1, professor.getUsername());
+            ps.setString(2, professor.getPassword());
+            ps.setString(3, professor.getEmployerUnit());
+            ps.setString(4, professor.getIdentityCardNo());
+            ps.setString(5, professor.getWorkingArea());
+            ps.setString(6, professor.getPapersPublished());
+            ps.setInt(7, professor.getAccomodationNumber());
+            ps.setString(8, professor.getEmailAddress());
+            ps.setString(9, professor.getMobileNo());
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        }catch (Exception e) {
             e.printStackTrace();
             return false;
         }

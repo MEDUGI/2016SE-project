@@ -12,69 +12,66 @@
     <title>个人主页</title>
 </head>
 <body>
-  个人主页QAQ
-  <s:property value="isStudent"/>
-  <s:property value="isProfessor"/>
-  <s:set name="userstyletSet" value="userstyle"/>
-  %{#userstyleSet}
-  <s:property value="userstyle"/>
-  <s:if test="%{#userstyleSet}.equals('Student')">
-    mark
+  个人主页
+  <s:if test="#session.watchedUserstyle=='Student'">
     <div>
       <li>
         用户名：<s:property value="username"/>
       </li>
       <li>
-        毕业院校：<s:property value="student.graduateSchool"/>
+        毕业院校：<s:property value="graduateSchool"/>
       </li>
       <li>
-        学生号：<s:property value="student.studentNo"/>
+        学生号：<s:property value="studentNo"/>
       </li>
       <li>
-        本科学分绩：<s:property value="student.studentNo"/>
+        本科学分绩：<s:property value="studentNo"/>
       </li>
       <li>
-        研究生入学考试成绩：<s:property value="student.neepScore"/>
+        研究生入学考试成绩：<s:property value="neepScore"/>
       </li>
       <li>
-        获得奖项：<s:property value="student.awardsCollection"/>
+        获得奖项：<s:property value="awardsCollection"/>
       </li>
       <li>
-        邮件地址：<s:property value="student.emailAddress"/>
+        邮件地址：<s:property value="emailAddress"/>
       </li>
       <li>
-        工作领域：<s:property value="student.workingAreas"/>
+        工作领域：<s:property value="workingAreas"/>
       </li>
       <li>
-        联系电话: <s:property value="student.mobileNo"/>
+        联系电话: <s:property value="mobileNo"/>
       </li>
     </div>
   </s:if>
-  <s:elseif test="isProfessor">
+  <s:elseif test="#session.watchedUserstyle=='Professor'">
     <li>
       用户名：<s:property value="username"/>
     </li>
     <li>
-      工作单位：<s:property value="professor.employerUnit"/>
+      工作单位：<s:property value="employerUnit"/>
     </li>
     <li>
-      证件号码：<s:property value="professor.identityCardNo"/>
+      证件号码：<s:property value="identityCardNo"/>
     </li>
     <li>
-      工作领域：<s:property value="professor.workingArea"/>
+      工作领域：<s:property value="workingArea"/>
     </li>
     <li>
-      发表文章：<s:property value="professor.papersPublished"/>
+      发表文章：<s:property value="papersPublished"/>
     </li>
     <li>
-      招生名额: <s:property value="professor.accomodationNumber"/>
+      招生名额: <s:property value="accomodationNumber"/>
     </li>
     <li>
-      邮件地址：<s:property value="professor.emailAddress"/>
+      邮件地址：<s:property value="emailAddress"/>
     </li>
     <li>
-      联系电话: <s:property value="professor.mobileNo"/>
+      联系电话: <s:property value="mobileNo"/>
     </li>
   </s:elseif>
+  <s:if test="#session.username==#session.watchedUsername">
+    <a href="/showChangePage.action">修改完善个人信息</a>
+  </s:if>
 </body>
 </html>

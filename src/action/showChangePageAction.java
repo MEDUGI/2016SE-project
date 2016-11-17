@@ -10,27 +10,25 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 /**
- * Created by Xiangxi on 2016/11/14.
+ * Created by Xiangxi on 2016/11/17.
  */
-public class mainpageAction extends ActionSupport implements SessionAware{
+public class showChangePageAction extends ActionSupport implements SessionAware{
     protected String graduateSchool;                        // 50 characters at most
     protected String studentNo;                             // 20 characters at most
     protected String emailAddress;                          // 60 characters at most
     protected String awardsCollection;                      // 500 characters at most
-    protected double gpa;
-    protected double neepScore;
+    protected String gpa;
+    protected String neepScore;
     protected String workingAreas;                          // 60 characters at most
     protected String mobileNo;                              // 30 characters at most
     protected String employerUnit;
     protected String identityCardNo;
     protected String workingArea;
     protected String papersPublished;
-    protected int accomodationNumber;
+    protected String accomodationNumber;
+    Map session;
     String username = "";
     String userstyle;
-    Student mainpageStudent;
-    Professor professor;
-    Map session;
 
     public String getGraduateSchool() {
         return graduateSchool;
@@ -64,19 +62,19 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.awardsCollection = awardsCollection;
     }
 
-    public double getGpa() {
+    public String getGpa() {
         return gpa;
     }
 
-    public void setGpa(double gpa) {
+    public void setGpa(String gpa) {
         this.gpa = gpa;
     }
 
-    public double getNeepScore() {
+    public String getNeepScore() {
         return neepScore;
     }
 
-    public void setNeepScore(double neepScore) {
+    public void setNeepScore(String neepScore) {
         this.neepScore = neepScore;
     }
 
@@ -96,8 +94,60 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.mobileNo = mobileNo;
     }
 
+    public String getEmployerUnit() {
+        return employerUnit;
+    }
+
+    public void setEmployerUnit(String employerUnit) {
+        this.employerUnit = employerUnit;
+    }
+
+    public String getIdentityCardNo() {
+        return identityCardNo;
+    }
+
+    public void setIdentityCardNo(String identityCardNo) {
+        this.identityCardNo = identityCardNo;
+    }
+
+    public String getWorkingArea() {
+        return workingArea;
+    }
+
+    public void setWorkingArea(String workingArea) {
+        this.workingArea = workingArea;
+    }
+
+    public String getPapersPublished() {
+        return papersPublished;
+    }
+
+    public void setPapersPublished(String papersPublished) {
+        this.papersPublished = papersPublished;
+    }
+
+    public String getAccomodationNumber() {
+        return accomodationNumber;
+    }
+
+    public void setAccomodationNumber(String accomodationNumber) {
+        this.accomodationNumber = accomodationNumber;
+    }
+
     public Map getSession() {
         return session;
+    }
+
+    public void setSession(Map session) {
+        this.session = session;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserstyle() {
@@ -108,45 +158,19 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Student getStudent() {
-        return mainpageStudent;
-    }
-
-    public void setMainpageStudent(Student mainpageStudent) {
-        this.mainpageStudent = mainpageStudent;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
-    public String execute() {
-        if (username.equals("")) {
-            username = (String)session.get("username");
-            userstyle = (String)session.get("userstyle");
-        }
-        session.put("watchedUsername", username);
-        session.put("watchedUserstyle", userstyle);
-
+    @Override
+    public String execute() throws Exception {
+        username = (String)session.get("username");
+        userstyle = (String)session.get("userstyle");
+        Student mainpageStudent;
+        Professor professor;
         if (userstyle.equals("Student")) {
             StudentDAO studentDAO = new StudentDAO();
             mainpageStudent = studentDAO.getStudent(username);
             graduateSchool = mainpageStudent.getGraduateSchool();
             studentNo = mainpageStudent.getStudentNo();
-            gpa = mainpageStudent.getGpa();
-            neepScore = mainpageStudent.getNeepScore();
+            gpa = Double.toString(mainpageStudent.getGpa());
+            neepScore = Double.toString(mainpageStudent.getNeepScore());
             awardsCollection = mainpageStudent.getAwardsCollection();
             emailAddress = mainpageStudent.getEmailAddress();
             workingAreas = mainpageStudent.getWorkingAreas();
@@ -160,14 +184,11 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             identityCardNo = professor.getIdentityCardNo();
             workingArea = professor.getWorkingArea();
             papersPublished = professor.getPapersPublished();
-            accomodationNumber = professor.getAccomodationNumber();
+            accomodationNumber = Integer.toString(professor.getAccomodationNumber());
             emailAddress = professor.getEmailAddress();
             mobileNo = professor.getMobileNo();
             return SUCCESS;
         }
         return ERROR;
-    }
-    public void setSession(Map session) {
-        this.session = session;
     }
 }
