@@ -10,35 +10,71 @@
 <html>
 <head>
     <title>个人主页</title>
-  <s:head theme="ajax"/>
 </head>
 <body>
-  <s:if test="isStudent">
+  个人主页QAQ
+  <s:property value="isStudent"/>
+  <s:property value="isProfessor"/>
+  <s:set name="userstyletSet" value="userstyle"/>
+  %{#userstyleSet}
+  <s:property value="userstyle"/>
+  <s:if test="%{#userstyleSet}.equals('Student')">
+    mark
     <div>
       <li>
         用户名：<s:property value="username"/>
       </li>
       <li>
-        <s:url id="showGraduateSchoolURL" value="showGradSchool.action">
-        <s:param name="username"><s:property value="username"/></s:param>
-      </s:url>
-        <s:div id="showGradSchoolDiv" theme="ajax" href="%{showGraduateSchoolURL}"/>
-        <s:form id="gradSchoolForm" action="showGradSchool">
-          <s:param name="username"><s:property value="username"/></s:param>
-          <s:textfield name="graduateSchool"/>
-          <s:submit type="button" theme="ajax" label="修改毕业学校" targets="showGradSchoolDiv"/>
-        </s:form>
+        毕业院校：<s:property value="student.graduateSchool"/>
       </li>
       <li>
-
+        学生号：<s:property value="student.studentNo"/>
       </li>
       <li>
-
+        本科学分绩：<s:property value="student.studentNo"/>
+      </li>
+      <li>
+        研究生入学考试成绩：<s:property value="student.neepScore"/>
+      </li>
+      <li>
+        获得奖项：<s:property value="student.awardsCollection"/>
+      </li>
+      <li>
+        邮件地址：<s:property value="student.emailAddress"/>
+      </li>
+      <li>
+        工作领域：<s:property value="student.workingAreas"/>
+      </li>
+      <li>
+        联系电话: <s:property value="student.mobileNo"/>
       </li>
     </div>
   </s:if>
   <s:elseif test="isProfessor">
-
+    <li>
+      用户名：<s:property value="username"/>
+    </li>
+    <li>
+      工作单位：<s:property value="professor.employerUnit"/>
+    </li>
+    <li>
+      证件号码：<s:property value="professor.identityCardNo"/>
+    </li>
+    <li>
+      工作领域：<s:property value="professor.workingArea"/>
+    </li>
+    <li>
+      发表文章：<s:property value="professor.papersPublished"/>
+    </li>
+    <li>
+      招生名额: <s:property value="professor.accomodationNumber"/>
+    </li>
+    <li>
+      邮件地址：<s:property value="professor.emailAddress"/>
+    </li>
+    <li>
+      联系电话: <s:property value="professor.mobileNo"/>
+    </li>
   </s:elseif>
 </body>
 </html>
