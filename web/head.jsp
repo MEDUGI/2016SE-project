@@ -16,10 +16,8 @@
         <h1>&nbsp;研究生导师互选推荐系统</h1>
     </li>
 </div>
-
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container-fluid topbbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -30,22 +28,23 @@
             <a class="navbar-brand" href="index.action">首页</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <s:if test='#session.userstyle == "Teacher"'>
+                <s:if test='#session.userstyle == "Professor"'>
                     <li><a href="login.action"> 查看学生 </a></li>
+                    <li><a href="">查看推荐</a></li>
+                    <li><a href="/mainpage.action">回到个人主页</a> </li>
                 </s:if>
-                <s:else>
+                <s:elseif test='#session.userstyle == "Student"'>
                     <li><a href="login.action"> 查看导师 </a></li>
-                </s:else>
-                <li><a href="">查看推荐</a></li>
-                <li><a href="">更改个人信息</a> </li>
+                    <li><a href="">查看推荐</a></li>
+                    <li><a href="/mainpage.action">回到个人主页</a> </li>
+                </s:elseif>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <s:if test="#session.username == null">
-                    <li><a href="login.action">登录</a></li>
+                    <li><a href="login_normal.jsp">登录</a></li>
                 </s:if>
                 <s:else>
                     <li><a hrsef="mainpage.action">${session.username}</a></li>

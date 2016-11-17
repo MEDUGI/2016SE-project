@@ -43,7 +43,7 @@
     </package>
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
-            <result name="success">/mainpage.jsp</result>
+            <result name="success">/mainpagetest.jsp</result>
         </action>
         <action name="showChangePage" class="action.showChangePageAction">
             <result name="success">/showChangePage.jsp</result>
@@ -58,25 +58,17 @@
             <result name="SUCCESS"> /message.jsp </result>
         </action>
         <action name="sendMessage" class="action.sendMessage">
-            <result name="SUCCESS" type="chain">
-                <param name="actionName"> editMessage </param>
-                <param name="isSuccess"> true </param>
-                <param name="returnMessage"> "成功发信" </param>
+            <result name="SUCCESS">
+                /sendMessageSucceed.jsp
             </result>
-            <result name="USER_CANNOT_FIND" type="chain">
-                <param name="actionName"> editMessage</param>
-                <param name="isSuccess"> false</param>
-                <param name="returnMessage"> "未找到用户" </param>
+            <result name="USER_CANNOT_FIND">
+                /usercannotfind.jsp
             </result>
-            <result name="INVALID_USER" type="chain">
-                <param name="actionName"> editMessage</param>
-                <param name="isSuccess"> false</param>
-                <param name="returnMessage"> "您未登陆" </param>
+            <result name="INVALID_USER">
+                /invaliduser.jsp
             </result>
-            <result name="MESSAGE_INVALID" type="chain">
-                <param name="actionName"> editMessage</param>
-                <param name="isSuccess"> false</param>
-                <param name="returnMessage"> "信息含有威胁或者不合法内容" </param>
+            <result name="MESSAGE_INVALID">
+                /invalidmessage.jsp
             </result>
         </action>
     </package>
@@ -86,20 +78,14 @@
             <result name="SUCCESS"> /editApplication.jsp </result>
         </action>
         <action name="putUpApplication" class="action.putUpApplication">
-            <result name="SUCCESS" type="chain">
-                <param name="actionName"> successApply </param>
-                <param name="isSuccess"> true </param>
-                <param name="returnMessage"> 申请已成功提交，请等待审核 </param>
+            <result name="SUCCESS">
+                /applysucceed.jsp
             </result>
-            <result name="OUT_OF_AMOUNT" type="chain">
-                <param name="actionName"> failApply </param>
-                <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 申请人数已满 </param>
+            <result name="OUT_OF_AMOUNT">
+                /outofamount.jsp
             </result>
-            <result name="MESSAGE_INVALID" type="chain">
-                <param name="actionName"> failApply </param>
-                <param name="isSuccess"> false</param>
-                <param name="returnMessage"> 信息含有威胁或者不合法内容 </param>
+            <result name="MESSAGE_INVALID">
+                /invalidmessage.jsp
             </result>
         </action>
     </package>
@@ -108,6 +94,14 @@
         <action name="recommand" class="action.recommand">
             <result name="SUCCESS">
                 /recommand.jsp
+            </result>
+        </action>
+    </package>
+
+    <package name="Test" extends="struts-default">
+        <action name="test" class="action.test">
+            <result name="SUCCESS">
+                /mainpagetest.jsp
             </result>
         </action>
     </package>
