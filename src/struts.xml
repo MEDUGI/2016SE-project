@@ -6,41 +6,34 @@
 
 <struts>
     <package name="register-login" extends="struts-default">
+        <default-action-ref name="index"></default-action-ref>
+        <action name="index">
+            <result type="dispatcher">/login_normal.jsp</result>
+        </action>
         <action name="register_stu" class="action.register_stu">
             <result name="SUCCESS" type="redirectAction">mainpage</result>
-            <result name="NULL">/null.jsp</result>
-            <result name="NOT_SAME">/not_same.jsp</result>
-            <result name="MAIL">/mail.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="register_teacher" class="action.register_teacher">
             <result name="SUCCESS" type="redirectAction">mainpage</result>
-            <result name="NULL">/null.jsp</result>
-            <result name="NOT_SAME">/not_same.jsp</result>
-            <result name="MAIL">/mail.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="login_admin" class="action.login_admin">
             <result name="SUCCESS">/admin.jsp</result>
-            <result name="PASSWORD">/password.jsp</result>
-            <result name="ACCOUNT">/account.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="login_normal" class="action.login_normal">
             <result name="STUDENT" type="redirectAction">mainpage</result>
             <result name="TEACHER" type="redirectAction">mainpage</result>
-            <result name="PASSWORD">/password.jsp</result>
-            <result name="ACCOUNT">/account.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="change_password" class="action.change_password">
-            <result name="NULL">/null.jsp</result>
-            <result name="NOT_SAME">/not_same.jsp</result>
-            <result name="MAIL">/mail.jsp</result>
-            <result name="SUCCESS">/index.jsp</result>
-            <result name="ACCOUNT">/account.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
+            <result name="SUCCESS">/login_normal.jsp</result>
         </action>
         <action name="loggout" class="action.LoggoutAction">
             <result name="success">/login_normal.jsp</result>
@@ -106,7 +99,13 @@
             </result>
         </action>
     </package>
-
+    <package name="commonPackage" extends="struts-default">
+        <action name="errorAction" class="action.ErrorActionClass">
+            <result name="success">
+                /error.jsp
+            </result>
+        </action>
+    </package>
     <package name="Test" extends="struts-default">
         <action name="test" class="action.test">
             <result name="SUCCESS">
