@@ -12,7 +12,7 @@
 </head>
 <body>
  两次密码不一致<br>
- <button onclick="window.location.href('/login_normal.jsp')">
+ <button onclick="window.open('/login_normal.jsp')">
      回到登录界面
  </button>
 </body>

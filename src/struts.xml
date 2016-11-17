@@ -42,6 +42,10 @@
             <result name="SUCCESS">/index.jsp</result>
             <result name="ACCOUNT">/account.jsp</result>
         </action>
+        <action name="loggout" class="action.LoggoutAction">
+            <result name="success">/login_normal.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">

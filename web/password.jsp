@@ -12,5 +12,8 @@
 </head>
 <body>
 密码输入错误!
+<button onclick="window.open('/login_normal.jsp')">
+  回到登录界面
+</button>
 </body>
 </html>

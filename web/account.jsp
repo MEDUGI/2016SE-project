@@ -12,5 +12,8 @@
 </head>
 <body>
 账号不存在!
+<button onclick="window.open('/login_normal.jsp')">
+  回到登录界面
+</button>
 </body>
 </html>
