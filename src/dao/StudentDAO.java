@@ -14,22 +14,63 @@ import java.util.ArrayList;
 public class StudentDAO {
     DbPool dbp = new DbPool();
     PreparedStatement ps = null;
+    static private String toValueString(Student student) {
+        String result="";
+        result += student.getUsername();
+        result += ",";
+        result += student.getPassword();
+        result += ",";
+        result += student.getGraduateSchool();
+        result += ",";
+        result += student.getStudentNo();
+        result += ",";
+        result += student.getGpa();
+        result += ",";
+        result += student.getNeepScore();
+        result += ",";
+        result += student.getAwardsCollection();
+        result += ",";
+        result += student.getEmailAddress();
+        result += ",";
+        result += student .getWorkingAreas();
+        result += ",";
+        result += student.getMobileNo();
+        result += ",";
+        result += student.getFullname();
+        result += ",";
+        result += student.getMajor();
+        result += ",";
+        result += student.getIntroduction();
+        result += ",";
+        result += student.getPhysicalAddress();
+        return result;
+    }
+    static private Student toStudent(ResultSet rs) {
+        try {
+            Student student = new Student(rs.getString(1),rs.getString(2));
+            student.setGraduateSchool(rs.getString(3));
+            student.setStudentNo(rs.getString(4));
+            student.setGpa(rs.getDouble(5));
+            student.setNeepScore(rs.getDouble(6));
+            student.setAwardsCollection(rs.getString(7));
+            student.setEmailAddress(rs.getString(8));
+            student.setWorkingAreas(rs.getString(9));
+            student.setMobileNo(rs.getString(10));
+            student.setFullname(rs.getString(11));
+            student.setMajor(rs.getString(12));
+            student.setIntroduction(rs.getString(13));
+            student.setPhysicalAddress(rs.getString(14));
+            return student;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into studentDB values(" + toValueString(student) + ")";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, student.getUsername());
-            ps.setString(2, student.getPassword());
-            ps.setString(3, student.getGraduateSchool());
-            ps.setString(4, student.getStudentNo());
-            ps.setDouble(5, student.getGpa());
-            ps.setDouble(6, student.getNeepScore());
-            ps.setString(7, student.getAwardsCollection());
-            ps.setString(8, student.getEmailAddress());
-            ps.setString(9, student.getWorkingAreas());
-            ps.setString(10, student.getMobileNo());
-            ps.setString(11, student.getFullname());
             ps.executeUpdate();
             ps.close();
         }catch(Exception e) {
@@ -46,16 +87,7 @@ public class StudentDAO {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                student.setPassword(rs.getString(2));
-                student.setGraduateSchool(rs.getString(3));
-                student.setStudentNo(rs.getString(4));
-                student.setGpa(rs.getDouble(5));
-                student.setNeepScore(rs.getDouble(6));
-                student.setAwardsCollection(rs.getString(7));
-                student.setEmailAddress(rs.getString(8));
-                student.setWorkingAreas(rs.getString(9));
-                student.setMobileNo(rs.getString(10));
-                student.setFullname(rs.getString(11));
+                student = toStudent(rs);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -98,19 +130,8 @@ public class StudentDAO {
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into studentDB values (?,?,?,?,?,?,?,?,?,?,?)";
+            sql = "insert into studentDB values ("+toValueString(student)+")";
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, student.getUsername());
-            ps.setString(2, student.getPassword());
-            ps.setString(3, student.getGraduateSchool());
-            ps.setString(4, student.getStudentNo());
-            ps.setDouble(5, student.getGpa());
-            ps.setDouble(6, student.getNeepScore());
-            ps.setString(7, student.getAwardsCollection());
-            ps.setString(8, student.getEmailAddress());
-            ps.setString(9, student.getWorkingAreas());
-            ps.setString(10, student.getMobileNo());
-            ps.setString(11, student.getFullname());
             ps.executeUpdate();
             ps.close();
             return true;
@@ -126,18 +147,7 @@ public class StudentDAO {
             ResultSet rs = ps.executeQuery();
             ArrayList<Student> resultList = new ArrayList<>();
             while(rs.next()) {
-                Student student = new Student(rs.getString(1),"");
-                student.setPassword(rs.getString(2));
-                student.setGraduateSchool(rs.getString(3));
-                student.setStudentNo(rs.getString(4));
-                student.setGpa(rs.getDouble(5));
-                student.setNeepScore(rs.getDouble(6));
-                student.setAwardsCollection(rs.getString(7));
-                student.setEmailAddress(rs.getString(8));
-                student.setWorkingAreas(rs.getString(9));
-                student.setMobileNo(rs.getString(10));
-                student.setFullname(rs.getString(11));
-                resultList.add(student);
+                resultList.add(toStudent(rs));
             }
             return resultList;
         } catch(Exception e) {

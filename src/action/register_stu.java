@@ -92,6 +92,7 @@ public class register_stu extends ActionSupport implements SessionAware{
 
         Student stu = new Student(mail,secret);
         stu.setEmailAddress(mail);
+        stu.setStudentNo(stu_number);
         stu.setGraduateSchool(school);
 
         StudentDAO studao = new StudentDAO();

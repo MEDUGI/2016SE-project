@@ -17,6 +17,33 @@ public class Professor extends User{
     protected String emailAddress;
     protected String mobileNo;
     protected String fullname;
+    protected String major;
+    protected String introduction;
+    protected String physicalAddress;
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
 
     public String getFullname() {
         return fullname;
