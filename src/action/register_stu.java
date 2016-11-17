@@ -96,11 +96,12 @@ public class register_stu extends ActionSupport implements SessionAware{
         stu.setGraduateSchool(school);
 
         StudentDAO studao = new StudentDAO();
-        studao.addStudent(stu);
-
-        session.put("username", mail);
-        session.put("userstyle", "Student");
-        return "SUCCESS";
+        if (studao.addStudent(stu)) {
+            session.put("username", mail);
+            session.put("userstyle", "Student");
+            return "SUCCESS";
+        }
+        return ERROR;
     }
 
     public void setSession(Map session) {

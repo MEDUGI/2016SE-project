@@ -92,10 +92,12 @@ public class register_teacher extends ActionSupport implements SessionAware{
         pro.setEmailAddress(mail);
         pro.setIdentityCardNo(teacher_id);
         ProfessorDAO prodao = new ProfessorDAO();
-        prodao.addProfessor(pro);
-        session.put("userstyle","Professor");
-        session.put("username",mail);
-        return "SUCCESS";
+        if (prodao.addProfessor(pro)) {
+            session.put("userstyle","Professor");
+            session.put("username",mail);
+            return "SUCCESS";
+        }
+        return ERROR;
     }
 }
 
