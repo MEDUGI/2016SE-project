@@ -92,7 +92,7 @@ public class register_stu extends ActionSupport implements SessionAware{
             session.put("errorMessage", "两次密码不一致!");
             return "NOT_SAME";
         }
-        String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
+        String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
         if (!mail.matches(regex)){
             session.put("errorMessage", "邮箱不符合格式!");
             return "MAIL";

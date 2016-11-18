@@ -39,7 +39,7 @@
             <result name="error" type="redirectAction">errorAction</result>
             <result name="SUCCESS">/login_normal.jsp</result>
         </action>
-        <action name="loggout" class="action.LoggoutAction">
+        <action name="logout" class="action.LogoutAction">
             <result name="success">/login_normal.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
