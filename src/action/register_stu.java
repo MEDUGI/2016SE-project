@@ -86,16 +86,16 @@ public class register_stu extends ActionSupport implements SessionAware{
         if (secret.equals("") || secret_repeat.equals("")
                 || school.equals("") || mail.equals("") || stu_number.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
-            return "NULL";
+            return ERROR;
         }
         if (!secret_repeat.equals(secret)) {
             session.put("errorMessage", "两次密码不一致!");
-            return "NOT_SAME";
+            return ERROR;
         }
         String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
         if (!mail.matches(regex)){
             session.put("errorMessage", "邮箱不符合格式!");
-            return "MAIL";
+            return ERROR;
         }
 
         Student stu = new Student(mail,secret);
