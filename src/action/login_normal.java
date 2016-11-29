@@ -18,6 +18,15 @@ import java.util.Map;
 public class login_normal extends ActionSupport implements SessionAware{
     String mail,password;
     Map session;
+    String kind;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
 
     public String getMail() {
         return mail;
@@ -41,34 +50,37 @@ public class login_normal extends ActionSupport implements SessionAware{
 
     @Override
     public String execute() {
-        StudentDAO studao = new StudentDAO();
-        if (!studao.getStudent(mail).equals("")) {
-            if (studao.getStudent(mail).getPassword().equals(password)) {
-                session.put("userstyle","Student");
-                session.put("username",mail);
-                return "STUDENT";
+        System.out.println(getKind());
+        if (getKind().equals("student")) {
+            StudentDAO studao = new StudentDAO();
+            if (!studao.getStudent(mail).equals("")) {
+                if (studao.getStudent(mail).getPassword().equals(password)) {
+                    session.put("userstyle", "Student");
+                    session.put("username", mail);
+                    return "STUDENT";
+                } else {
+                    session.put("errorMessage", "not equal!");
+                    return ERROR;
+                }
             } else {
-                session.put("errorMessage", "√‹¬Î ‰»Î¥ÌŒÛ!");
+                session.put("errorMessage", "no student here!");
                 return ERROR;
             }
-        }
-
-
-        ProfessorDAO prodao = new ProfessorDAO();
-        if (!prodao.getProfessor(mail).equals("")) {
-            if (prodao.getProfessor(mail).getPassword().equals(password)) {
-                session.put("userstyle","Student");
-                session.put("username",mail);
-                return "PROFESSOR";
-            }
-            else {
-                session.put("errorMessage", "√‹¬Î ‰»Î¥ÌŒÛ!");
+        } else {
+            ProfessorDAO prodao = new ProfessorDAO();
+            if (!prodao.getProfessor(mail).equals("")) {
+                if (prodao.getProfessor(mail).getPassword().equals(password)) {
+                    session.put("userstyle", "Student");
+                    session.put("username", mail);
+                    return "PROFESSOR";
+                } else {
+                    session.put("errorMessage", "not equal!");
+                    return ERROR;
+                }
+            } else {
+                session.put("errorMessage", "no teacher here!");
                 return ERROR;
             }
-        }
-        else {
-            session.put("errorMessage", "’À∫≈¥ÌŒÛ!");
-            return ERROR;
         }
     }
 }

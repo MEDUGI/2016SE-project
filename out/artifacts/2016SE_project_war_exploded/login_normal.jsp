@@ -50,9 +50,17 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block btn-login">
+                <input hidden="hidden" name="kind" id="kind">
+            </div>
+
+            <div class="form-group">
+                <button type="button" onclick="stu()" class="btn btn-primary btn-block btn-login" id="student">
                     <i class="icon-signin"></i>
-                    Log In
+                    Student Login
+                </button>
+                <button type="button" onclick="tea()" class="btn btn-primary btn-block btn-login" id="teacher">
+                    <i class="icon-signin"></i>
+                    Teacher Login
                 </button>
             </div>
             </form>
@@ -70,4 +78,15 @@
     </div>
     </div>
 </body>
+<script>
+function stu() {
+    document.getElementById("kind").value = "student";
+    document.getElementById("form_login").submit();
+}
+function tea() {
+    document.getElementById("kind").value = "teacher";
+    document.getElementById("form_login").submit();
+}
+    
+</script>
 </html>
