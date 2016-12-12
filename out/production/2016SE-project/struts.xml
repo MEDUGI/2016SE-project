@@ -39,7 +39,7 @@
             <result name="error" type="redirectAction">errorAction</result>
             <result name="SUCCESS">/login_normal.jsp</result>
         </action>
-        <action name="loggout" class="action.LoggoutAction">
+        <action name="logout" class="action.LogoutAction">
             <result name="success">/login_normal.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
@@ -56,6 +56,10 @@
         </action>
         <action name="changeInformation" class="action.ChangeInformationAction">
             <result name="success" type="redirectAction">mainpage</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="create_resume" class="action.create_resumeAction">
+            <result name="success">/create_resume.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
     </package>

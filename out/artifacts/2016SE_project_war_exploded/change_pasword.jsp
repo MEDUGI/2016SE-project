@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: forandroid
   Date: 16-11-14
-  Time: 下午8:40
+  Time: 下午10:21
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>学生信息注册</title>
+    <title>更改密码</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <link rel='stylesheet' href='css/jquery-ui.css'>
@@ -23,7 +23,7 @@
 <div class="login-form">
     <div class="login-content">
 
-        <form action="register_stu" role="form" id="form_login" method="post">
+        <form action="login_normal" role="form" id="form_login" method="post">
 
             <div class="form-group">
 
@@ -59,34 +59,10 @@
                 </div>
 
             </div>
-
-            <div class="form-group">
-
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        毕业院校
-                    </div>
-
-                    <input type="text" class="form-control" name="school" autocomplete="off" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        学号
-                    </div>
-
-                    <input type="text" class="form-control" name="stu_number" autocomplete="off" />
-                </div>
-
-            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block btn-login">
                     <i class="icon-signin"></i>
-                    Register
+                    更改密码
                 </button>
             </div>
         </form>
