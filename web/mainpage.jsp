@@ -95,7 +95,7 @@
                 <p><s:property  value="introduction" /></p> <!-- 个人简介... -->
             </div>
             <div class="col-lg-3">
-                <p><a href="#"><i class="icon-file"></i></a> <sm>下载PDF</sm></p>
+                <p><a href="/create_resume.action"><i class="icon-file"></i></a> <sm>下载PDF</sm></p>
             </div>
 
         </div><!--/.row -->

@@ -58,6 +58,10 @@
             <result name="success" type="redirectAction">mainpage</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="create_resume" class="action.create_resumeAction">
+            <result name="success">/create_resume.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
 
     <package name="sendAndReceiveMessage" extends="struts-default">
