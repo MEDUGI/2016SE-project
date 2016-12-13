@@ -23,7 +23,7 @@
   </tr>
   <s:iterator value="unreadMessages">
     <tr>
-      <td><s:property value="from"/></td>
+      <td><s:property value="userFrom"/></td>
       <td><s:property value="date"/></td>
       <td><s:property value="content"/></td>
       <td><a href="replyMessage.action?id=<s:property value="ID"/>">回信</a></td>
@@ -42,7 +42,7 @@
   </tr>
   <s:iterator value="readMessages">
     <tr>
-      <td><s:property value="from"/></td>
+      <td><s:property value="userFrom"/></td>
       <td><s:property value="date"/></td>
       <td><s:property value="content"/></td>
       <td><a href="replyMessage.action?id=<s:property value="ID"/>">回信</a></td>
@@ -50,5 +50,9 @@
     </tr>
   </s:iterator>
 </table>
+
+<a href="mainpage.action">
+  回到主页
+</a>
 </body>
 </html>

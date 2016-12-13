@@ -75,12 +75,13 @@ public class ShowApplicationsAction extends ActionSupport implements SessionAwar
                 succeededApplication.add(application);
                 continue;
             }
-            if (application.getFrom().equals(username)) {
-                myApplication.add(application);
-            }
             if ((application.getTo().equals(username) && application.getStatus() == 0) ||
                     application.getFrom().equals(username) && application.getStatus() == 1) {
                 receivedApplication.add(application);
+                continue;
+            }
+            if (application.getFrom().equals(username)) {
+                myApplication.add(application);
             }
         }
     }

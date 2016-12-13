@@ -117,13 +117,11 @@
             </result>
         </action>
         <action name="replyApplication" class="action.replyApplicationAction">
-            <result name= "success">
-                showApplications.action
-            </result>
+            <result name= "success" type="redirectAction">showApplications</result>
         </action>
         <action name="modifyApplication" class="action.modifyApplicationAction">
-            <result name="success">
-                showApplications.action
+            <result name= "success">
+                /modifyApplication.jsp
             </result>
         </action>
     </package>

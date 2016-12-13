@@ -3,6 +3,8 @@ package entity;
 import dao.StudentDAO;
 import dao.ProfessorDAO;
 
+import java.util.Calendar;
+
 /**
  * Created by 李沅泽 on 2016/11/15.
  */
@@ -41,5 +43,11 @@ public class Tools {
     public static boolean examMessage(String content) {
         //TODO
         return true;
+    }
+    public static String getDateString() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.YEAR) + "/" +
+                (calendar.get(Calendar.MONTH)+1) + "/"+
+                calendar.get(Calendar.DATE);
     }
 }

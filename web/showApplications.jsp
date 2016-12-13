@@ -29,7 +29,7 @@
       <td><s:property value="applydate"/></td>
       <td><s:property value="message"/> </td>
       <td><a href="mainpage.action?username=<s:property value="to"/>">查看主页</a></td>
-      <td><a href="replyApplication.action?isAccepted=true&applicationId=<s:property value="ID"/>">同意</a> <a href="replyApplication.action?isAccepted=false&applicationId<s:property value="ID"/>">拒绝</a> </td>
+      <td><a href="replyApplication.action?isAccepted=true&applicationId=<s:property value="ID"/>">同意</a> <a href="replyApplication.action?isAccepted=false&applicationId=<s:property value="ID"/>">拒绝</a> </td>
     </tr>
   </s:iterator>
 </table>
@@ -47,7 +47,7 @@
       <td><s:property value="to"/></td>
       <td><s:property value="applydate"/></td>
       <td><s:property value="message"/> </td>
-      <td><a href="replyApplication.action?applicationId=<s:property value="ID"/> ">修改</a></td>
+      <td><a href="modifyApplication.action?applicationId=<s:property value="ID"/> ">修改</a></td>
     </tr>
   </s:iterator>
 </table>
