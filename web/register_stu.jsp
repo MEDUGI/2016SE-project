@@ -52,10 +52,10 @@
 
                 <div class="input-group">
                     <div class="input-group-addon" id="tips">
-                        邮箱
+                        用户名
                     </div>
 
-                    <input type="text" class="form-control" name="mail" id="username" placeholder="Username" autocomplete="off" />
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
                 </div>
 
             </div>

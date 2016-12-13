@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import entity.Student;
 import dao.StudentDAO;
+import entity.Tools;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 public class register_stu extends ActionSupport implements SessionAware{
 
-    String mail,secret,secret_repeat,school,stu_number,fullname;
+    String username,secret,secret_repeat,school,stu_number,fullname;
 
     public String getFullname() {
         return fullname;
@@ -27,6 +28,10 @@ public class register_stu extends ActionSupport implements SessionAware{
     private Map session;
     boolean isStudent = true;
     boolean isProfessor = false;
+
+    public Map getSession() {
+        return session;
+    }
 
     public boolean isStudent() {
         return isStudent;
@@ -44,12 +49,12 @@ public class register_stu extends ActionSupport implements SessionAware{
         this.isProfessor = isProfessor;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSecret() {
@@ -93,7 +98,7 @@ public class register_stu extends ActionSupport implements SessionAware{
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
-                || school.equals("") || mail.equals("") || stu_number.equals("")) {
+                || school.equals("") || username.equals("") || stu_number.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
             return ERROR;
         }
@@ -101,21 +106,20 @@ public class register_stu extends ActionSupport implements SessionAware{
             session.put("errorMessage", "两次密码不一致!");
             return ERROR;
         }
-        String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
-        if (!mail.matches(regex)){
-            session.put("errorMessage", "邮箱不符合格式!");
+
+        if (Tools.usernameExisted(username)) {
+            session.put("errorMessage", "用户名已经存在");
             return ERROR;
         }
 
-        Student stu = new Student(mail,secret);
-        stu.setEmailAddress(mail);
+        Student stu = new Student(username,secret);
         stu.setStudentNo(stu_number);
         stu.setGraduateSchool(school);
         stu.setFullname(fullname);
 
         StudentDAO studao = new StudentDAO();
         if (studao.addStudent(stu)) {
-            session.put("username", mail);
+            session.put("username", username);
             session.put("userstyle", "Student");
             return "SUCCESS";
         }

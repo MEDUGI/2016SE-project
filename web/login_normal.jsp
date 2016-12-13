@@ -32,7 +32,7 @@
                         <i class="icon-user"></i>
                     </div>
 
-                    <input type="text" class="form-control" name="mail" id="username" placeholder="Username" autocomplete="off" />
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
                 </div>
 
             </div>

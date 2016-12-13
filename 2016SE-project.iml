@@ -31,5 +31,6 @@
     <orderEntry type="library" exported="" name="Struts 2-2.3.20.1" level="project" />
     <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 7.0.72" level="application_server_libraries" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
