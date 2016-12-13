@@ -4,14 +4,23 @@ package entity;
  */
 public class Application {
     private int ID;
-    private String stu;  // 学生，外键，默认为用户名
-    private String pro; // 教授，外键，默认为用户名
-    private String applydate;  // 申请日期(精确到小时)
+    private String from;  // 发送方，外键，默认为用户名
+    private String to; // 接收方，外键，默认为用户名
+    private boolean isFromStudent;  // 是否是由学生发送的
+    private String applydate;  // 申请日期(精确到日)
     private int status;  // 申请状态(未通过0，审核中1，已接受2)
     private String message;  // 申请信息（限定字数长度和部分内容——考虑安全性）
 
     public Application() {
 
+    }
+
+    public boolean getIsFromStudent() {
+        return isFromStudent;
+    }
+
+    public void setIsFromStudent(boolean isFromStudent) {
+        this.isFromStudent = isFromStudent;
     }
 
     public int getID() {
@@ -22,20 +31,20 @@ public class Application {
         this.ID = ID;
     }
 
-    public String getStu() {
-        return stu;
+    public String getFrom() {
+        return from;
     }
 
-    public void setStu(String stu) {
-        this.stu = stu;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public String getPro() {
-        return pro;
+    public String getTo() {
+        return to;
     }
 
-    public void setPro(String pro) {
-        this.pro = pro;
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public String getApplydate() {

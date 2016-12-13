@@ -91,7 +91,9 @@ public class StudentDAO {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 student = toStudent(rs);
-            }
+            } 
+            else
+                return null;
         }catch(Exception e){
             e.printStackTrace();
         }

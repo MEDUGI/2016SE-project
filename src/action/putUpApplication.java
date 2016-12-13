@@ -46,8 +46,8 @@ public class putUpApplication extends ActionSupport{
             return "OUT_OF_AMOUNT";
         }
         Application app = new Application();
-        app.setStu(stu);
-        app.setPro(pro);
+        app.setFrom(stu);
+        app.setTo(pro);
         app.setApplydate(new Date().toString());
         app.setStatus(0);
         app.setMessage(message);

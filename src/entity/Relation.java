@@ -1,7 +1,4 @@
 package entity;
-import entity.Student;
-import entity.Professor;
-import entity.Application;
 
 /**
  * Created by 李沅泽 on 2016/11/13.
@@ -20,8 +17,8 @@ public class Relation {
     }
 
     public Relation(Application app, String date, String message) {
-        stu = app.getStu();
-        pro = app.getPro();
+        stu = app.getFrom();
+        pro = app.getTo();
         studentmessage = app.getMessage();
         this.date = date;
         apply = app.getID();

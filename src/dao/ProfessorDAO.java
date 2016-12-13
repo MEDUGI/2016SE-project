@@ -91,6 +91,8 @@ public class ProfessorDAO {
             if(rs.next()){
                 return toProfessor(rs);
             }
+            else
+                return null;
         }catch(Exception e){
             e.printStackTrace();
         }

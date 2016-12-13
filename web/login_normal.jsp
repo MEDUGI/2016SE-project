@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group">
-                <button type="button" onclick="stu()" class="btn btn-primary btn-block btn-login" id="student">
+                <button type="button" onclick="from()" class="btn btn-primary btn-block btn-login" id="student">
                     <i class="icon-signin"></i>
                     Student Login
                 </button>
@@ -79,7 +79,7 @@
     </div>
 </body>
 <script>
-function stu() {
+function from() {
     document.getElementById("kind").value = "student";
     document.getElementById("form_login").submit();
 }

@@ -3,7 +3,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import entity.Application;
 import java.util.ArrayList;
-import entity.Application;
 
 import org.DbPool;
 /**
@@ -19,14 +18,16 @@ public class ApplicationDAO {
 
     public int addAppliciation(Application app) {
         int i = 0;
-        String sql = "insert into application value(?,?,?,?,?)";
+        String sql = "insert into application (userFrom, userTo, isFromStudent, applyDate, status, message)  " +
+                "value(?,?,?,?,?,?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1,app.getStu());
-            ps.setString(2,app.getPro());
-            ps.setString(3,app.getApplydate());
-            ps.setString(4,app.getStatus()+"");
-            ps.setString(5,app.getMessage());
+            ps.setString(1,app.getFrom());
+            ps.setString(2,app.getTo());
+            ps.setBoolean(3,app.getIsFromStudent());
+            ps.setString(4,app.getApplydate());
+            ps.setInt(5,app.getStatus());
+            ps.setString(6,app.getMessage());
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {
@@ -39,7 +40,7 @@ public class ApplicationDAO {
        返回值为ArrayList.
        后续可以考虑将ArrayList泛化为实现了iterable接口的对象.
      */
-    public ArrayList<Application> findAllApplicationByUser(String ID, int mode) {
+    public ArrayList<Application> findAllApplicationByUser(String username, int mode) {
         int i = 0;
         String sql = "";
         if (mode == 0) {
@@ -51,15 +52,16 @@ public class ApplicationDAO {
         ArrayList<Application> result = new ArrayList<Application>();
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, ID);
+            ps.setString(1, username);
             i = ps.executeUpdate();
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Application Temp = new Application();
                 Temp.setID(Integer.parseInt(rs.getString("id")));
-                Temp.setStu(rs.getString("student"));
-                Temp.setPro(rs.getString("professor"));
-                Temp.setApplydate(rs.getString("date"));
+                Temp.setFrom(rs.getString("userFrom"));
+                Temp.setTo(rs.getString("userTo"));
+                Temp.setIsFromStudent((rs.getBoolean("isFromStudent")));
+                Temp.setApplydate(rs.getString("applyDate"));
                 Temp.setStatus(Integer.parseInt(rs.getString("status")));
                 Temp.setMessage(rs.getString("message"));
                 result.add(Temp);
@@ -71,13 +73,13 @@ public class ApplicationDAO {
         return result;
     }
 
-    public int updateStatus(String appid,String newstatus) {
+    public int updateStatus(int appid,int newstatus) {
         int i = 0;
         String sql = "update application set status=? where id=?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1,newstatus);
-            ps.setString(2,appid);
+            ps.setInt(1,newstatus);
+            ps.setInt(2,appid);
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {
@@ -86,12 +88,12 @@ public class ApplicationDAO {
         return i;
     }
 
-    public int deleteStatus(String appid) {
+    public int deleteStatus(int appid) {
         int i = 0;
         String sql = "delete from application when id=?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, appid);
+            ps.setInt(1, appid);
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {

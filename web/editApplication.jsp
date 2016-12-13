@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: 李沅泽
@@ -11,10 +12,9 @@
     <title> 填写申请信息 </title>
 </head>
 <body>
-<form action="sendMessage" method="post">
-    <input name="stu" type="text" value=${cookie.client.username} hidden>
-    <input name="pro" type="text" value=${professor} hidden>
-    内容 <input name="content" type="text"> <br>
+<form action="sendApplication.action" method="post">
+    致 <input name="userTo" type="text" value=<s:property value="userTo"/>>
+    内容 <input name="message" type="text"> <br>
     <input type="submit" value="发送申请">
 </form>
 </body>
