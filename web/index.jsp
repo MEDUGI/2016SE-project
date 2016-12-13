@@ -403,7 +403,7 @@
 
                         <!-- tile widget -->
                         <div class="tile-widget color transparent-black rounded-top-corners">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" id="quickmsg" action="sendMessage.action" method="post">
                                 <div class="form-group">
                                     <label for="message-to" class="col-sm-2 control-label font-slab">收信人</label>
                                     <div class="col-sm-10">
@@ -413,9 +413,11 @@
                                 <div class="form-group no-bottom-margin">
                                     <label for="subject" class="col-sm-2 control-label font-slab">标题</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control transparent" id="subject" placeholder="在这里输入标题" name="head">
+                                        <input type="text" class="form-control transparent" id="subject" placeholder="在这里输入标题" name="title">
                                     </div>
                                 </div>
+                                <input name="userFrom" value="#session.username" hidden>
+                                <input id="msgcontent" name="message" type="text" hidden>
                             </form>
                         </div>
                         <!-- /tile widget -->
@@ -431,7 +433,7 @@
 
                         <!-- tile footer -->
                         <div class="tile-footer rounded-bottom-corners text-right">
-                            <a class="submit font-slab" href="#"><strong>Send</strong> message <i class="fa fa-comment"></i></a>
+                            <a class="submit font-slab" onclick="msgsubmit();"><strong>Send</strong> message <i class="fa fa-comment"></i></a>
                         </div>
                         <!-- /tile footer -->
 
@@ -475,7 +477,7 @@
                         <!-- tile header -->
                         <div class="tile-header color redbrown rounded-top-corners text-center">
                             <button class="btn pull-left btn-black-transparent" type="button"><i class="fa fa-caret-square-o-down"></i></button>
-                            <h2><strong>Todo</strong> List</h2>
+                            <h2><strong>备忘录</strong></h2>
                             <div class="controls">
                                 <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
                                 <a href="#" class="remove"><i class="fa fa-times"></i></a>
@@ -485,7 +487,7 @@
 
                         <!-- tile body -->
                         <div class="tile-body color transparent-black rounded-bottom-corners">
-                            <input type="text" placeholder="Add new todo..." class="w100p bottommargin">
+                            <input type="text" placeholder="加入新的备忘录..." class="w100p bottommargin">
                             <ul class="nolisttypes" id="todolist">
                                 <li>
                                     <div class="checkbox check-transparent">
@@ -622,31 +624,6 @@
       });
 
 
-      // tooltips showing
-      $("#statistics-chart").bind("plothover", function (event, pos, item) {
-        if (item) {
-          var x = item.datapoint[0],
-              y = item.datapoint[1];
-
-          $("#tooltip").html('<h1 style="color: #418bca">' + months[x - 1] + '</h1>' + '<strong>' + y + '</strong>' + ' ' + item.series.label)
-            .css({top: item.pageY-30, left: item.pageX+5})
-            .fadeIn(200);
-        } else {
-          $("#tooltip").hide();
-        }
-      });
-
-      
-      //tooltips options
-      $("<div id='tooltip'></div>").css({
-        position: "absolute",
-        //display: "none",
-        padding: "10px 20px",
-        "background-color": "#ffffff",
-        "z-index":"99999"
-      }).appendTo("body");
-
-
       //todo's
       $('#todolist li label').click(function() {
         $(this).toggleClass('done');
@@ -675,7 +652,17 @@
       $(".chosen-select").chosen({disable_search_threshold: 10});
       
     })
-      
+    </script>
+    <script type="text/javascript">
+
+        function msgsubmit()
+        {
+            var form = document.getElementById("quickmsg");
+            var content = $('#quick-message-content').code();
+            document.getElementById("message").value = content;
+            form.submit();
+        }
+
     </script>
   </body>
 </html>

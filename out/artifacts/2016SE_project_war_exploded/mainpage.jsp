@@ -110,6 +110,9 @@
         查看站内信
     </a>
 </s:if>
+<s:else>
+    <a href="editMessage.action">向他发送私信</a>
+</s:else>
 
 
 </div>

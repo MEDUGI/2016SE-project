@@ -13,8 +13,8 @@ public class DbPool {
     public void createConn(){
         try{
             String url="jdbc:mysql://localhost/modugi";
-            String user = "root";
-            String password = "168899";
+            String user = "modugi";
+            String password = "modugi";
             Driver driver = new Driver();
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("The database is successfully connected!");

@@ -7,8 +7,8 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>memory</secret-storage>
       <user-name>modugi</user-name>
-      <user-password>dfc7dfc5dfcedfdfdfcddfc3</user-password>
     </data-source>
   </component>
 </project>
