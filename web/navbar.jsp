@@ -172,7 +172,7 @@
                     <a>您好，游客，请</a>
                 </li>
                 <li class="dropdown divided">
-                    <a href="login_normal.action">登录</a>
+                    <a href="login.jsp">登录</a>
                 </li>
                 <li class="dropdown divided">
                     <a>或者</a>
@@ -291,7 +291,7 @@
                     <ul class="menu">
 
                         <li>
-                            <a href="login_normal.action">
+                            <a href="login.jsp">
                                 <i class="fa fa-key"></i> 登录
                             </a>
                         </li>

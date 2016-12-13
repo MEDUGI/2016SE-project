@@ -405,21 +405,15 @@
                         <div class="tile-widget color transparent-black rounded-top-corners">
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label for="message-to" class="col-sm-2 control-label font-slab">Recipients</label>
+                                    <label for="message-to" class="col-sm-2 control-label font-slab">收信人</label>
                                     <div class="col-sm-10">
-                                        <select data-placeholder="Select recipients..." multiple="" tabindex="3" class="chosen-select form-control chosen-transparent" id="message-to">
-                                            <option value="http://tattek.com/minimal/ici@gmail.com">ici@gmail.com</option>
-                                            <option value="http://tattek.com/minimal/johny@gmail.com">johny@gmail.com</option>
-                                            <option value="http://tattek.com/minimal/arnie@gmail.com">arnie@gmail.com</option>
-                                            <option value="http://tattek.com/minimal/pete@gmail.com">pete@gmail.com</option>
-                                            <option value="http://tattek.com/minimal/gorge@gmail.com">gorge@gmail.com</option>
-                                        </select>
+                                        <input class="form-control transparent" type="text" name="userTo" id="message-to" placeholder="输入用户邮箱">
                                     </div>
                                 </div>
                                 <div class="form-group no-bottom-margin">
-                                    <label for="subject" class="col-sm-2 control-label font-slab">Subject</label>
+                                    <label for="subject" class="col-sm-2 control-label font-slab">标题</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control transparent" id="subject" placeholder="Type subject here...">
+                                        <input type="text" class="form-control transparent" id="subject" placeholder="在这里输入标题" name="head">
                                     </div>
                                 </div>
                             </form>
