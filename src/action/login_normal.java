@@ -50,10 +50,10 @@ public class login_normal extends ActionSupport implements SessionAware{
 
     @Override
     public String execute() {
-        System.out.println(getKind());
         if (getKind().equals("student")) {
             StudentDAO studao = new StudentDAO();
-            if (!studao.getStudent(mail).equals("")) {
+            Student student = studao.getStudent(mail);
+            if (student != null) {
                 if (studao.getStudent(mail).getPassword().equals(password)) {
                     session.put("userstyle", "Student");
                     session.put("username", mail);
@@ -68,7 +68,8 @@ public class login_normal extends ActionSupport implements SessionAware{
             }
         } else {
             ProfessorDAO prodao = new ProfessorDAO();
-            if (!prodao.getProfessor(mail).equals("")) {
+            Professor professor = prodao.getProfessor(mail);
+            if (professor != null) {
                 if (prodao.getProfessor(mail).getPassword().equals(password)) {
                     session.put("userstyle", "Student");
                     session.put("username", mail);

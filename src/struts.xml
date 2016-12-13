@@ -84,6 +84,11 @@
                 /invalidmessage.jsp
             </result>
         </action>
+        <action name="sendApplication" class="action.sendApplicationClass">
+            <result name="SUCCESS">
+                /sendMessageSucceed.jsp
+            </result>
+        </action>
     </package>
 
     <package name="Application" extends="struts-default">

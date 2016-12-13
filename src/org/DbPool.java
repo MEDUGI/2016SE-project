@@ -14,7 +14,7 @@ public class DbPool {
         try{
             String url="jdbc:mysql://localhost/modugi";
             String user = "root";
-            String password = "123456";
+            String password = "168899";
             Driver driver = new Driver();
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("The database is successfully connected!");

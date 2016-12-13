@@ -12,6 +12,6 @@
 </head>
 <body>
     <h1>成功发出站内信</h1><br>
-    <a href="#" onClick="javascript:history.back(-1);">点此返回</a>
+    <a href="/mainpage.action">点此返回</a>
 </body>
 </html>
