@@ -71,23 +71,25 @@
             <result name="SUCCESS"> /message.jsp </result>
         </action>
         <action name="sendMessage" class="action.sendMessage">
-            <result name="SUCCESS">
+            <result name="success">
                 /sendMessageSucceed.jsp
-            </result>
-            <result name="USER_CANNOT_FIND">
-                /usercannotfind.jsp
-            </result>
-            <result name="INVALID_USER">
-                /invaliduser.jsp
-            </result>
-            <result name="MESSAGE_INVALID">
-                /invalidmessage.jsp
             </result>
         </action>
         <action name="showMessages" class="action.showMessagesAction">
             <result name="success">
                 /showMessages.jsp
             </result>
+        </action>
+        <action name="replyMessage" class="action.ReplyMessageAction">
+            <result name="success">
+                /ReplyMessage.jsp
+            </result>
+        </action>
+        <action name="deleteMessage" class="action.DeleteMessageAction">
+            <result name="success">/showMessages.jsp</result>
+        </action>
+        <action name="markRead" class="action.MarkReadAction">
+            <result name="success">/showMessages.jsp</result>
         </action>
     </package>
 
