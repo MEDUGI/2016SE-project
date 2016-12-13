@@ -45,12 +45,12 @@
 
         <!-- Quick Actions -->
         <ul class="nav navbar-nav quick-actions">
-
+            <s:if test="#session['username']!=null">
             <li class="dropdown divided">
 
                 <a class="dropdown-toggle button" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope"></i>
-                    <span class="label label-transparent-black"><s:property value="messageNumber"></span>
+                    <span class="label label-transparent-black"><s:property value="messageNumber" /></span>
                 </a>
 
                 <ul class="dropdown-menu wider arrow nopadding messages">
@@ -164,8 +164,26 @@
             </li>
 
             <li>
-                <a href="#mmenu"><i class="fa fa-comments"></i></a>
+                <a href="#"><i class="fa fa-comments"></i></a>
             </li>
+            </s:if>
+            <s:else>
+                <li class="dropdown divided">
+                    <a>您好，游客，请</a>
+                </li>
+                <li class="dropdown divided">
+                    <a href="login_normal.action">登录</a>
+                </li>
+                <li class="dropdown divided">
+                    <a>或者</a>
+                </li>
+                <li class="dropdown divided">
+                    <a href="register_stu.action">学生注册</a>
+                </li>
+                <li class="dropdown divided">
+                    <a href="register_teacher.action">导师注册</a>
+                </li>
+            </s:else>
         </ul>
         <!-- /Quick Actions -->
 
@@ -181,35 +199,36 @@
             </li>
 
             <li class="navigation" id="navigation">
-                <a href="#" class="sidebar-toggle" data-toggle="#navigation">Navigation <i class="fa fa-angle-up"></i></a>
-
+                <a href="#" class="sidebar-toggle" data-toggle="#navigation">导航栏 <i class="fa fa-angle-up"></i></a>
+                <s:if test="#session['username']!=null">
+                <!-- 登录后结果 -->
                 <ul class="menu">
 
                     <li class="active">
-                        <a href="index.jsp">
-                            <i class="fa fa-tachometer"></i> Dashboard
-                            <span class="badge badge-red">1</span>
+                        <a href="mainpage.action">
+                            <i class="fa fa-tachometer"></i> 个人主页
+                            <span class="badge badge-red"><s:property value="messageNumber" /></span>
                         </a>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-list"></i> Forms <b class="fa fa-plus dropdown-plus"></b>
+                            <i class="fa fa-list"></i> 查看信息 <b class="fa fa-plus dropdown-plus"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="form-elements.html">
-                                    <i class="fa fa-caret-right"></i> Common Elements
+                                    <i class="fa fa-caret-right"></i> 个人简历上传
                                 </a>
                             </li>
                             <li>
                                 <a href="validation-elements.html">
-                                    <i class="fa fa-caret-right"></i> Validation
+                                    <i class="fa fa-caret-right"></i> 修改个人信息
                                 </a>
                             </li>
                             <li>
                                 <a href="form-wizard.html">
-                                    <i class="fa fa-caret-right"></i> Form Wizard
+                                    <i class="fa fa-caret-right"></i> 个人信息导出
                                 </a>
                             </li>
                         </ul>
@@ -217,22 +236,19 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-pencil"></i> Interface <b class="fa fa-plus dropdown-plus"></b>
+                            <i class="fa fa-pencil"></i> 信件管理
+                            <span class="label label-greensea">mails</span>
+                            <b class="fa fa-plus dropdown-plus"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="ui-elements.html">
-                                    <i class="fa fa-caret-right"></i> UI Elements
+                                    <i class="fa fa-caret-right"></i> 发送信息
                                 </a>
                             </li>
                             <li>
                                 <a href="typography.html">
-                                    <i class="fa fa-caret-right"></i> Typography
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tiles.html">
-                                    <i class="fa fa-caret-right"></i> Tiles
+                                    <i class="fa fa-caret-right"></i> 查看信箱
                                 </a>
                             </li>
                         </ul>
@@ -240,28 +256,23 @@
 
                     <li>
                         <a href="buttons.html">
-                            <i class="fa fa-tint"></i> Buttons & Icons
-                        </a>
-                    </li>
-                    <li>
-                        <a href="grid.html">
-                            <i class="fa fa-th"></i> Grid Layout
+                            <i class="fa fa-tint"></i> 查看推荐导师
                         </a>
                     </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-th-large"></i> Tables <b class="fa fa-plus dropdown-plus"></b>
+                            <i class="fa fa-th-large"></i> 管理申请 <b class="fa fa-plus dropdown-plus"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="tables.html">
-                                    <i class="fa fa-caret-right"></i> Bootstrap Tables
+                                    <i class="fa fa-caret-right"></i> 查看申请状态
                                 </a>
                             </li>
                             <li>
                                 <a href="datatables.html">
-                                    <i class="fa fa-caret-right"></i> DataTables
+                                    <i class="fa fa-caret-right"></i> 处理申请
                                 </a>
                             </li>
                         </ul>
@@ -269,141 +280,25 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-desktop"></i> Example Pages <b class="fa fa-plus dropdown-plus"></b>
-                            <span class="label label-greensea">mails</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="login.html">
-                                    <i class="fa fa-caret-right"></i> Login Page
-                                </a>
-                            </li>
-                            <li>
-                                <a href="calendar.html">
-                                    <i class="fa fa-caret-right"></i> Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="page404.html">
-                                    <i class="fa fa-caret-right"></i> Page 404
-                                </a>
-                            </li>
-                            <li>
-                                <a href="page500.html">
-                                    <i class="fa fa-caret-right"></i> Page 500
-                                </a>
-                            </li>
-                            <li>
-                                <a href="page-offline.html">
-                                    <i class="fa fa-caret-right"></i> Page Offline
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gallery.html">
-                                    <i class="fa fa-caret-right"></i> Gallery
-                                </a>
-                            </li>
-                            <li>
-                                <a href="timeline.html">
-                                    <i class="fa fa-caret-right"></i> Timeline
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mail.html">
-                                    <i class="fa fa-caret-right"></i> Vertical Mail
-                                    <span class="badge badge-red">5</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mail-horizontal.html">
-                                    <i class="fa fa-caret-right"></i> Horizontal Mail
-                                    <span class="label label-greensea">mails</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="vector-maps.html">
-                                    <i class="fa fa-caret-right"></i> Vector Maps
-                                </a>
-                            </li>
-                            <li>
-                                <a href="google-maps.html">
-                                    <i class="fa fa-caret-right"></i> Google Maps
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="widgets.html">
-                            <i class="fa fa-play-circle"></i> Widgets
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="charts.html">
-                            <i class="fa fa-bar-chart-o"></i> Charts & Graphs
+                            <i class="fa fa-desktop"></i> 登出
                         </a>
                     </li>
 
 
                 </ul>
+                </s:if>
+                <s:else>
+                    <ul class="menu">
 
-            </li>
+                        <li>
+                            <a href="login_normal.action">
+                                <i class="fa fa-key"></i> 登录
+                            </a>
+                        </li>
 
-            <li class="summary" id="order-summary">
-                <a href="#" class="sidebar-toggle underline" data-toggle="#order-summary">Orders Summary <i class="fa fa-angle-up"></i></a>
 
-                <div class="media">
-                    <a class="pull-right" href="#">
-                        <span id="sales-chart"></span>
-                    </a>
-                    <div class="media-body">
-                        This week sales
-                        <h3 class="media-heading">26, 149</h3>
-                    </div>
-                </div>
-
-                <div class="media">
-                    <a class="pull-right" href="#">
-                        <span id="balance-chart"></span>
-                    </a>
-                    <div class="media-body">
-                        This week balance
-                        <h3 class="media-heading">318, 651</h3>
-                    </div>
-                </div>
-
-            </li>
-
-            <li class="settings" id="general-settings">
-                <a href="#" class="sidebar-toggle underline" data-toggle="#general-settings">General Settings <i class="fa fa-angle-up"></i></a>
-
-                <div class="form-group">
-                    <label class="col-xs-8 control-label">Switch ON</label>
-                    <div class="col-xs-4 control-label">
-                        <div class="onoffswitch greensea">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch-on" checked="">
-                            <label class="onoffswitch-label" for="switch-on">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-xs-8 control-label">Switch OFF</label>
-                    <div class="col-xs-4 control-label">
-                        <div class="onoffswitch greensea">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="switch-off">
-                            <label class="onoffswitch-label" for="switch-off">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
+                    </ul>
+                </s:else>
             </li>
 
 
