@@ -14,7 +14,16 @@ import java.util.Map;
  */
 public class register_stu extends ActionSupport implements SessionAware{
 
-    String mail,secret,secret_repeat,school,stu_number;
+    String mail,secret,secret_repeat,school,stu_number,fullname;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     private Map session;
     boolean isStudent = true;
     boolean isProfessor = false;
@@ -102,6 +111,7 @@ public class register_stu extends ActionSupport implements SessionAware{
         stu.setEmailAddress(mail);
         stu.setStudentNo(stu_number);
         stu.setGraduateSchool(school);
+        stu.setFullname(fullname);
 
         StudentDAO studao = new StudentDAO();
         if (studao.addStudent(stu)) {

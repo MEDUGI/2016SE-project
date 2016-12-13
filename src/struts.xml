@@ -62,6 +62,8 @@
             <result name="success">/create_resume.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="school" class="action.school" method="execute">
+        </action>
     </package>
 
     <package name="sendAndReceiveMessage" extends="struts-default">

@@ -15,8 +15,31 @@
     <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
 
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-
     <script src="js/modernizr.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        function select_school() {
+            var id=$("#area").val();
+            var url = "school.action";
+            var params = {
+                'id':id
+            };
+
+            $.post(url,params,callback);
+        }
+
+        function callback(result,status) {
+            if (status == 'success') {
+                if (result != null) {
+                    var school = $("#school");
+                    school.empty();
+                    school.append("<option value = 0>" + result + "</option>");
+                }
+            }
+
+        }
+
+    </script>
 </head>
 <body class="login-page">
 <%@include file="head.jsp"%>
@@ -33,6 +56,18 @@
                     </div>
 
                     <input type="text" class="form-control" name="mail" id="username" placeholder="Username" autocomplete="off" />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="input-group">
+                    <div class="input-group-addon" id="tips">
+                        真实姓名
+                    </div>
+
+                    <input type="text" class="form-control" name="fullname" placeholder="Username" autocomplete="off" />
                 </div>
 
             </div>
@@ -66,8 +101,16 @@
                     <div class="input-group-addon" id="tips">
                         毕业院校
                     </div>
+                    <select class="form-control selectpicker" data-style="btn-info" id="area" name="area" onchange="select_school();">
+                        <option value = '0'> 北京 </option>
+                        <option value = '1'> 哈尔滨 </option>
+                    </select>
 
-                    <input type="text" class="form-control" name="school" autocomplete="off" />
+                    <select class="form-control" id="school" name="school">
+                        <option value="0"> none </option>
+                    </select>
+
+                    <!-- <input type="text" class="form-control" name="school" autocomplete="off" /> -->
                 </div>
 
             </div>
