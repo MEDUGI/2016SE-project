@@ -1,7 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Minimal 1.0 - Login Page</title>
+    <title>您好，欢迎您，请登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
@@ -33,31 +34,38 @@
 
           <div class="inside-block">
             <img src="assets/images/logo-big.png" alt class="logo">
-            <h1><strong>Welcome</strong> Stranger</h1>
-            <h5>Minimal Admin Theme</h5>
+            <h1><strong>欢迎您</strong> 游客</h1>
+            <h5>研究生导师互选推荐系统</h5>
 
-            <form id="form-signin" class="form-signin">
+            <form id="form-signin" class="form-signin" action="login_normal" role="form" id="form_login" method="post">
               <section>
                 <div class="input-group">
-                  <input type="text" class="form-control" name="username" placeholder="Username">
+                  <input type="text" class="form-control" name="mail" placeholder="邮箱">
                   <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 </div>
                 <div class="input-group">
-                  <input type="password" class="form-control" name="password" placeholder="Password">
+                  <input type="password" class="form-control" name="password" placeholder="密码">
                   <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                </div>
+                <div class="input-group-btn">
+                  <select class="form-control" name="kind" placeholder="密码">
+                    <option value="student">学生</option>
+                    <option value="teacher">导师</option>
+                  </select>
                 </div>
               </section>
               <section class="controls">
                 <div class="checkbox check-transparent">
                   <input type="checkbox" value="1" id="remember" checked>
-                  <label for="remember">Remember me</label>
+                  <label for="remember">下次保持登录</label>
                 </div>
-                <a href="#">Forget password?</a>
+                <a href="#">忘记了密码?</a>
               </section>
               <section class="log-in">
-                <button class="btn btn-greensea">Log In</button>
+                <button class="btn btn-greensea">登录</button>
                 <span>or</span>
-                <button class="btn btn-slategray">Create an account</button>
+                <a class="btn btn-slategray" href="register_stu.action">学生注册</a>
+                <a class="btn btn-slategray" href="register_teacher.action">导师注册</a>
               </section>
             </form>
           </div>
