@@ -102,7 +102,13 @@
     </div><!--/.container -->
 </div><!--/ #intro -->
 
+<s:if test="#session.username==#session.watchedUsername">
+    <a href="/showApplications.action">
+        查看站内信与申请信息
+    </a>
+</s:if>
 
+</div>
 <section id="resume" name="resume"></section>
 <!--EDUCATION DESCRIPTION -->
 <div class="container desc">

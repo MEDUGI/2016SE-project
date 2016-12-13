@@ -28,7 +28,7 @@
         </tr>
 
         <s:iterator value="result" status="st">
-
+            <tr>
             <td><s:property value="studentNo"/></td>
             <td><s:property value='fullname'/></td>
             <td><s:property value='graduateSchool'/></td>
