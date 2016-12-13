@@ -84,7 +84,7 @@
                 /invalidmessage.jsp
             </result>
         </action>
-        <action name="showMessages" class="action.ShowMessagesAction">
+        <action name="showMessages" class="action.showMessagesAction">
             <result name="success">
                 /showMessages.jsp
             </result>
