@@ -3,6 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ApplicationDAO;
 import entity.Application;
+import entity.Tools;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Calendar;
@@ -81,10 +82,8 @@ public class sendApplicationClass extends ActionSupport implements SessionAware{
         }
         application.setStatus(0);
         application.setMessage(message);
-        Calendar calendar = Calendar.getInstance();
-        application.setApplydate(calendar.get(Calendar.YEAR) + "/" +
-                (calendar.get(Calendar.MONTH)+1) + "/"+
-                calendar.get(Calendar.DATE));
+
+        application.setApplydate(Tools.getDateString());
         ApplicationDAO applicationDAO = new ApplicationDAO();
         applicationDAO.addAppliciation(application);
         return "SUCCESS";

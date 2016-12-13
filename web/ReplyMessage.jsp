@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>研究生导师互选推荐系统</title>
 </head>
 <body>
-<!--TODO:-->
+
 </body>
 </html>

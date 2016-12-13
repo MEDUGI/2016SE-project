@@ -104,9 +104,13 @@
 
 <s:if test="#session.username==#session.watchedUsername">
     <a href="/showApplications.action">
-        查看站内信与申请信息
+        查看申请信息
+    </a>
+    <a href="/showMessages.action">
+        查看站内信
     </a>
 </s:if>
+
 
 </div>
 <section id="resume" name="resume"></section>

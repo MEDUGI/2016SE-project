@@ -28,7 +28,7 @@ public class MessageDAO {
             ps.setString(1,mail.getUserFrom());
             ps.setString(2,mail.getUserTo());
             ps.setString(3,mail.getDate());
-            ps.setInt(4,mail.getStatus());
+            ps.setInt(4, mail.getStatus());
             ps.setString(5,mail.getContent());
             i = ps.executeUpdate();
             ps.close();
@@ -96,5 +96,29 @@ public class MessageDAO {
             e.printStackTrace();
         }
         return i;
+    }
+
+    public Message getMessageById(int id) {
+        String sql = "select * from message WHERE id=?";
+        Message result = null;
+        try {
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                Message Temp = new Message();
+                Temp.setID(rs.getInt("id"));
+                Temp.setUserFrom(rs.getString("userFrom"));
+                Temp.setUserTo(rs.getString("userTo"));
+                Temp.setDate(rs.getString("messageDate"));
+                Temp.setStatus((rs.getInt("status")));
+                Temp.setContent(rs.getString("content"));
+                result = Temp;
+            }
+            ps.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

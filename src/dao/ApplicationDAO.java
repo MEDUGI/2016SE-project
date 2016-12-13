@@ -1,6 +1,8 @@
 package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import com.sun.javaws.security.AppPolicy;
 import entity.Application;
 import java.util.ArrayList;
 
@@ -35,8 +37,33 @@ public class ApplicationDAO {
         }
         return i;
     }
-    /* mode为1，表示调用者为学生，反之为教授。
-       这个函数用于根据用户的ID来找到对应的一个Application的列表。
+
+    public Application getApplicationById(int id) {
+        String sql = "select * from application WHERE id=?";
+        Application result = null;
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                Application Temp = new Application();
+                Temp.setID(rs.getInt("id"));
+                Temp.setFrom(rs.getString("userFrom"));
+                Temp.setTo(rs.getString("userTo"));
+                Temp.setIsFromStudent((rs.getBoolean("isFromStudent")));
+                Temp.setApplydate(rs.getString("applyDate"));
+                Temp.setStatus(rs.getInt("status"));
+                Temp.setMessage(rs.getString("message"));
+                result = Temp;
+            }
+            ps.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /*        这个函数用于根据用户的ID来找到对应的一个Application的列表。
        返回值为ArrayList.
        后续可以考虑将ArrayList泛化为实现了iterable接口的对象.
      */
