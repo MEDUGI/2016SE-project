@@ -6,18 +6,15 @@ import dao.ProfessorDAO;
 import dao.StudentDAO;
 import entity.Professor;
 import entity.Student;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.jms.Session;
-import javax.servlet.http.Cookie;
 import java.util.Map;
 
 /**
  * Created by forandroid on 16-11-14.
  */
 public class login_normal extends ActionSupport implements SessionAware{
-    String mail,password;
+    String username,password;
     Map session;
     String kind;
 
@@ -29,12 +26,12 @@ public class login_normal extends ActionSupport implements SessionAware{
         this.kind = kind;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -53,11 +50,11 @@ public class login_normal extends ActionSupport implements SessionAware{
     public String execute() {
         if (getKind().equals("student")) {
             StudentDAO studao = new StudentDAO();
-            Student student = studao.getStudent(mail);
+            Student student = studao.getStudent(username);
             if (student != null) {
-                if (studao.getStudent(mail).getPassword().equals(password)) {
+                if (studao.getStudent(username).getPassword().equals(password)) {
                     session.put("userstyle", "Student");
-                    session.put("username", mail);
+                    session.put("username", username);
                     return Action.SUCCESS;
                 } else {
                     session.put("errorMessage", "not equal!");
@@ -69,11 +66,11 @@ public class login_normal extends ActionSupport implements SessionAware{
             }
         } else {
             ProfessorDAO prodao = new ProfessorDAO();
-            Professor professor = prodao.getProfessor(mail);
+            Professor professor = prodao.getProfessor(username);
             if (professor != null) {
-                if (prodao.getProfessor(mail).getPassword().equals(password)) {
+                if (prodao.getProfessor(username).getPassword().equals(password)) {
                     session.put("userstyle", "Professor");
-                    session.put("username", mail);
+                    session.put("username", username);
                     return Action.SUCCESS;
                 } else {
                     session.put("errorMessage", "not equal!");
