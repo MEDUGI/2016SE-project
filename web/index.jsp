@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Minimal 1.0 - Dashboard</title>
+    <title>研究生导师互选推荐系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
@@ -109,7 +109,7 @@
 
                         <!-- tile header -->
                         <div class="tile-header transparent">
-                            <h1><strong>Recent</strong> Activity</h1>
+                            <h1><strong>最新</strong> 动态</h1>
                             <div class="controls">
                                 <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
                                 <a href="#" class="remove"><i class="fa fa-times"></i></a>
@@ -123,11 +123,9 @@
                         <div class="tile-widget color transparent-black rounded-top-corners nopadding">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tabdrop">
-                                <li class="active"><a href="#users-tab" data-toggle="tab">Users</a></li>
-                                <li><a href="#orders-tab" data-toggle="tab">Orders</a></li>
-                                <li><a href="#messages-tab" data-toggle="tab">Messages</a></li>
-                                <li><a href="#tasks-tab" data-toggle="tab">Tasks</a></li>
-                                <li><a href="#comments-tab" data-toggle="tab">Comments</a></li>
+                                <li class="active"><a href="#users-tab" data-toggle="tab">用户动态</a></li>
+                                <li><a href="#applications-tab" data-toggle="tab">申请动态</a></li>
+                                <li><a href="#messages-tab" data-toggle="tab">收件箱</a></li>
                             </ul>
                             <!-- / Nav tabs -->
                         </div>
@@ -142,229 +140,96 @@
 
                             <ul id="users-tab" class="tab-pane fade in active">
                                 <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">has been <strong>unbanned</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 15 minutes ago</span>
+                                    <span class="user font-slab"><strong>姓名</strong></span>
+                                    <span class="subject"><s:property  value="fullname" /></span>
                                 </li>
                                 <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">has been <strong>unbanned</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 1 hour ago</span>
+                                    <span class="user font-slab"><strong>个人简介</strong></span>
+                                    <span class="subject"><s:property  value="introduction" /></span>
+                                </li>
+                                <s:if test='userstyle == "Professor"'>
+                                    <li>
+                                        <span class="user font-slab"><strong>工作单位</strong></span>
+                                        <span class="subject"><s:property value="employerUnit" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>科研方向</strong></span>
+                                        <span class="subject"><s:property value="workingArea" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>出版文献</strong></span>
+                                        <span class="subject"><s:property value="paperPublished" /></span>
+                                    </li>
+                                </s:if>
+                                <s:elseif test='userstyle == "Student"'>
+                                    <li>
+                                        <span class="user font-slab"><strong>毕业院校</strong></span>
+                                        <span class="subject"><s:property value="employerUnit" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>原专业方向</strong></span>
+                                        <span class="subject"><s:property value="workingArea" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>准备攻读方向</strong></span>
+                                        <span class="subject"><s:property value="paperPublished" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>获奖及荣誉</strong></span>
+                                        <span class="subject"><s:property value="awardsCollection" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>在校期间GPA</strong></span>
+                                        <span class="subject"><s:property value="gpa" /></span>
+                                    </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>研究生入学考试分数</strong></span>
+                                        <span class="subject"><s:property value="neepScore" /></span>
+                                    </li>
+                                </s:elseif>
+                                <li>
+                                    <span class="user font-slab"><strong>联系电话</strong></span>
+                                    <span class="subject"><s:property value="mobileNo" /></span>
                                 </li>
                                 <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">has been <strong>banned</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 2 hours ago</span>
+                                    <span class="user font-slab"><strong>E-mail</strong></span>
+                                    <span class="subject"><s:property value="emailAddress" /></span>
                                 </li>
                                 <li>
-                                    <img src="assets/images/ici-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Ing. Imrich <strong>Kamarel</strong></span>
-                                    <span class="subject">has been <strong>updated</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 4 hours ago</span>
+                                    <span class="user font-slab"><strong>联系地址</strong></span>
+                                    <span class="subject"><s:property value="physicalAddress" /></span>
                                 </li>
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">has been <strong>registered</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 8 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">has been <strong>banned</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 12 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">has been <strong>registered</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> yesterday</span>
-                                </li>
+
                             </ul>
 
-                            <ul id="orders-tab" class="tab-pane fade">
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">send new order <strong>OR_00012014</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 15 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/george-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">George <strong>McCain</strong></span>
-                                    <span class="subject">change order <strong>OR_02172013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 27 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/george-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">George <strong>McCain</strong></span>
-                                    <span class="subject">send new order <strong>OR_02172013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 35 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">cancelled order <strong>OR_02162013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 2 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">send new order <strong>OR_02162013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 3 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/ici-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Ing. Imrich <strong>Kamarel</strong></span>
-                                    <span class="subject">send new order <strong>OR_02152013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 5 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/ici-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Ing. Imrich <strong>Kamarel</strong></span>
-                                    <span class="subject">send new order <strong>OR_02142013</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 5 hours ago</span>
-                                </li>
+                            <ul id="applications-tab" class="tab-pane fade">
+                                <s:iterator value="applications" status="st" id="app">
+                                    <li>
+                                        <span class="user font-slab">发送给 <strong><s:property value="app.to" /></strong></span>
+                                        <span class="subject"><strong><s:if test="app.status==0">
+                                            被拒绝
+                                        </s:if>
+                                            <s:elseif test="app.status==1">
+                                                进入审核流程
+                                            </s:elseif>
+                                            <s:else>
+                                                通过
+                                            </s:else></strong></span>
+                                        <span class="time"><i class="fa fa-clock-o"></i><s:property value="app.applydate" /></span>
+                                    </li>
+                                </s:iterator>
                             </ul>
 
                             <ul id="messages-tab" class="tab-pane fade">
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Peter Kay</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 15 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Peter Kay</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 30 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Ing. Imrich Kamarel</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 35 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Arnold Arnold</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 42 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>George McCain</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 1 hour ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Ing. Imrich Kamarel</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 1 hour ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">received new message from <strong>Ing. Imrich Kamarel</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 1 hour ago</span>
-                                </li>
+                                <s:iterator value="messages" status="st" id="msg">
+                                    <li>
+                                        <img src="<s:property value="msg.imgURL"/>" class="w35" alt>
+                                        <span class="user font-slab"><strong><s:property value="msg.userFrom" /></strong></span>
+                                        <span class="subject"><strong><s:property value="msg.title" /></strong></span>
+                                        <span class="time"><i class="fa fa-clock-o"></i> <s:property value="msg.date" /></span>
+                                    </li>
+                                </s:iterator>
                             </ul>
-
-                            <ul id="tasks-tab" class="tab-pane fade">
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">cancelled task <strong>Get drunk</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 15 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">finished task <strong>Gifts!</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 59 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">finished task <strong>Make backup</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 3 hours ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">have a new task <strong>Gifts!</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> yesterday</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">finished task <strong>Send emails</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> yesterday</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">have a new task <strong>Send emails</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> yesterday</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab"><strong>You</strong></span>
-                                    <span class="subject">have a new task <strong>Make backup</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> yesterday</span>
-                                </li>
-                            </ul>
-
-                            <ul id="comments-tab" class="tab-pane fade">
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">deleted comment <strong>CM_00019</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 5 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Arnold <strong>Karlsberg</strong></span>
-                                    <span class="subject">posted a new comment <strong>CM_00019</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 8 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab">John <strong>Douey</strong></span>
-                                    <span class="subject">posted a new comment <strong>CM_00018</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 9 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/peter-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Peter <strong>Kay</strong></span>
-                                    <span class="subject">posted a new comment <strong>CM_00017</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 18 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Ing. Imrich <strong>Kamarel</strong></span>
-                                    <span class="subject">updated comment <strong>CM_00016</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 25 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/arnold-avatar.jpg" class="w35" alt>
-                                    <span class="user font-slab">Ing. Imrich <strong>Kamarel</strong></span>
-                                    <span class="subject">posted a new comment <strong>CM_00016</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 42 minutes ago</span>
-                                </li>
-                                <li>
-                                    <img src="assets/images/profile-photo.jpg" class="w35" alt>
-                                    <span class="user font-slab">John <strong>Douey</strong></span>
-                                    <span class="subject">posted a new comment <strong>CM_00015</strong></span>
-                                    <span class="time"><i class="fa fa-clock-o"></i> 56 minutes ago</span>
-                                </li>
-                            </ul>
-
                             <!-- / Tab panes -->
                         </div>
                         <!-- /tile body -->
