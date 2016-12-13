@@ -20,7 +20,7 @@
             <tbody><tr>
                 <td width="230"><a href="#"><img src="/image/error.jpg" style="border:0;"></a></td>
                 <td width="400" align="center" style="color:#333333; font-size:16px; font-weight:bold;"><p><s:property value="errorMessage"/></p>
-                    <button onclick='window.location.href="/url"'>
+                    <button onclick='window.location.href="/login.jsp"'>
                         回到登录界面
                     </button></td>
 

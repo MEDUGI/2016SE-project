@@ -12,7 +12,7 @@
 </head>
 <body>
 <form action="login_normal" method="post">
-    账号 <input name="mail" type="text"> <br>
+    账号 <input name="username" type="text"> <br>
     密码 <input name="password" type="text"> <br>
     <input type="submit" value="登陆喽^_^">
 </form>

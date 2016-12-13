@@ -50,4 +50,11 @@ public class Tools {
                 (calendar.get(Calendar.MONTH)+1) + "/"+
                 calendar.get(Calendar.DATE);
     }
+    public static boolean usernameExisted(String username) {
+        StudentDAO studentDAO = new StudentDAO();
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        if (studentDAO.getStudent(username)==null && professorDAO.getProfessor(username) == null)
+            return false;
+        return true;
+    }
 }

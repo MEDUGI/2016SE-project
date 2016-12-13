@@ -40,7 +40,7 @@
             <form id="form-signin" class="form-signin" action="login_normal" role="form" id="form_login" method="post">
               <section>
                 <div class="input-group">
-                  <input type="text" class="form-control" name="mail" placeholder="邮箱">
+                  <input type="text" class="form-control" name="username" placeholder="邮箱">
                   <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 </div>
                 <div class="input-group">

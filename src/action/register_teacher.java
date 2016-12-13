@@ -3,20 +3,31 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import entity.Professor;
-import org.apache.struts2.ServletActionContext;
+import entity.Tools;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.servlet.http.Cookie;
 import java.util.Map;
 
 /**
  * Created by forandroid on 16-11-14.
  */
 public class register_teacher extends ActionSupport implements SessionAware{
-    String mail, secret, secret_repeat, school, teacher_id;
+    String username, secret, secret_repeat, employerUnit, teacher_id, fullname;
     Map session;
     boolean isStudent = false;
     boolean isProfessor = true;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public Map getSession() {
+        return session;
+    }
 
     public boolean isStudent() {
         return isStudent;
@@ -34,12 +45,12 @@ public class register_teacher extends ActionSupport implements SessionAware{
         this.isProfessor = isProfessor;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSecret() {
@@ -58,12 +69,12 @@ public class register_teacher extends ActionSupport implements SessionAware{
         this.secret_repeat = secret_repeat;
     }
 
-    public String getSchool() {
-        return school;
+    public String getEmployerUnit() {
+        return employerUnit;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public void setEmployerUnit(String employerUnit) {
+        this.employerUnit = employerUnit;
     }
 
     public String getTeacher_id() {
@@ -81,7 +92,7 @@ public class register_teacher extends ActionSupport implements SessionAware{
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
-                || school.equals("") || mail.equals("") || teacher_id.equals("")) {
+                || employerUnit.equals("") || username.equals("") || teacher_id.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
             return ERROR;
         }
@@ -89,19 +100,20 @@ public class register_teacher extends ActionSupport implements SessionAware{
             session.put("errorMessage", "两次密码不一致!");
             return ERROR;
         }
-        String regex = "^[A-Za-z0-9]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
-        if (!mail.matches(regex)) {
-            session.put("errorMessage", "邮箱不符合格式!");
+
+        if (Tools.usernameExisted(username)) {
+            session.put("errorMessage", "用户名已经存在");
             return ERROR;
         }
 
-        Professor pro = new Professor(mail, secret);
-        pro.setEmailAddress(mail);
+        Professor pro = new Professor(username, secret);
         pro.setIdentityCardNo(teacher_id);
+        pro.setFullname(fullname);
+        pro.setEmployerUnit(employerUnit);
         ProfessorDAO prodao = new ProfessorDAO();
         if (prodao.addProfessor(pro)) {
             session.put("userstyle","Professor");
-            session.put("username",mail);
+            session.put("username", username);
             return "SUCCESS";
         }
         session.put("errorMessage", "未知的错误发生了，你行走在互联网的荒野");
