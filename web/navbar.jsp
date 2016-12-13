@@ -54,7 +54,7 @@
                 </a>
 
                 <ul class="dropdown-menu wider arrow nopadding messages">
-                    <li><h1>You have <strong><s:property value="messageNumber"/></strong> new message</h1></li>
+                    <li><h1>你有 <strong><s:property value="messageNumber"/></strong> 条新消息</h1></li>
                     <s:iterator value="messages" status="st" id="msg">
                         <li>
                             <a class="cyan" href="#">
@@ -69,7 +69,7 @@
                             </a>
                         </li>
                     </s:iterator>
-                    <li class="topborder"><a href="showMessages.action">Check all messages <i class="fa fa-angle-right"></i></a></li>
+                    <li class="topborder"><a href="showMessages.action">查看所有信息 <i class="fa fa-angle-right"></i></a></li>
                 </ul>
 
             </li>
@@ -78,70 +78,49 @@
 
                 <a class="dropdown-toggle button" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell"></i>
-                    <span class="label label-transparent-black">3</span>
+                    <span class="label label-transparent-black"><s:property value="ApplicationNumber" /></span>
+
                 </a>
 
                 <ul class="dropdown-menu wide arrow nopadding bordered">
-                    <li><h1>You have <strong>3</strong> new notifications</h1></li>
+                    <li><h1> 你有 <strong><s:property value="ApplicationNumber"/></strong> 条新的申请动态</h1></li>
+                    <s:iterator value="applications" status="st" id="app">
+                        <li>
+                            <a href="#">
+                                <span class="label label-green"><i class="fa fa-user"></i></span>
+                                发送给<s:property value="app.to" /> 的请求已经
+                                    <s:if test="app.status==0">
+                                        被拒绝
+                                    </s:if>
+                                    <s:elseif test="app.status==1">
+                                        进入审核流程
+                                    </s:elseif>
+                                    <s:else>
+                                        通过
+                                    </s:else>
+                                <span class="small"><s:property value="app.applydate" /></span>
+                            </a>
+                        </li>
+                    </s:iterator>
 
-                    <li>
-                        <a href="#">
-                            <span class="label label-green"><i class="fa fa-user"></i></span>
-                            New user registered.
-                            <span class="small">18 mins</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="label label-red"><i class="fa fa-power-off"></i></span>
-                            Server down.
-                            <span class="small">27 mins</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="label label-orange"><i class="fa fa-plus"></i></span>
-                            New order.
-                            <span class="small">36 mins</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="label label-cyan"><i class="fa fa-power-off"></i></span>
-                            Server restared.
-                            <span class="small">45 mins</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="label label-amethyst"><i class="fa fa-power-off"></i></span>
-                            Server started.
-                            <span class="small">50 mins</span>
-                        </a>
-                    </li>
-
-                    <li><a href="#">Check all notifications <i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="#">查看所有的申请动态 <i class="fa fa-angle-right"></i></a></li>
                 </ul>
 
             </li>
 
             <li class="dropdown divided user" id="current-user">
                 <div class="profile-photo">
-                    <img src="assets/images/profile-photo.jpg" alt />
+                    <img src="<s:property value="#session.userImg" />" alt />
                 </div>
-                <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
-                    John Douey <i class="fa fa-caret-down"></i>
+                <a class="dropdown-toggle options" data-toggle="dropdown" href="mainpage.action">
+    <s:property value="#session.username" /> <i class="fa fa-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu arrow settings">
 
                     <li>
 
-                        <h3>Backgrounds:</h3>
+                        <h3>背景样式：</h3>
                         <ul id="color-schemes">
                             <li><a href="#" class="bg-1"></a></li>
                             <li><a href="#" class="bg-2"></a></li>
@@ -169,21 +148,17 @@
                     <li class="divider"></li>
 
                     <li>
-                        <a href="#"><i class="fa fa-user"></i> Profile</a>
+                        <a href="mainpage.action"><i class="fa fa-user"></i> 主页信息</a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-red" id="user-inbox">3</span></a>
+                        <a href="#"><i class="fa fa-envelope"></i> 消息盒子 <span class="badge badge-red" id="user-inbox"><s:property value="messageNumber" /></span></a>
                     </li>
 
                     <li class="divider"></li>
 
                     <li>
-                        <a href="#"><i class="fa fa-power-off"></i> Logout</a>
+                        <a href="logout.action"><i class="fa fa-power-off"></i> 登出</a>
                     </li>
                 </ul>
             </li>
