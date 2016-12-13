@@ -8,19 +8,11 @@ public class Message {
     private String userFrom;
     private String userTo;
     private String date;
+    private int status;  // 信件的状态，未读0，已读1
     private String content;
-    private int status;  // 信件的状态，未读0，已读1，收藏2
-    private String format;  //TODO 优化站内信的编辑器可能是之后在第二轮迭代中要做的事情。
 
     public Message() {
 
-    }
-
-    public Message(String from,String FromStyle,String to, String ToStyle, String time, String content) {
-        userFrom = Tools.addUserStyleSymbol(from,FromStyle);
-        userTo = Tools.addUserStyleSymbol(to,ToStyle);
-        date = time;
-        this.content = content;
     }
 
     public int getStatus() {
@@ -71,11 +63,4 @@ public class Message {
         this.content = content;
     }
 
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
 }

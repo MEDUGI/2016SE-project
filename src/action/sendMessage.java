@@ -1,17 +1,19 @@
 package action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.MessageDAO;
 import entity.Message;
 import entity.Tools;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by 李沅泽 on 2016/11/15.
  */
 public class sendMessage extends ActionSupport {
-    private String message,userFrom,userTo,userFromStyle,userToStyle;
+    private String message,userFrom,userTo;
 
     public String getMessage() {
         return message;
@@ -19,22 +21,6 @@ public class sendMessage extends ActionSupport {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getUserFromStyle() {
-        return userFromStyle;
-    }
-
-    public void setUserFromStyle(String userFromStyle) {
-        this.userFromStyle = userFromStyle;
-    }
-
-    public String getUserToStyle() {
-        return userToStyle;
-    }
-
-    public void setUserToStyle(String userToStyle) {
-        this.userToStyle = userToStyle;
     }
 
     public String getUserFrom() {
@@ -54,19 +40,17 @@ public class sendMessage extends ActionSupport {
     }
 
     public String execute() {
-        if (!Tools.examUserWithStyle(userFrom,userFromStyle)) {
-            return "INVALID_USER";
-        }
-        if (!Tools.examUserWithStyle(userTo,userToStyle)) {
-            return "USER_CANNOT_FIND";
-        }
-        if (!Tools.examMessage(message)) {
-            return "MESSAGE_INVALID";
-        }
-        Date dat = new Date();
-        Message msg = new Message(userFrom,userFromStyle,userTo,userToStyle, dat.toString(),message);
+        Message msg = new Message();
+        msg.setUserFrom(userFrom);
+        msg.setUserTo(userTo);
+        msg.setContent(message);
+        msg.setStatus(0);
+        Calendar calendar = Calendar.getInstance();
+        msg.setDate(calendar.get(Calendar.YEAR) + "/" +
+                (calendar.get(Calendar.MONTH) + 1) + "/" +
+                calendar.get(Calendar.DATE));
         MessageDAO mdao = new MessageDAO();
         mdao.addMessage(msg);
-        return "SUCCESS";
+        return Action.SUCCESS;
     }
 }

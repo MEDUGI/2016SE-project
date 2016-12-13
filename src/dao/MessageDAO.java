@@ -22,13 +22,13 @@ public class MessageDAO {
 
     public int addMessage(Message mail) {
         int i = 0;
-        String sql = "insert into message value(?,?,?,?,?)";
+        String sql = "insert into message (userFrom, userTo, messageDate, status, content) value(?,?,?,?,?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1,mail.getUserFrom());
             ps.setString(2,mail.getUserTo());
             ps.setString(3,mail.getDate());
-            ps.setString(4,mail.getStatus()+"");
+            ps.setInt(4,mail.getStatus());
             ps.setString(5,mail.getContent());
             i = ps.executeUpdate();
             ps.close();
@@ -44,11 +44,10 @@ public class MessageDAO {
         FromOrTo=0时，ID表示送的用户；FromOrTo=1时，ID代表收的用户；
         根据提供的ID和MODE，抽取目前未被读取的信息;
      */
-    public ArrayList<Message> getMessageListByUserID(String ID,int status,int FromOrTo,String userStyle) {
-        ArrayList<Message> resultList = new ArrayList<Message>();
+    public ArrayList<Message> getMessageListByUserID(String ID,int status,int FromOrTo) {
+        ArrayList<Message> resultList = new ArrayList<>();
         String userID;
-        int i = 0;
-        String sql = "select * from message when ";
+        String sql = "select * from message WHERE ";
 
         if (status == 1) {
             sql += "status=1 and ";
@@ -64,20 +63,17 @@ public class MessageDAO {
             sql += "userFrom=?";
         }
 
-        userID = Tools.addUserStyleSymbol(ID,userStyle);
-
         try {
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, userID);
-            i = ps.executeUpdate();
+            ps.setString(1, ID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Message Temp = new Message();
-                Temp.setID(Integer.parseInt(rs.getString("id")));
+                Temp.setID(rs.getInt("id"));
                 Temp.setUserFrom(rs.getString("userFrom"));
                 Temp.setUserTo(rs.getString("userTo"));
-                Temp.setDate(rs.getString("date"));
-                Temp.setStatus(Integer.parseInt(rs.getString("status")));
+                Temp.setDate(rs.getString("messageDate"));
+                Temp.setStatus((rs.getInt("status")));
                 Temp.setContent(rs.getString("content"));
                 resultList.add(Temp);
             }
@@ -90,10 +86,10 @@ public class MessageDAO {
 
     public int deleteMessage(int messageID) {
         int i = 0;
-        String sql = "delete from message when id=?";
+        String sql = "delete from message WHERE id=?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, messageID+"");
+            ps.setInt(1, messageID);
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {
