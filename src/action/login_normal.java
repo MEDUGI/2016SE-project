@@ -1,5 +1,6 @@
 package action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
@@ -57,7 +58,7 @@ public class login_normal extends ActionSupport implements SessionAware{
                 if (studao.getStudent(mail).getPassword().equals(password)) {
                     session.put("userstyle", "Student");
                     session.put("username", mail);
-                    return "STUDENT";
+                    return Action.SUCCESS;
                 } else {
                     session.put("errorMessage", "not equal!");
                     return ERROR;
@@ -71,9 +72,9 @@ public class login_normal extends ActionSupport implements SessionAware{
             Professor professor = prodao.getProfessor(mail);
             if (professor != null) {
                 if (prodao.getProfessor(mail).getPassword().equals(password)) {
-                    session.put("userstyle", "Student");
+                    session.put("userstyle", "Professor");
                     session.put("username", mail);
-                    return "PROFESSOR";
+                    return Action.SUCCESS;
                 } else {
                     session.put("errorMessage", "not equal!");
                     return ERROR;

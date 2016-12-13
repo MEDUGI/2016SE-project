@@ -16,7 +16,7 @@ public class Tools {
     }
 
     public static boolean examUserWithStyle(String username, String userStyle) {
-        if (userStyle == "Teacher") {
+        if (userStyle == "Professor") {
             return Tools.examTeacher(username);
         }
         else return Tools.examStudent(username);

@@ -18,7 +18,7 @@ public class ApplicationDAO {
 
     public int addAppliciation(Application app) {
         int i = 0;
-        String sql = "insert into application (userFrom, userTo, isFromStudent, applyDate, status, message)  " +
+        String sql = "Insert into application (userFrom, userTo, isFromStudent, applyDate, status, message)  " +
                 "value(?,?,?,?,?,?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
@@ -40,29 +40,23 @@ public class ApplicationDAO {
        返回值为ArrayList.
        后续可以考虑将ArrayList泛化为实现了iterable接口的对象.
      */
-    public ArrayList<Application> findAllApplicationByUser(String username, int mode) {
-        int i = 0;
+    public ArrayList<Application> findAllApplicationByUser(String username) {
         String sql = "";
-        if (mode == 0) {
-            sql = "select * from application when professorID=?";
-        }
-        else {
-            sql = "select * from application when studentID=?";
-        }
+        sql = "select * from application WHERE userFrom=? OR userTo=?";
         ArrayList<Application> result = new ArrayList<Application>();
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, username);
-            i = ps.executeUpdate();
+            ps.setString(2, username);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Application Temp = new Application();
-                Temp.setID(Integer.parseInt(rs.getString("id")));
+                Temp.setID(rs.getInt("id"));
                 Temp.setFrom(rs.getString("userFrom"));
                 Temp.setTo(rs.getString("userTo"));
                 Temp.setIsFromStudent((rs.getBoolean("isFromStudent")));
                 Temp.setApplydate(rs.getString("applyDate"));
-                Temp.setStatus(Integer.parseInt(rs.getString("status")));
+                Temp.setStatus(rs.getInt("status"));
                 Temp.setMessage(rs.getString("message"));
                 result.add(Temp);
             }
@@ -90,7 +84,7 @@ public class ApplicationDAO {
 
     public int deleteStatus(int appid) {
         int i = 0;
-        String sql = "delete from application when id=?";
+        String sql = "delete from application WHERE id=?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setInt(1, appid);

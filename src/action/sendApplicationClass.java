@@ -82,8 +82,8 @@ public class sendApplicationClass extends ActionSupport implements SessionAware{
         application.setStatus(0);
         application.setMessage(message);
         Calendar calendar = Calendar.getInstance();
-        application.setApplydate(calendar.get(Calendar.YEAR) + "," +
-                (calendar.get(Calendar.MONTH)+1) + ","+
+        application.setApplydate(calendar.get(Calendar.YEAR) + "/" +
+                (calendar.get(Calendar.MONTH)+1) + "/"+
                 calendar.get(Calendar.DATE));
         ApplicationDAO applicationDAO = new ApplicationDAO();
         applicationDAO.addAppliciation(application);
