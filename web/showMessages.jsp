@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 李沅泽
-  Date: 2016/11/17
-  Time: 20:51
+  User: zxx_1
+  Date: 2016/12/14
+  Time: 1:02
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>站内信已发出</title>
+    <title></title>
 </head>
 <body>
-    <h1>成功发出站内信</h1><br>
-    <a href="/mainpage.action">点此返回</a>
+
 </body>
 </html>

@@ -30,8 +30,7 @@
         </action>
 
         <action name="login_normal" class="action.login_normal">
-            <result name="STUDENT" type="redirectAction">mainpage</result>
-            <result name="TEACHER" type="redirectAction">mainpage</result>
+            <result name="success" type="redirectAction">mainpage</result>
             <result name="error" type="redirectAction">errorAction</result>
         </action>
 
@@ -44,6 +43,7 @@
             <result name="error">/error.jsp</result>
         </action>
     </package>
+
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
             <result name="success">/mainpage.jsp</result>
@@ -84,11 +84,19 @@
                 /invalidmessage.jsp
             </result>
         </action>
+        <action name="showMessages" class="action.ShowMessagesAction">
+            <result name="success">
+                /showMessages.jsp
+            </result>
+        </action>
     </package>
 
     <package name="Application" extends="struts-default">
         <action name="editApplicatin" class="action.editApplication">
             <result name="SUCCESS"> /editApplication.jsp </result>
+        </action>
+        <action name="showApplications" class="action.ShowApplicationsAction">
+            <result name="success">/showApplications.jsp</result>
         </action>
         <action name="putUpApplication" class="action.putUpApplication">
             <result name="SUCCESS">
@@ -99,6 +107,21 @@
             </result>
             <result name="MESSAGE_INVALID">
                 /invalidmessage.jsp
+            </result>
+        </action>
+        <action name="sendApplication" class="action.sendApplicationClass">
+            <result name="SUCCESS">
+                /sendMessageSucceed.jsp
+            </result>
+        </action>
+        <action name="replyApplication" class="action.ReplyApplicationAction">
+            <result name= "success">
+                showApplications.action
+            </result>
+        </action>
+        <action name="modifyApplication" class="action.ModifyApplicationAction">
+            <result name="success">
+                showApplications.action
             </result>
         </action>
     </package>
