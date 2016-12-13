@@ -84,7 +84,7 @@
                 /invalidmessage.jsp
             </result>
         </action>
-        <action name="showMessages" class="action.ShowMessagesAction">
+        <action name="showMessages" class="action.showMessagesAction">
             <result name="success">
                 /showMessages.jsp
             </result>
@@ -114,12 +114,12 @@
                 /sendMessageSucceed.jsp
             </result>
         </action>
-        <action name="replyApplication" class="action.ReplyApplicationAction">
+        <action name="replyApplication" class="action.replyApplicationAction">
             <result name= "success">
                 showApplications.action
             </result>
         </action>
-        <action name="modifyApplication" class="action.ModifyApplicationAction">
+        <action name="modifyApplication" class="action.modifyApplicationAction">
             <result name="success">
                 showApplications.action
             </result>
