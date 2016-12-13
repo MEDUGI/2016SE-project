@@ -10,9 +10,18 @@ public class Message {
     private String date;
     private int status;  // 信件的状态，未读0，已读1
     private String content;
+    private String title;
 
     public Message() {
 
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getStatus() {

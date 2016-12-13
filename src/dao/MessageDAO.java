@@ -22,7 +22,7 @@ public class MessageDAO {
 
     public int addMessage(Message mail) {
         int i = 0;
-        String sql = "insert into message (userFrom, userTo, messageDate, status, content) value(?,?,?,?,?)";
+        String sql = "insert into message (userFrom, userTo, messageDate, status, content, title) value(?,?,?,?,?,?)";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1,mail.getUserFrom());
@@ -30,6 +30,7 @@ public class MessageDAO {
             ps.setString(3,mail.getDate());
             ps.setInt(4, mail.getStatus());
             ps.setString(5,mail.getContent());
+            ps.setString(6,mail.getTitle());
             i = ps.executeUpdate();
             ps.close();
         }catch (Exception e) {
@@ -75,6 +76,7 @@ public class MessageDAO {
                 Temp.setDate(rs.getString("messageDate"));
                 Temp.setStatus((rs.getInt("status")));
                 Temp.setContent(rs.getString("content"));
+                Temp.setContent(rs.getString("title"));
                 resultList.add(Temp);
             }
             ps.close();
@@ -113,6 +115,7 @@ public class MessageDAO {
                 Temp.setDate(rs.getString("messageDate"));
                 Temp.setStatus((rs.getInt("status")));
                 Temp.setContent(rs.getString("content"));
+                Temp.setTitle(rs.getString("title"));
                 result = Temp;
             }
             ps.close();

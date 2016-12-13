@@ -15,6 +15,7 @@
 <form action="sendMessage.action" method="post">
   <input name="userTo" type="text" hidden="hidden" value=<s:property value="userTo"/>>
   <input name="userFrom" type="text" hidden="hidden" value="<s:property value="userFrom"/> ">
+  回信标题 <input name="title" type="text"> <br>
   回信内容 <input name="message" type="text"> <br>
   <input type="submit" value="回复">
 </form>
