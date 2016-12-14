@@ -47,7 +47,7 @@
     <package name="mainpagePack" extends="struts-default">
         <action name="mainpage" class="action.mainpageAction">
             <result name="success">/index.jsp</result>
-            <result name="unlogged">index.action</result>
+            <result name="unlogged">/index.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
         <action name="showChangePage" class="action.showChangePageAction">
