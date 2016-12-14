@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class change_password extends ActionSupport implements SessionAware{
 
-    String mail,secret,secret_repeat;
+    String username,secret,secret_repeat;
     Map session;
 
     public Map getSession() {
@@ -23,12 +23,12 @@ public class change_password extends ActionSupport implements SessionAware{
         this.session = session;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSecret() {
@@ -51,7 +51,7 @@ public class change_password extends ActionSupport implements SessionAware{
     @Override
     public String execute() {
         if (secret.equals("") || secret_repeat.equals("")
-                || mail.equals("")) {
+                || username.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
             return ERROR;
         }
@@ -59,26 +59,21 @@ public class change_password extends ActionSupport implements SessionAware{
             session.put("errorMessage", "两次密码不一致!");
             return ERROR;
         }
-        String regex = "^[A-Za-z]{1,40}@[A-Za-z0-9]{1,40}\\.[A-Za-z]{2,3}$";
-        if (!mail.matches(regex)) {
-            session.put("errorMessage", "邮箱不符合格式!");
-            return ERROR;
-        }
-
         StudentDAO studao = new StudentDAO();
         ProfessorDAO prodao = new ProfessorDAO();
-        if (!studao.getStudent(mail).equals("")) {
-            studao.updatePassword(mail,secret);
+        if (studao.getStudent(username) != null) {
+            studao.updatePassword(username,secret);
+            session.put("userstyle", "Student");
         }
-
-        else if (!prodao.getProfessor(mail).equals("")) {
-            prodao.updatePassword(mail,secret);
+        else if (prodao.getProfessor(username) != null) {
+            prodao.updatePassword(username,secret);
+            session.put("userstyle", "Professor");
         }
-
         else  {
             session.put("errorMessage", "用户名有误!");
             return ERROR;
         }
+        session.put("username", username);
         return "SUCCESS";
     }
 }

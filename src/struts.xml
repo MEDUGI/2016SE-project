@@ -11,16 +11,16 @@
             <result type="redirectAction">indexAction</result>
         </action>
         <action name="indexAction" class="action.indexActionClass">
-            <result name="logged" type="redirectAction">mainpage</result>
-            <result name="unlogged">/login_normal.jsp</result>
+            <result name="logged">/index.jsp</result>
+            <result name="unlogged">/login.jsp</result>
         </action>
         <action name="register_stu" class="action.register_stu">
-            <result name="SUCCESS" type="redirectAction">mainpage</result>
+            <result name="SUCCESS">/index.jsp</result>
             <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="register_teacher" class="action.register_teacher">
-            <result name="SUCCESS" type="redirectAction">mainpage</result>
+            <result name="SUCCESS">/index.jsp</result>
             <result name="error" type="redirectAction">errorAction</result>
         </action>
 
@@ -30,16 +30,16 @@
         </action>
 
         <action name="login_normal" class="action.login_normal">
-            <result name="success" type="redirectAction">mainpage</result>
+            <result name="success">index.jsp</result>
             <result name="error" type="redirectAction">errorAction</result>
         </action>
 
         <action name="change_password" class="action.change_password">
             <result name="error" type="redirectAction">errorAction</result>
-            <result name="SUCCESS">/login_normal.jsp</result>
+            <result name="SUCCESS">/index.jsp</result>
         </action>
         <action name="logout" class="action.LogoutAction">
-            <result name="success">/login_normal.jsp</result>
+            <result name="success">/index.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
     </package>

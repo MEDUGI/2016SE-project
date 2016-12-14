@@ -17,6 +17,7 @@
   <tr>
     <td>发信人</td>
     <td>发信日期</td>
+    <td>标题</td>
     <td>内容</td>
     <td></td>
     <td></td>
@@ -25,6 +26,7 @@
     <tr>
       <td><s:property value="userFrom"/></td>
       <td><s:property value="date"/></td>
+      <td><s:property value="title"/></td>
       <td><s:property value="content"/></td>
       <td><a href="replyMessage.action?id=<s:property value="ID"/>">回信</a></td>
       <td><a href="markRead.action?id=<s:property value="ID"/> ">标为已读</a></td>
@@ -36,6 +38,7 @@
   <tr>
     <td>发信人</td>
     <td>发信日期</td>
+    <td>信件标题</td>
     <td>内容</td>
     <td></td>
     <td></td>
@@ -44,6 +47,7 @@
     <tr>
       <td><s:property value="userFrom"/></td>
       <td><s:property value="date"/></td>
+      <td><s:property value="title"/></td>
       <td><s:property value="content"/></td>
       <td><a href="replyMessage.action?id=<s:property value="ID"/>">回信</a></td>
       <td><a href="deleteMessage.action?id=<s:property value="ID"/>">删除</a></td>

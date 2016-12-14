@@ -64,6 +64,7 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
             message.setUserTo(opposite);
             message.setDate(Tools.getDateString());
             message.setStatus(0);
+            message.setTitle("关系建立未成功");
             message.setContent("抱歉，由于种种原因，我此时不能接受你的申请，祝你能找到下一个更加合适的选择!\n（本信息由系统发出，请不要回复）");
             messageDAO.addMessage(message);
         }

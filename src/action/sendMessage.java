@@ -13,7 +13,15 @@ import java.util.Date;
  * Created by 李沅泽 on 2016/11/15.
  */
 public class sendMessage extends ActionSupport {
-    private String message,userFrom,userTo;
+    private String message, userFrom, userTo, title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getMessage() {
         return message;
@@ -45,6 +53,7 @@ public class sendMessage extends ActionSupport {
         msg.setUserTo(userTo);
         msg.setContent(message);
         msg.setStatus(0);
+        msg.setTitle(title);
         Calendar calendar = Calendar.getInstance();
         msg.setDate(calendar.get(Calendar.YEAR) + "/" +
                 (calendar.get(Calendar.MONTH) + 1) + "/" +

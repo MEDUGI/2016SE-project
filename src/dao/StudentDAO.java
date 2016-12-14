@@ -45,6 +45,10 @@ public class StudentDAO {
         result += student.getIntroduction();
         result += "','";
         result += student.getPhysicalAddress();
+        result += "','";
+        result += student.getFutureMajor1();
+        result += "','";
+        result += student.getFutureMajor2();
         result += "'";
         return result;
     }
@@ -63,6 +67,8 @@ public class StudentDAO {
             student.setMajor(rs.getString(12));
             student.setIntroduction(rs.getString(13));
             student.setPhysicalAddress(rs.getString(14));
+            student.setFutureMajor1(rs.getString(15));
+            student.setFutureMajor2(rs.getString(16));
             return student;
         } catch (Exception e) {
             e.printStackTrace();

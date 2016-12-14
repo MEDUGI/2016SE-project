@@ -133,7 +133,9 @@
             </s:if>
             <s:elseif test='userstyle == "Student"'>
                 <p><t><s:property value="graduateSchool" /></t><br/>
-                    <s:property value="major" /> <br/>
+                    本科专业：<s:property value="major" /> <br/>
+                    研究生专业意向1：<s:property value="futureMajor1"/> <br/>
+                    研究生专业意向2：<s:property value="futureMajor2"/> <br/>
                     <i><s:property value="awardsCollection" /></i>
                 </p>
             </s:elseif>

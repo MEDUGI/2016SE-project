@@ -97,6 +97,18 @@
                   <input class="form-control" name="physicalAddress" type="text" value="<s:property value='physicalAddress'/>"><br>
               </div>
           </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon" id="tips">研究生专业1</div>
+                    <input class="form-control" name="futureMajor1" type="text" value="<s:property value='futureMajor1'/>"><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon" id="tips">研究生专业2</div>
+                    <input class="form-control" name="futureMajor2" type="text" value="<s:property value='futureMajor2'/>"><br>
+                </div>
+            </div>
           <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block btn-login">
                   <i class="icon-signin"></i>

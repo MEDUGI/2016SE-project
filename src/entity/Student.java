@@ -19,6 +19,24 @@ public class Student extends User{
     protected String major;
     protected String introduction;
     protected String physicalAddress;
+    protected String futureMajor1;
+    protected String futureMajor2;
+
+    public String getFutureMajor1() {
+        return futureMajor1;
+    }
+
+    public void setFutureMajor1(String futureMajor1) {
+        this.futureMajor1 = futureMajor1;
+    }
+
+    public String getFutureMajor2() {
+        return futureMajor2;
+    }
+
+    public void setFutureMajor2(String futureMajor2) {
+        this.futureMajor2 = futureMajor2;
+    }
 
     public String getMajor() {
         return major;
