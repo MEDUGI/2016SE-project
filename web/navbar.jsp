@@ -251,7 +251,7 @@
 
                     <li>
                         <a href="recommand.action">
-                            <i class="fa fa-tint"></i> 查看推荐导师
+                            <i class="fa fa-tint"></i> 查看推荐对象
                         </a>
                     </li>
 

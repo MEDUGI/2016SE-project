@@ -103,19 +103,19 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <s:iterator value="unreadMessages" status="st" id="msg">
+                      <s:iterator value="unreadMessages" status="st">
                           <tr class="odd unread" onclick="showMessage(<s:property value='#st.index'/>);">
-                            <td><s:property value="#msg.userFrom" /></td>
-                            <td><s:property value="#msg.title" /></td>
-                            <td><s:property value="#msg.date" /></td>
+                            <td><s:property value="userFrom" /></td>
+                            <td><s:property value="title" /></td>
+                            <td><s:property value="date" /></td>
                             <td class="text-center"><i class="fa fa-paperclip"></i></td>
                           </tr>
                       </s:iterator>
-                      <s:iterator value="readMessages" status="st" id="msg">
+                      <s:iterator value="readMessages" status="st">
                         <tr class="even" onclick="showMessage(<s:property value='#st.index'/>);">
-                          <td><s:property value="#msg.userFrom" /></td>
-                          <td><s:property value="#msg.title" /></td>
-                          <td><s:property value="#msg.date" /></td>
+                          <td><s:property value="userFrom" /></td>
+                          <td><s:property value="title" /></td>
+                          <td><s:property value="date" /></td>
                           <td class="text-center"><i class="fa fa-paperclip"></i></td>
                         </tr>
                       </s:iterator>

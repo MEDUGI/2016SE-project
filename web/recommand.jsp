@@ -1,74 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 李沅泽
-  Date: 2016/11/16
-  Time: 15:12
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<html>
-<head>
-    <title>推荐清单</title>
-</head>
-<body>
-
-<table border="1">
-    <s:if test="userstyle == 'Professor'">
-        <tr>
-            <td>学号</td>
-            <td>姓名</td>
-            <td>毕业院校</td>
-            <td>获奖历史</td>
-            <td>GPA</td>
-            <td>NEEP分数</td>
-            <td>联系方式</td>
-            <td>查看</td>
-
-        </tr>
-
-        <s:iterator value="result" status="st">
-            <tr>
-            <td><s:property value="studentNo"/></td>
-            <td><s:property value='fullname'/></td>
-            <td><s:property value='graduateSchool'/></td>
-            <td><s:property value='awardsCollection'/></td>
-            <td><s:property value='gpa'/></td>
-            <td><s:property value='neepScore'/></td>
-            <td><s:property value="mobileNo" /></td>
-            <td><a href="mainpage.action?username=<s:property value='username'/>&userstyle=Student">详细信息</a> </td>
-            <td><a href='editApplicatin.action?userTo=<s:property value="username"/>&userStyle=Student' >发出申请</a></td>
-            </tr>
-        </s:iterator>
-    </s:if>
-    <s:else>
-        <tr>
-            <td>导师名称</td>
-            <td>工作单位</td>
-            <td>研究领域</td>
-            <td>电子邮件</td>
-            <td>电话</td>
-            <td>名额情况</td>
-            <td>查看</td>
-        </tr>
-
-        <s:iterator value="result" status="st">
-
-            <td><s:property value="fullname"/></td>
-            <td><s:property value='employerUnit'/></td>
-            <td><s:property value='workingArea'/></td>
-            <td><s:property value='emailAddress'/></td>
-            <td><s:property value='mobileNo'/></td>
-            <td><s:property value='acceptedNumber'/>/<s:property value="accomodationNumber" /></td>
-            <td><a href="mainpage.action?username=<s:property value='username'/>&userstyle=Professor">详细信息</a></td>
-            <td><a href="editApplicatin.action?userTo=<s:property value="username"/>&userStyle=Professor">发出申请</a> </td>
-            </tr>
-        </s:iterator>
-    </s:else>
-
-</table>
-</body>
-</html>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
@@ -81,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>查看申请</title>
+    <title>推荐对象</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
@@ -183,7 +112,7 @@
 
                             <!-- tile header -->
                             <div class="tile-header">
-                                <h1>待批复请求</h1>
+                                <h1>查看推荐对象</h1>
                                 <div class="controls">
                                     <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
                                     <a href="#" class="remove"><i class="fa fa-times"></i></a>
@@ -251,99 +180,6 @@
                                             </tr>
                                         </s:iterator>
                                     </s:else>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <!-- /tile body -->
-
-
-
-
-                        </section>
-                        <section class="tile color transparent-black">
-
-
-
-                            <!-- tile header -->
-                            <div class="tile-header">
-                                <h1>我发出请求</h1>
-                                <div class="controls">
-                                    <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
-                                    <a href="#" class="remove"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <!-- /tile header -->
-
-                            <!-- tile body -->
-                            <div class="tile-body nopadding">
-
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>发至</th>
-                                        <th>发出日期</th>
-                                        <th>附言</th>
-                                        <th>修改</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="myApplication">
-                                        <tr>
-                                            <td></td>
-                                            <td><s:property value="to"/></td>
-                                            <td><s:property value="applydate"/></td>
-                                            <td><s:property value="message"/> </td>
-                                            <td><a href="modifyApplication.action?applicationId=<s:property value="ID"/> ">修改</a></td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <!-- /tile body -->
-
-
-
-
-                        </section>
-                        <section class="tile color transparent-black">
-
-
-
-                            <!-- tile header -->
-                            <div class="tile-header">
-                                <h1>已生效请求</h1>
-                                <div class="controls">
-                                    <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
-                                    <a href="#" class="remove"><i class="fa fa-times"></i></a>
-                                </div>
-                            </div>
-                            <!-- /tile header -->
-
-                            <!-- tile body -->
-                            <div class="tile-body nopadding">
-
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>发出</th>
-                                        <th>发至</th>
-                                        <th>发出日期</th>
-                                        <th>查看主页</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="succeededApplication">
-                                        <tr>
-                                            <td><s:property value="from"/></td>
-                                            <td><s:property value="to"/></td>
-                                            <td><s:property value="applydate"/></td>
-                                            <td><a href="mainpage.action?username=<s:property value="to"/>">查看主页</a></td>
-                                        </tr>
-                                    </s:iterator>
                                     </tbody>
                                 </table>
 

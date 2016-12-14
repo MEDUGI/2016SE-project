@@ -138,7 +138,7 @@
                                     <tbody>
                                     <s:iterator value="receivedApplication">
                                         <tr>
-                                            <td></td>
+                                            <td><s:property value="id"/> </td>
                                             <td><s:property value="from"/></td>
                                             <td><s:property value="to"/></td>
                                             <td><s:property value="applydate"/></td>
@@ -187,7 +187,7 @@
                                     <tbody>
                                     <s:iterator value="myApplication">
                                         <tr>
-                                            <td></td>
+                                            <td><s:property value="id"/> </td>
                                             <td><s:property value="to"/></td>
                                             <td><s:property value="applydate"/></td>
                                             <td><s:property value="message"/> </td>
@@ -234,10 +234,11 @@
                                     <tbody>
                                     <s:iterator value="succeededApplication">
                                         <tr>
+                                            <td><s:property value="id"/> </td>
                                             <td><s:property value="from"/></td>
                                             <td><s:property value="to"/></td>
                                             <td><s:property value="applydate"/></td>
-                                            <td><a href="mainpage.action?username=<s:property value="to"/>">查看主页</a></td>
+                                            <td><a href="mainpage.action?username=<s:property value="from"/>">查看主页</a></td>
                                         </tr>
                                     </s:iterator>
                                     </tbody>

@@ -76,7 +76,7 @@ public class MessageDAO {
                 Temp.setDate(rs.getString("messageDate"));
                 Temp.setStatus((rs.getInt("status")));
                 Temp.setContent(rs.getString("content"));
-                Temp.setContent(rs.getString("title"));
+                Temp.setTitle(rs.getString("title"));
                 resultList.add(Temp);
             }
             ps.close();

@@ -136,7 +136,7 @@
                                         <input type="text" class="form-control transparent" id="subject" placeholder="在这里输入标题" name="title">
                                     </div>
                                 </div>
-                                <input name="userFrom" value="#session.username" hidden>
+                                <input name="userFrom" hidden="hidden" value="<s:property value="username"/> ">
                                 <input id="msgcontent" name="message" type="text" hidden>
                             </form>
                         </div>

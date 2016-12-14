@@ -77,7 +77,7 @@ public class StudentDAO {
     }
     public boolean addStudent(Student student) {
 
-        String sql = "insert into studentDB values (" + toValueString(student) + ");";
+        String sql = "insert into studentdb values (" + toValueString(student) + ");";
         try{
             Statement st = dbp.getConn().createStatement();
             st.execute(sql);
@@ -89,7 +89,7 @@ public class StudentDAO {
         return true;
     }
     public Student getStudent(String username) {
-        String sql = "select * from studentDB where username = ?";
+        String sql = "select * from studentdb where username = ?";
         Student student = new Student(username, "");
         try{
             ps = dbp.getConn().prepareStatement(sql);
@@ -106,7 +106,7 @@ public class StudentDAO {
         return student;
     }
     public boolean updatePassword(String username, String password) {
-        String sql = "select * from studentDB where username = ?";
+        String sql = "select * from studentdb where username = ?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, username);
@@ -114,7 +114,7 @@ public class StudentDAO {
             if(!rs.next()){
                 return false;
             }
-            sql = "UPDATE studentDB SET password = " + password + " WHERE username = " + username;
+            sql = "UPDATE studentdb SET password = " + password + " WHERE username = " + username;
             ps = dbp.getConn().prepareStatement(sql);
             ps.executeUpdate();
             ps.close();
@@ -125,7 +125,7 @@ public class StudentDAO {
         }
     }
     public boolean updateStudent(Student student) {
-        String sql = "select * from studentDB where username = ?";
+        String sql = "select * from studentdb where username = ?";
         try{
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
@@ -135,13 +135,13 @@ public class StudentDAO {
             }
             ps.close();
 
-            sql = "delete from studentDB where username = ?";
+            sql = "delete from studentdb where username = ?";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, student.getUsername());
             ps.executeUpdate();
             ps.close();
 
-            sql = "insert into studentDB values ("+toValueString(student)+")";
+            sql = "insert into studentdb values ("+toValueString(student)+")";
             Statement st = dbp.getConn().createStatement();
             st.execute(sql);
             st.close();
@@ -152,7 +152,7 @@ public class StudentDAO {
         }
     }
     public ArrayList<Student> getAllStudents() {
-        String sql = "select * from studentDB";
+        String sql = "select * from studentdb";
         try {
             Statement st = dbp.getConn().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -167,7 +167,7 @@ public class StudentDAO {
         return null;
     }
     public ArrayList<Student> getStudentRecomentation(Professor professor) {
-        String sql = "select * from studentDB where workingAreas = '" + professor.getWorkingArea() + "';";
+        String sql = "select * from studentdb where workingAreas = '" + professor.getWorkingArea() + "';";
         try {
             Statement st = dbp.getConn().createStatement();
             ResultSet rs = st.executeQuery(sql);

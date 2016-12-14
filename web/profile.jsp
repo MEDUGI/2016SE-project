@@ -67,7 +67,7 @@
                     </li>
                     <li>
                         <span class="user font-slab"><strong>出版文献</strong></span>
-                        <span class="subject"><s:property value="paperPublished" /></span>
+                        <span class="subject"><s:property value="papersPublished" /></span>
                     </li>
                 </s:if>
                 <s:elseif test='userstyle == "Student"'>

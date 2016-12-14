@@ -71,9 +71,7 @@
             <result name="SUCCESS"> /mail.jsp </result>
         </action>
         <action name="sendMessage" class="action.sendMessage">
-            <result name="success">
-                /sendMessageSucceed.jsp
-            </result>
+            <result name="success" type="redirectAction">mainpage</result>
         </action>
         <action name="showMessages" class="action.showMessagesAction">
             <result name="success">
