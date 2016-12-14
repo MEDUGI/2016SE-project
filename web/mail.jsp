@@ -103,15 +103,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <s:iterator value="messages" status="st" id="msg">
+                      <s:iterator value="unreadMessages" status="st" id="msg">
                           <tr class="odd unread" onclick="showMessage(<s:property value='#st.index'/>);">
-                            <td><s:property value="msg.userFrom" /></td>
-                            <td><s:property value="msg.title" /></td>
-                            <td><s:property value="msg.date" /></td>
+                            <td><s:property value="#msg.userFrom" /></td>
+                            <td><s:property value="#msg.title" /></td>
+                            <td><s:property value="#msg.date" /></td>
                             <td class="text-center"><i class="fa fa-paperclip"></i></td>
                           </tr>
                       </s:iterator>
-
+                      <s:iterator value="readMessages" status="st" id="msg">
+                        <tr class="even" onclick="showMessage(<s:property value='#st.index'/>);">
+                          <td><s:property value="#msg.userFrom" /></td>
+                          <td><s:property value="#msg.title" /></td>
+                          <td><s:property value="#msg.date" /></td>
+                          <td class="text-center"><i class="fa fa-paperclip"></i></td>
+                        </tr>
+                      </s:iterator>
                     </tbody>
                   </table>
                 </div>              
@@ -201,7 +208,6 @@
 <script src="assets/js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/vendor/bootstrap/bootstrap.min.js"></script>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sons-of-obsidian"></script>
     <script type="text/javascript" src="assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
     <script type="text/javascript" src="assets/js/vendor/sparkline/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="assets/js/vendor/nicescroll/jquery.nicescroll.min.js"></script>
@@ -306,7 +312,8 @@
     </script>
     <script>
         function showMessage(i) {
-            var msg=messages[i];
+            alert(i);
+            var msg=<s:property value="readMessages.get(0)" />;
             document.getElementById('title').value = msg.title;
             document.getElementById('From').value = msg.userFrom;
             document.getElementById('To').value = msg.userTo;

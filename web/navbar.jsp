@@ -103,7 +103,7 @@
                         </li>
                     </s:iterator>
 
-                    <li><a href="#">查看所有的申请动态 <i class="fa fa-angle-right"></i></a></li>
+                    <li><a href="showApplications.action">查看所有的申请动态 <i class="fa fa-angle-right"></i></a></li>
                 </ul>
 
             </li>
@@ -217,7 +217,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="showChangePage.jsp">
+                                <a href="showChangePage.action">
                                     <i class="fa fa-caret-right"></i> 修改个人信息
                                 </a>
                             </li>

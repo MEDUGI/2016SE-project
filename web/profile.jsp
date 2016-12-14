@@ -73,15 +73,15 @@
                 <s:elseif test='userstyle == "Student"'>
                     <li>
                         <span class="user font-slab"><strong>毕业院校</strong></span>
-                        <span class="subject"><s:property value="employerUnit" /></span>
+                        <span class="subject"><s:property value="graduateSchool" /></span>
                     </li>
                     <li>
                         <span class="user font-slab"><strong>原专业方向</strong></span>
-                        <span class="subject"><s:property value="workingArea" /></span>
+                        <span class="subject"><s:property value="workingAreas" /></span>
                     </li>
                     <li>
                         <span class="user font-slab"><strong>准备攻读方向</strong></span>
-                        <span class="subject"><s:property value="paperPublished" /></span>
+                        <span class="subject"><s:property value="futureMajor1" />  <s:property value="futureMajor2"/> </span>
                     </li>
                     <li>
                         <span class="user font-slab"><strong>获奖及荣誉</strong></span>
