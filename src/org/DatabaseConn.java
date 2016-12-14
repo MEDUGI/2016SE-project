@@ -19,8 +19,8 @@ public class DatabaseConn {
             conn=DriverManager.getConnection(url, username, password);
             System.out.println("数据库连接成功");
         }catch (Exception e){
-            System.out.println("数据库连接失败");
-            e.printStackTrace();
+            System.err.println("数据库连接失败");
+            //e.printStackTrace();
         }
         return conn;
     }

@@ -89,11 +89,10 @@ public class StudentDAO {
         return true;
     }
     public Student getStudent(String username) {
-        String sql = "select * from studentdb where username = ?";
+        String sql = "select * from studentdb where username='"+username+"';";
         Student student = new Student(username, "");
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 student = toStudent(rs);
@@ -101,6 +100,7 @@ public class StudentDAO {
             else
                 return null;
         }catch(Exception e){
+            System.err.println("sql²éÑ¯³ö´í");
             e.printStackTrace();
         }
         return student;

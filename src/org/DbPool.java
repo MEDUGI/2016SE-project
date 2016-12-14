@@ -13,15 +13,15 @@ public class DbPool {
     public void createConn(){
         try{
             //String url="jdbc:mysql://localhost/modugi";
-            String url = "jdbc:mysql://ucvidyngudel.mysql.sae.sina.com.cn:10484/modugi";
+            String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_modugi";
             String user = "0mxk3llw4x";     // modugi
             String password = "l2hj4lw3jkyiwyly223511hh33121zimhlzk5iw4";   // modugi
             Driver driver = new Driver();
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("The database is successfully connected!");
         }catch(Exception e){
-            System.out.println("Failed to connect the database!");
-            e.printStackTrace();
+            System.err.println("Failed to connect the database!");
+            //e.printStackTrace();
         }
     }
     public  Connection getConn(){
