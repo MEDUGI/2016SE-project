@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>研究生导师互选推荐系统</title>
+    <title>申请管理</title>
 </head>
 <body>
 待批复的请求：

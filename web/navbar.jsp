@@ -205,7 +205,7 @@
                 <ul class="menu">
 
                     <li class="active">
-                        <a href="mainpage.action">
+                        <a href="indexAction.action">
                             <i class="fa fa-tachometer"></i> 个人主页
                             <span class="badge badge-red"><s:property value="messageNumber" /></span>
                         </a>
@@ -217,17 +217,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="form-elements.html">
-                                    <i class="fa fa-caret-right"></i> 个人简历上传
-                                </a>
-                            </li>
-                            <li>
-                                <a href="validation-elements.html">
+                                <a href="showChangePage.jsp">
                                     <i class="fa fa-caret-right"></i> 修改个人信息
                                 </a>
                             </li>
                             <li>
-                                <a href="form-wizard.html">
+                                <a href="create_resume.action">
                                     <i class="fa fa-caret-right"></i> 个人信息导出
                                 </a>
                             </li>
@@ -242,12 +237,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="ui-elements.html">
+                                <a href="indexAction.action">
                                     <i class="fa fa-caret-right"></i> 发送信息
                                 </a>
                             </li>
                             <li>
-                                <a href="typography.html">
+                                <a href="showMessages.action">
                                     <i class="fa fa-caret-right"></i> 查看信箱
                                 </a>
                             </li>
@@ -255,7 +250,7 @@
                     </li>
 
                     <li>
-                        <a href="buttons.html">
+                        <a href="recommand.action">
                             <i class="fa fa-tint"></i> 查看推荐导师
                         </a>
                     </li>
@@ -266,12 +261,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="tables.html">
+                                <a href="showApplications.action">
                                     <i class="fa fa-caret-right"></i> 查看申请状态
                                 </a>
                             </li>
                             <li>
-                                <a href="datatables.html">
+                                <a href="showApplications.action">
                                     <i class="fa fa-caret-right"></i> 处理申请
                                 </a>
                             </li>
@@ -279,7 +274,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="logout.action" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-desktop"></i> 登出
                         </a>
                     </li>
