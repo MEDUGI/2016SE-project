@@ -178,10 +178,10 @@
                     <a>或者</a>
                 </li>
                 <li class="dropdown divided">
-                    <a href="register_stu.action">学生注册</a>
+                    <a href="register_stu.jsp">学生注册</a>
                 </li>
                 <li class="dropdown divided">
-                    <a href="register_teacher.action">导师注册</a>
+                    <a href="register_teacher.jsp">导师注册</a>
                 </li>
             </s:else>
         </ul>

@@ -1,0 +1,62 @@
+#first {
+    z-index: -1;
+    background-image:url(../image/headbackground.jpg);
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    margin:0 auto;
+    background-position:center center;
+    min-width:1000px;
+    height:108px;
+}
+B {
+    float:right;
+    height:100%;
+}
+#first h1 {
+    font-family:华文行楷;
+    font-size:300%;
+    color:black;
+    float:left;
+    text-align: center;
+}
+#first img {
+    float:left;
+    width:10%;
+    height:100%;
+}
+
+.topbbar {
+    font: normal 16px/24px  'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.topbbar ul#nav > li {
+    display: block;
+    float: left;
+    padding: 0;
+}
+
+
+.topbbar ul#nav a {
+    display: block;
+    font: normal 11px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    padding: 18px 20px 18px 20px;
+    border-left: 1px solid #222;
+}
+
+.topbbar ul#nav a:hover {
+    background: #222;
+    text-decoration: none;
+    border-left: 1px solid #111;
+}
+
+.topbbar ul#nav .active a {
+    background: #44bbaa;
+    border-left: 1px solid #111;
+}
+
+.topbbar ul#nav .active a:hover {
+    background: #44bbaa;
+}
+.topbbar i {
+    font-size: 25px;
+}
