@@ -39,8 +39,7 @@ public class MessageDAO {
     }
     /*
         mode=userStyle+readStyle
-        status=0表未读，为1表已读,为2表收藏;
-        userStyle=1时，用户为学生；userStyle=0时，用户为教授;
+        status=0表未读，为1表已读,为2表垃圾箱;
         FromOrTo=0时，ID表示送的用户；FromOrTo=1时，ID代表收的用户；
         根据提供的ID和MODE，抽取目前未被读取的信息;
      */
@@ -49,12 +48,7 @@ public class MessageDAO {
         String userID;
         String sql = "select * from message WHERE ";
 
-        if (status == 1) {
-            sql += "status=1 and ";
-        }
-        else {
-            sql += "status=0 and ";
-        }
+        sql += "status="+status+" and ";
 
         if (FromOrTo == 1) {
             sql += "userTo=?";

@@ -8,7 +8,7 @@ public class Message {
     private String userFrom;
     private String userTo;
     private String date;
-    private int status;  // 信件的状态，未读0，已读1
+    private int status;  // 信件的状态，未读0，已读1, 在垃圾箱2
     private String content;
     private String title;
 
