@@ -37,7 +37,10 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     String userstyle;
     Student mainpageStudent;
     Professor professor;
+    int messageNumber;
+    int applicationNumber;
     Map session;
+
 
 
     public String getFutureMajor1() {

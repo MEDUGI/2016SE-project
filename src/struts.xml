@@ -108,9 +108,7 @@
             </result>
         </action>
         <action name="sendApplication" class="action.applications.sendApplicationClass">
-            <result name="SUCCESS">
-                /sendMessageSucceed.jsp
-            </result>
+            <result name="SUCCESS" type="redirectAction">showApplications</result>
         </action>
         <action name="replyApplication" class="action.applications.replyApplicationAction">
             <result name= "success" type="redirectAction">showApplications</result>
