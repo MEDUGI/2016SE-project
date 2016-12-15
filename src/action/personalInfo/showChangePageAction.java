@@ -7,7 +7,10 @@ import entity.Professor;
 import entity.Student;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /**
  * Created by Xiangxi on 2016/11/17.
@@ -30,9 +33,46 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
     protected String major;
     protected String introduction;
     protected String physicalAddress;
+    protected String futureMajor1;
+    protected String futureMajor2;
     Map session;
     String username = "";
     String userstyle;
+
+    public ArrayList<String>[] workingAreasList = new ArrayList[4];
+    public String[] majorList = {"null", "计算机科学与技术", "机电专业", "航天专业", "艺术学科"};
+
+    public String getFutureMajor1() {
+        return futureMajor1;
+    }
+
+    public void setFutureMajor1(String futureMajor1) {
+        this.futureMajor1 = futureMajor1;
+    }
+
+    public String getFutureMajor2() {
+        return futureMajor2;
+    }
+
+    public void setFutureMajor2(String futureMajor2) {
+        this.futureMajor2 = futureMajor2;
+    }
+
+    public ArrayList<String>[] getWorkingAreasList() {
+        return workingAreasList;
+    }
+
+    public void setWorkingAreasList(ArrayList<String>[] workingAreasList) {
+        this.workingAreasList = workingAreasList;
+    }
+
+    public String[] getMajorList() {
+        return majorList;
+    }
+
+    public void setMajorList(String[] majorList) {
+        this.majorList = majorList;
+    }
 
     public String getMajor() {
         return major;
@@ -194,8 +234,39 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
+    void generateWorkingAreaList() {
+        workingAreasList[0] = new ArrayList<>();
+        workingAreasList[0].add("模式识别");
+        workingAreasList[0].add("云计算");
+        workingAreasList[0].add("数据安全");
+        workingAreasList[0].add("软件工程");
+        workingAreasList[0].add("修电脑");
+
+        workingAreasList[1] = new ArrayList<>();
+        workingAreasList[1].add("烧锅炉");
+        workingAreasList[1].add("电器");
+
+        workingAreasList[2] = new ArrayList<>();
+        workingAreasList[2].add("航空");
+        workingAreasList[2].add("航天");
+
+        workingAreasList[3] = new ArrayList<>();
+        workingAreasList[3].add("哲学");
+        workingAreasList[3].add("美术");
+        workingAreasList[3].add("音乐");
+    }
+
+    protected String majorStringToNumber(String input) {
+        for(int i = 0; i < 4; i++) {
+            if (majorList[i].equals(input))
+                return (i+1)+"";
+        }
+        return "0";
+    }
+
     @Override
     public String execute() throws Exception {
+        generateWorkingAreaList();
         username = (String)session.get("username");
         userstyle = (String)session.get("userstyle");
         Student mainpageStudent;
@@ -209,10 +280,16 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
             neepScore = Double.toString(mainpageStudent.getNeepScore());
             awardsCollection = mainpageStudent.getAwardsCollection();
             emailAddress = mainpageStudent.getEmailAddress();
-            workingAreas = mainpageStudent.getWorkingAreas();
+
             mobileNo = mainpageStudent.getMobileNo();
             fullname = mainpageStudent.getFullname();
-            major = mainpageStudent.getMajor();
+
+            major = majorStringToNumber(mainpageStudent.getMajor());
+            futureMajor1 = majorStringToNumber(mainpageStudent.getFutureMajor1());
+            futureMajor2 = majorStringToNumber(mainpageStudent.getFutureMajor2());
+
+            workingAreas = workingAreasList[Integer.parseInt(major)-1].indexOf(mainpageStudent.getWorkingAreas()) + "";
+
             introduction = mainpageStudent.getIntroduction();
             physicalAddress = mainpageStudent.getPhysicalAddress();
             return SUCCESS;

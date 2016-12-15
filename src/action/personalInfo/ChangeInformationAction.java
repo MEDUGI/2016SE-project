@@ -7,6 +7,7 @@ import entity.Professor;
 import entity.Student;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -35,6 +36,26 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
     Map session;
     String username = "";
     String userstyle;
+
+    public ArrayList<String>[] workingAreasList = new ArrayList[4];
+
+    public String[] majorList = {"null", "计算机科学与技术", "机电专业", "航天专业", "艺术学科"};
+
+    public String[] getMajorList() {
+        return majorList;
+    }
+
+    public void setMajorList(String[] majorList) {
+        this.majorList = majorList;
+    }
+
+    public ArrayList<String>[] getWorkingAreasList() {
+        return workingAreasList;
+    }
+
+    public void setWorkingAreasList(ArrayList<String>[] workingAreasList) {
+        this.workingAreasList = workingAreasList;
+    }
 
     public String getFutureMajor1() {
         return futureMajor1;
@@ -213,7 +234,31 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
         this.papersPublished = papersPublished;
     }
 
+    void generateWorkingAreaList() {
+
+        workingAreasList[0] = new ArrayList<>();
+        workingAreasList[0].add("模式识别");
+        workingAreasList[0].add("云计算");
+        workingAreasList[0].add("数据安全");
+        workingAreasList[0].add("软件工程");
+        workingAreasList[0].add("修电脑");
+
+        workingAreasList[1] = new ArrayList<>();
+        workingAreasList[1].add("烧锅炉");
+        workingAreasList[1].add("电器");
+
+        workingAreasList[2] = new ArrayList<>();
+        workingAreasList[2].add("航空");
+        workingAreasList[2].add("航天");
+
+        workingAreasList[3] = new ArrayList<>();
+        workingAreasList[3].add("哲学");
+        workingAreasList[3].add("美术");
+        workingAreasList[3].add("音乐");
+    }
+
     public String execute() {
+        generateWorkingAreaList();
         username = (String)session.get("username");
         userstyle = (String)session.get("userstyle");
         if (userstyle.equals("Student")) {
@@ -224,14 +269,17 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             student.setNeepScore(Double.parseDouble(neepScore));
             student.setAwardsCollection(awardsCollection);
             student.setEmailAddress(emailAddress);
-            student.setWorkingAreas(workingAreas);
+
+            student.setMajor(majorList[Integer.parseInt(major)]);
+            student.setWorkingAreas(workingAreasList[Integer.parseInt(major)-1].get(Integer.parseInt(workingAreas)));
+
+            student.setFutureMajor1(majorList[Integer.parseInt(futureMajor1)-1]);
+            student.setFutureMajor2(majorList[Integer.parseInt(futureMajor2)-1]);
+
             student.setMobileNo(mobileNo);
             student.setFullname(fullname);
-            student.setMajor(major);
             student.setIntroduction(introduction);
             student.setPhysicalAddress(physicalAddress);
-            student.setFutureMajor1(futureMajor1);
-            student.setFutureMajor2(futureMajor2);
             StudentDAO studentDAO = new StudentDAO();
             studentDAO.updateStudent(student);
             return SUCCESS;
