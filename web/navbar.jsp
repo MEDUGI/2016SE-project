@@ -64,7 +64,7 @@
                                 <div class="message-info">
                                     <span class="sender"><s:property value="userFrom" /></span>
                                     <span class="time"><s:property value="date" /></span>
-                                    <div class="message-content"><s:property value="content" /></div>
+                                    <div class="message-content"><s:property value="content" escape="false"/></div>
                                 </div>
                             </a>
                         </li>
