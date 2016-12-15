@@ -1,9 +1,13 @@
 package action.personalInfo;
 
 import com.opensymphony.xwork2.ActionSupport;
+import entity.DbPool;
 import org.apache.struts2.ServletActionContext;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -11,29 +15,45 @@ import java.util.ArrayList;
  */
 public class school extends ActionSupport {
     private static final long serialVersionUID = 1L;
-    private int id;
+    private String id;
     private ArrayList<String> results;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-    @Override
+    public ArrayList<String> getResults() {
+        return results;
+    }
+
+    public void setResults(ArrayList<String> results) {
+        this.results = results;
+    }
+
     public String execute() throws IOException {
         results = new ArrayList<>();
-        if (id==0) {
-            results.add("PKU");
-            results.add("THU");
+        DbPool dbp = new DbPool();
+        PreparedStatement ps = null;
+        String sql = "select name from school where place ='" + id + "';";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                results.add(rs.getString("name"));
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
         }
-        else {
-            results.add("HIT");
-            results.add("HMU");
-        }
+        ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
+        ServletActionContext.getResponse().setHeader("content-type", "text/html;charset=UTF-8");
         ServletActionContext.getResponse().getWriter().print(results);
         return null;
     }

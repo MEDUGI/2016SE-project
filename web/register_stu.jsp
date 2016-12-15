@@ -27,20 +27,29 @@
             $.post(url, params,callback);
         }
 
+
         function callback(results,status) {
             if (status == "success") {
                 school = $("#school");
                 school.empty();
                 results = results.substring(1,results.length-1);
-                results.split(",").forEach(function (item){
+               results.split(",").forEach(function (item){
                     school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
                 });
             }
         }
 
+        function init_area() {
+            var area = $("#area");
+            var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
+            areas.split(",").forEach(function (one) {
+                area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
+            })
+        }
+
     </script>
 </head>
-<body class="login-page">
+<body class="login-page" onload = "init_area()">
 <%@include file="head.jsp"%>
 <div class="login-form">
     <div class="login-content">
@@ -101,9 +110,6 @@
                         毕业院校
                     </div>
                     <select class="form-control selectpicker" data-style="btn-info" id="area" name="area" onchange="select_school();">
-                        <option value = "null"> 未选择 </option>
-                        <option value = '0'> 北京 </option>
-                        <option value = '1'> 哈尔滨 </option>
                     </select>
 
                     <select class="form-control" id="school" name="school">
