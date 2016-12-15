@@ -4,9 +4,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
 import entity.Professor;
+import entity.ShortApplication;
+import entity.ShortMessage;
 import entity.Student;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -40,8 +43,40 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     int messageNumber;
     int applicationNumber;
     Map session;
+    ArrayList<ShortApplication> shortApplications;
+    ArrayList<ShortMessage> shortMessages;
 
+    public ArrayList<ShortApplication> getShortApplications() {
+        return shortApplications;
+    }
 
+    public void setShortApplications(ArrayList<ShortApplication> shortApplications) {
+        this.shortApplications = shortApplications;
+    }
+
+    public ArrayList<ShortMessage> getShortMessages() {
+        return shortMessages;
+    }
+
+    public void setShortMessages(ArrayList<ShortMessage> shortMessages) {
+        this.shortMessages = shortMessages;
+    }
+
+    public int getMessageNumber() {
+        return messageNumber;
+    }
+
+    public void setMessageNumber(int messageNumber) {
+        this.messageNumber = messageNumber;
+    }
+
+    public int getApplicationNumber() {
+        return applicationNumber;
+    }
+
+    public void setApplicationNumber(int applicationNumber) {
+        this.applicationNumber = applicationNumber;
+    }
 
     public String getFutureMajor1() {
         return futureMajor1;
@@ -244,6 +279,11 @@ public class mainpageAction extends ActionSupport implements SessionAware{
         this.professor = professor;
     }
 
+    public void getShortMessagesAndApplications() {
+        String user = (String)session.get("username");
+
+    }
+
     public void findUserStyle(String username) throws Exception{
         if (new StudentDAO().getStudent(username) != null)
             userstyle = "Student";
@@ -255,6 +295,7 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     public String execute() {
         if (!session.containsKey("username"))
             return "unlogged";
+        getShortApplications();
         if (username.equals("")) {
             username = (String)session.get("username");
             userstyle = (String)session.get("userstyle");

@@ -115,7 +115,10 @@
             <result name="error">/errorPage.jsp</result>
         </action>
         <action name="modifyApplication" class="action.applications.modifyApplicationAction">
-            <result name= "success" type="redirectAction">showApplications</result>
+            <result name= "success">/modifyApplication.jsp</result>
+        </action>
+        <action name="updateApplication" class="action.applications.updateApplication">
+            <result name="success" type="redirectAction">showApplications</result>
         </action>
     </package>
 
