@@ -31,8 +31,40 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <script>
+
+        function select_school() {
+            var id = $("#area").val();
+            var url = "school.action";
+            var params = {
+                'id': id
+            };
+            $.post(url, params,callback);
+        }
+
+
+        function callback(results,status) {
+            if (status == "success") {
+                school = $("#school");
+                school.empty();
+                results = results.substring(1,results.length-1);
+                results.split(",").forEach(function (item){
+                    school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+                });
+            }
+        }
+
+        function init_area() {
+            var area = $("#area");
+            var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
+            areas.split(",").forEach(function (one) {
+                area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
+            })
+        }
+    </script>
 </head>
-<body class="bg-1">
+<body class="bg-1" onload="init_area()">
 
 
 
@@ -86,12 +118,20 @@
                             </div>
                             <!-- /tile header -->
                             <div class="tile-widget color transparent-black rounded-top-corners">
-                                <form action="changeInformation.action" role="form" method="post" class="form-horizontal">
+                                <form id = "change_form" action="changeInformation.action" role="form" method="post" class="form-horizontal">
                                     <s:if test="#session.userstyle=='Student'">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label class="input-group-addon" id="tips">毕业院校</label>
-                                                <input class="form-control" name="graduateSchool" type="text" value="<s:property value='graduateSchool'/> ">
+                                                <div class="input-group-addon" id="tips">毕业院校</div>
+                                                    <select class="form-control selectpicker" data-style="btn-info" id="area" name="area" onchange="select_school();">
+                                                    </select>
+
+                                                    <select class="form-control" id="school" name="graduateSchool">
+                                                        <option value="<s:property value='graduateSchool'/>"> <s:property value='graduateSchool'/> </option>
+                                                    </select>
+
+                                                </div>
+                                               <!-- <input class="form-control" name="graduateSchool" type="text" value="<s:property value='graduateSchool'/> "> -->
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -283,7 +323,7 @@
                                     </s:if>
                                     <s:if test="#session.userstyle=='Student'">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block btn-login">
+                                            <button type="button" onclick="sum_sumbit()" class="btn btn-primary btn-block btn-login">
                                                 <i class="icon-signin"></i>
                                                 修改信息
                                             </button>
@@ -291,7 +331,7 @@
                                     </s:if>
                                     <s:else>
                                         <div class="form-group">
-                                            <button type="button" onclick="sum_sumbit()" class="btn btn-primary btn-block btn-login">
+                                            <button type="submit" class="btn btn-primary btn-block btn-login">
                                                 <i class="icon-signin"></i>
                                                 修改信息
                                             </button>
@@ -392,8 +432,9 @@
     }
 
     function sum_sumbit() {
-        $("#mainaward").val = mainaward.substring(0,mainaward.length-1);
-        $("#form-login-2").submit();
+        mainaward += $("#awards").find("input")[$("#awards").find("input").length - 1].value;
+        $("#mainaward").val(mainaward);
+        $("#change_form").submit();
     }
 
     function select_major () {

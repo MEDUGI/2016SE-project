@@ -8,9 +8,11 @@ public class DbPool {
     private  Connection conn;
     public void createConn(){
         try{
+
             String url="jdbc:mysql://localhost/modugi";
-            String user = "modugi";//"0mxk3llw4x";
+            String user = "modugi";
             String password = "modugi";
+
 /*
             String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_modugi";
             String user = "0mxk3llw4x";
