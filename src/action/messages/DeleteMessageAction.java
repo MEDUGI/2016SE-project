@@ -21,7 +21,10 @@ public class DeleteMessageAction {
 
     public String execute() {
         MessageDAO messageDAO = new MessageDAO();
+        Message message = messageDAO.getMessageById(id);
         messageDAO.deleteMessage(id);
+        message.setStatus(2);
+        messageDAO.addMessage(message);
         return Action.SUCCESS;
     }
 }
