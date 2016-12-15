@@ -34,7 +34,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="bg-1" onload="init();">
+<body class="bg-1">
 
 
 
@@ -107,7 +107,7 @@
 
                             <!-- tile widget -->
                             <div class="tile-widget color transparent-black rounded-top-corners">
-                                <form class="form-horizontal" role="form" id="quickmsg" action="sendApplication.action" method="post">
+                                <form class="form-horizontal" role="form" id="quickmsg" action="modifyApplication.action" method="post">
                                     <div class="form-group">
                                         <label for="message-to" class="col-sm-2 control-label font-slab">收信人</label>
                                         <div class="col-sm-10">
