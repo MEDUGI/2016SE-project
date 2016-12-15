@@ -26,6 +26,7 @@
           if ($("#awards").find("input")[$("#awards").find("input").length - 1].value != "") {
               var last = $("#awards");
               mainaward += $("#awards").find("input")[$("#awards").find("input").length - 1].value + ";";
+              alert(mainaward);
               last.append("<div class =  \"form-group col-md-2 col-sm-2\"> <button type = \"button\"  class = \"form-control btn-primary btn-group-sm\" onclick=\"add_award()\">+</button> </div>");
               last.append(" <div class =  \"form-group col-md-10 col-sm-10\"> <input  class=\"form-control\" type=\"text\" > <br> </div>");
           }
