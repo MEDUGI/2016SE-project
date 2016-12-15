@@ -1,7 +1,6 @@
 package dao;
 
-import entity.Tools;
-import org.DbPool;
+import entity.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

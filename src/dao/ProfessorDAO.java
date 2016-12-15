@@ -2,7 +2,7 @@ package dao;
 
 import entity.Professor;
 import entity.Student;
-import org.DbPool;
+import entity.DbPool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ public class ProfessorDAO {
     public boolean addProfessor(Professor professor) {
         String sql;
         try{
-            sql = "insert into professorDB value (" + toValueString(professor) + ");";
+            sql = "insert into professordb value (" + toValueString(professor) + ");";
             Statement st = dbp.getConn().createStatement();
             st.execute(sql);
             st.close();
@@ -82,11 +82,10 @@ public class ProfessorDAO {
         }
     }
     public Professor getProfessor(String username) {
-        String sql = "select * from professorDB where username = ?";
-       Professor professor = new Professor(username, "");
+        String sql = "select * from professordb where username='"+username+"'";
+        Professor professor = new Professor(username, "");
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 return toProfessor(rs);
@@ -99,15 +98,14 @@ public class ProfessorDAO {
         return null;
     }
     public boolean updatePassword(String username, String password) {
-        String sql = "select * from professorDB where username = ?";
+        String sql = "select * from professordb where username='"+username+"'";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if(!rs.next()){
                 return false;
             }
-            sql = "UPDATE professorDB SET password = " + password + " WHERE username = " + username;
+            sql = "UPDATE professordb SET password = " + password + " WHERE username = " + username;
             Statement st = dbp.getConn().createStatement();
             st.execute(sql);
             st.close();
@@ -118,10 +116,9 @@ public class ProfessorDAO {
         }
     }
     public boolean updateProfessor(Professor professor) {
-        String sql = "select * from professorDB where username = ?";
+        String sql = "select * from professordb where username='"+professor.getUsername()+"'";
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, professor.getUsername());
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 professor.setPassword(rs.getString(2));
@@ -129,7 +126,7 @@ public class ProfessorDAO {
             }
             ps.close();
 
-            sql = "delete from professorDB where username = ?";
+            sql = "delete from professordb where username='"+professor.getUsername()+"'";
             ps = dbp.getConn().prepareStatement(sql);
             ps.setString(1, professor.getUsername());
             ps.executeUpdate();
@@ -146,7 +143,7 @@ public class ProfessorDAO {
         }
     }
     public ArrayList<Professor> getAllProfessors() {
-        String sql = "select * from professorDB";
+        String sql = "select * from professordb";
         try {
             Statement st = dbp.getConn().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -161,7 +158,7 @@ public class ProfessorDAO {
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {
-        String sql = "select * from professorDB where workingArea = '" + student.getWorkingAreas() +"'";
+        String sql = "select * from professordb where workingArea = '" + student.getWorkingAreas() +"'";
         try {
             Statement st = dbp.getConn().createStatement();
             ResultSet rs = st.executeQuery(sql);

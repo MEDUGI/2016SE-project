@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import entity.Relation;
 import java.util.ArrayList;
 
-import org.DbPool;
+import entity.DbPool;
 /**
  * Created by 李沅泽 on 2016/11/14.
  */

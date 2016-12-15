@@ -2,11 +2,10 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.sun.javaws.security.AppPolicy;
 import entity.Application;
 import java.util.ArrayList;
 
-import org.DbPool;
+import entity.DbPool;
 /**
  * Created by 李沅泽 on 2016/11/14.
  */

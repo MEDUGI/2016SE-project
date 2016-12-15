@@ -4,8 +4,10 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ApplicationDAO;
 import dao.MessageDAO;
+import dao.ProfessorDAO;
 import entity.Application;
 import entity.Message;
+import entity.Professor;
 import entity.Tools;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -44,6 +46,22 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
         this.session = session;
     }
 
+    public boolean updateAcceptedNo(Application application) {
+        String professorUsername;
+        if (application.getIsFromStudent()) {
+             professorUsername = application.getTo();
+        } else {
+            professorUsername = application.getFrom();
+        }
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        Professor professor = professorDAO.getProfessor(professorUsername);
+        if (professor.getAcceptedNumber() == professor.getAccomodationNumber())
+            return false;
+        professor.setAcceptedNumber(professor.getAcceptedNumber()+1);
+        professorDAO.updateProfessor(professor);
+        return true;
+    }
+
     public String execute() {
         ApplicationDAO applicationDAO = new ApplicationDAO();
         Application application = applicationDAO.getApplicationById(applicationId);
@@ -56,7 +74,15 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
             opposite = application.getFrom();
         if (isAccepted) {
             applicationDAO.updateStatus(applicationId, application.getStatus() + 1);
-        } else  {
+            if (application.getStatus() == 1) {
+                boolean updateResult = updateAcceptedNo(application);
+                if (!updateResult) {
+                    session.put("errorMessage", "导师的招生名额已用完！");
+                    session.put("errorTitle", "Full application");
+                    return Action.ERROR;
+                }
+            }
+        } else {
             applicationDAO.deleteStatus(applicationId);
             MessageDAO messageDAO = new MessageDAO();
             Message message = new Message();

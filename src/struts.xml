@@ -119,6 +119,7 @@
         </action>
         <action name="replyApplication" class="action.applications.replyApplicationAction">
             <result name= "success" type="redirectAction">showApplications</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
         <action name="modifyApplication" class="action.applications.modifyApplicationAction">
             <result name= "success">
