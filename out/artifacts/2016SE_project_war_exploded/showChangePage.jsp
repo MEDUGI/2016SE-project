@@ -26,14 +26,25 @@
           if ($("#awards").find("input")[$("#awards").find("input").length - 1].value != "") {
               var last = $("#awards");
               mainaward += $("#awards").find("input")[$("#awards").find("input").length - 1].value + ";";
-              alert(mainaward);
               last.append("<div class =  \"form-group col-md-2 col-sm-2\"> <button type = \"button\"  class = \"form-control btn-primary btn-group-sm\" onclick=\"add_award()\">+</button> </div>");
               last.append(" <div class =  \"form-group col-md-10 col-sm-10\"> <input  class=\"form-control\" type=\"text\" > <br> </div>");
           }
       }
+
       function sum_sumbit() {
           $("#mainaward").val = mainaward.substring(0,mainaward.length-1);
           $("#form-login-2").submit();
+      }
+
+      function select_major () {
+          var major = $("#major").val();
+          var domains = [["模式识别","云计算","数据安全","软件工程","修电脑"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+          var id = $("#domain");
+          id.empty();
+          for (var i = 0; i<domains[parseInt(major)].length; i++) {
+              var item = domains[parseInt(major)][i];
+              id.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+          }
       }
   </script>
 
@@ -95,24 +106,37 @@
                   <input class="form-control" name="emailAddress" type="text" value="<s:property value='emailAddress'/>"><br>
               </div>
           </div>
+
+            <div class="form-group">
+                <div class="input-group col-lg-12">
+                    <label for="major">专业</label>
+                    <select id = "major" class="chosen-select form-control" onchange="select_major()">
+                        <option value="null"> wei选择2
+                        <option value="0"> 计算机科学与技术 </option>
+                        <option value="1"> 机电专业 </option>
+                        <option value="2"> 航天专业 </option>
+                        <option value="3"> 艺术学科 </option>
+                    </select>
+                   <!-- <input class="form-control" name="major" type="text" value="<s:property value='major'/>"><br> -->
+                </div>
+            </div>
+
           <div class="form-group">
-              <div class="input-group">
-                  <div class="input-group-addon" id="tips">兴趣领域</div>
-                  <input class="form-control" name="workingAreas" type="text" value="<s:property value='workingAreas'/>"><br>
+              <div class="input-group col-lg-12">
+                  <label for="domain"> 兴趣领域 </label>
+                  <select id = "domain" class="form-control" multiple>
+                  </select>
+                  <!--<input class="form-control" name="workingAreas" type="text" value="<s:property value='workingAreas'/>"><br>-->
               </div>
           </div>
+
           <div class="form-group">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">联系电话</div>
                   <input class="form-control" name="mobileNo" type="text" value="<s:property value='mobileNo'/>"><br>
               </div>
           </div>
-          <div class="form-group">
-              <div class="input-group">
-                  <div class="input-group-addon" id="tips">专业</div>
-                  <input class="form-control" name="major" type="text" value="<s:property value='major'/>"><br>
-              </div>
-          </div>
+
           <div class="form-group">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">个人简介</div>
