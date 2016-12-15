@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by forandroid on 16-12-13.
@@ -11,7 +12,7 @@ import java.io.IOException;
 public class school extends ActionSupport {
     private static final long serialVersionUID = 1L;
     private int id;
-    private String result;
+    private ArrayList<String> results;
 
     public int getId() {
         return id;
@@ -23,9 +24,17 @@ public class school extends ActionSupport {
 
 
     @Override
-    public String execute() throws IOException{
-        result = "HIT";
-        ServletActionContext.getResponse().getWriter().print(result);
+    public String execute() throws IOException {
+        results = new ArrayList<>();
+        if (id==0) {
+            results.add("PKU");
+            results.add("THU");
+        }
+        else {
+            results.add("HIT");
+            results.add("HMU");
+        }
+        ServletActionContext.getResponse().getWriter().print(results);
         return null;
     }
 }
