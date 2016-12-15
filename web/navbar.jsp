@@ -50,21 +50,21 @@
 
                 <a class="dropdown-toggle button" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope"></i>
-                    <span class="label label-transparent-black"><s:property value="messageNumber" /></span>
+                    <span class="label label-transparent-black"><s:property value="#session.messageNumber" /></span>
                 </a>
 
                 <ul class="dropdown-menu wider arrow nopadding messages">
-                    <li><h1>你有 <strong><s:property value="messageNumber"/></strong> 条新消息</h1></li>
-                    <s:iterator value="messages" status="st" id="msg">
+                    <li><h1>你有 <strong><s:property value="#session.messageNumber"/></strong> 条新消息</h1></li>
+                    <s:iterator value="messages" status="st">
                         <li>
                             <a class="cyan" href="#">
                                 <div class="profile-photo">
-                                    <img src="<s:property value="msg.imgURL"/>" alt />
+                                    <img src="<s:property value="imgURL"/>" alt />
                                 </div>
                                 <div class="message-info">
-                                    <span class="sender"><s:property value="msg.userFrom" /></span>
-                                    <span class="time"><s:property value="msg.date" /></span>
-                                    <div class="message-content"><s:property value="msg.content" /></div>
+                                    <span class="sender"><s:property value="userFrom" /></span>
+                                    <span class="time"><s:property value="date" /></span>
+                                    <div class="message-content"><s:property value="content" /></div>
                                 </div>
                             </a>
                         </li>
@@ -78,27 +78,27 @@
 
                 <a class="dropdown-toggle button" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell"></i>
-                    <span class="label label-transparent-black"><s:property value="ApplicationNumber" /></span>
+                    <span class="label label-transparent-black"><s:property value="#session.applicationNumber" /></span>
 
                 </a>
 
                 <ul class="dropdown-menu wide arrow nopadding bordered">
-                    <li><h1> 你有 <strong><s:property value="ApplicationNumber"/></strong> 条新的申请动态</h1></li>
-                    <s:iterator value="applications" status="st" id="app">
+                    <li><h1> 你有 <strong><s:property value="#session.applicationNumber"/></strong> 条新的申请动态</h1></li>
+                    <s:iterator value="applications" status="st">
                         <li>
                             <a href="#">
                                 <span class="label label-green"><i class="fa fa-user"></i></span>
-                                发送给<s:property value="app.to" /> 的请求已经
-                                    <s:if test="app.status==0">
+                                发送给<s:property value="to" /> 的请求已经
+                                    <s:if test="status==0">
                                         被拒绝
                                     </s:if>
-                                    <s:elseif test="app.status==1">
+                                    <s:elseif test="status==1">
                                         进入审核流程
                                     </s:elseif>
                                     <s:else>
                                         通过
                                     </s:else>
-                                <span class="small"><s:property value="app.applydate" /></span>
+                                <span class="small"><s:property value="applydate" /></span>
                             </a>
                         </li>
                     </s:iterator>

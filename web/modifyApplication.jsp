@@ -107,7 +107,7 @@
 
                             <!-- tile widget -->
                             <div class="tile-widget color transparent-black rounded-top-corners">
-                                <form class="form-horizontal" role="form" id="quickmsg" action="modifyApplication.action" method="post">
+                                <form class="form-horizontal" role="form" id="quickmsg" action="updateApplication.action" method="post">
                                     <div class="form-group">
                                         <label for="message-to" class="col-sm-2 control-label font-slab">收信人</label>
                                         <div class="col-sm-10">
@@ -115,6 +115,7 @@
                                         </div>
                                     </div>
                                     <input id="message" name="message" type="text" hidden>
+                                    <input name="id" type="text" value="<s:property value="applicationId" />"hidden>
                                 </form>
                             </div>
                             <!-- /tile widget -->
@@ -268,8 +269,8 @@
             ],
             height: 143   //set editable area's height
         });
-        $('#quick-message-content').summernote(
-            'code', '<s:property value="message" />'
+        $('#quick-message-content').code(
+            '<s:property value="message" escape="false"/>'
         );
 
     })
