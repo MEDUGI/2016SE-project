@@ -84,7 +84,7 @@
             </result>
         </action>
         <action name="deleteMessage" class="action.messages.DeleteMessageAction">
-            <result name="success" type="redirectAction">showMessages</result>
+            <result name="success" type="redirectAction">showMessages</result>---
         </action>
         <action name="markRead" class="action.messages.MarkReadAction">
             <result name="success" type="redirectAction">showMessages</result>
