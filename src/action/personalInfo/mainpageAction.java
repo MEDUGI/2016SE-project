@@ -1,12 +1,11 @@
 package action.personalInfo;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.ApplicationDAO;
+import dao.MessageDAO;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
-import entity.Professor;
-import entity.ShortApplication;
-import entity.ShortMessage;
-import entity.Student;
+import entity.*;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.ArrayList;
@@ -43,8 +42,8 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     int messageNumber;
     int applicationNumber;
     Map session;
-    ArrayList<ShortApplication> shortApplications;
-    ArrayList<ShortMessage> shortMessages;
+    ArrayList<ShortApplication> shortApplications = new ArrayList<>();
+    ArrayList<ShortMessage> shortMessages = new ArrayList<>();
 
     public ArrayList<ShortApplication> getShortApplications() {
         return shortApplications;
@@ -282,6 +281,27 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     public void getShortMessagesAndApplications() {
         String user = (String)session.get("username");
 
+        ApplicationDAO applicationDAO = new ApplicationDAO();
+        ArrayList<Application> allApplications = applicationDAO.findAllApplicationByUser(user);
+        for(Application application : allApplications) {
+            if (application.getStatus() == 2) {
+                continue;
+            }
+            if ((application.getTo().equals(user) && application.getStatus() == 0) ||
+                    application.getFrom().equals(user) && application.getStatus() == 1) {
+                shortApplications.add(new ShortApplication(application, user));
+            }
+        }
+
+        ArrayList<Message> unreadMessages = new MessageDAO().getMessageListByUserID(user, 0, 1);
+        for(Message message : unreadMessages)
+            shortMessages.add(new ShortMessage(message));
+
+        messageNumber = shortMessages.size();
+        applicationNumber = shortApplications.size();
+
+        session.put("messageNumber", messageNumber);
+        session.put("applicationNumber", applicationNumber);
     }
 
     public void findUserStyle(String username) throws Exception{
@@ -295,7 +315,7 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     public String execute() {
         if (!session.containsKey("username"))
             return "unlogged";
-        getShortApplications();
+        getShortMessagesAndApplications();
         if (username.equals("")) {
             username = (String)session.get("username");
             userstyle = (String)session.get("userstyle");

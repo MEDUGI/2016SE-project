@@ -84,9 +84,6 @@
         <action name="markRead" class="action.messages.MarkReadAction">
             <result name="success" type="redirectAction">showMessages</result>
         </action>
-        <action name="showSingleMessage" class="action.messages.ShowSingleMessageAction">
-            <result name="success">/SingleMessage.jsp</result>
-        </action>
     </package>
 
     <package name="Application" extends="struts-default">
