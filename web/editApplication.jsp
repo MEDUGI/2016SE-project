@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label for="message-to" class="col-sm-2 control-label font-slab">收信人</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control transparent" type="text" name="userTo" id="message-to" placeholder="输入用户邮箱">
+                                            <input class="form-control transparent" type="text" name="userTo" id="message-to" value="<s:property value="userTo"/>">
                                         </div>
                                     </div>
                                     <input id="message" name="message" type="text" hidden>
