@@ -33,7 +33,8 @@
                 if (result != null) {
                     var school = $("#school");
                     school.empty();
-                    school.append("<option value = 0>" + result + "</option>");
+                    school.append("<option value = $('#school')>" + result + "</option>");
+                    //TODO: add correct value for this element
                 }
             }
 
