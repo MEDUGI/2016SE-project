@@ -158,7 +158,8 @@ public class ProfessorDAO {
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {
-        String sql = "select * from professordb where workingArea = '" + student.getWorkingAreas() +"'";
+        String sql = "select * from professordb where workingArea = '" +
+                student.getWorkingAreas() +"'" + "AND acceptedNumber < accomodationNumber";
         try {
             Statement st = dbp.getConn().createStatement();
             ResultSet rs = st.executeQuery(sql);

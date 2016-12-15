@@ -240,12 +240,27 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+
+    public void findUserStyle(String username) throws Exception{
+        if (new StudentDAO().getStudent(username) != null)
+            userstyle = "Student";
+        else if(new ProfessorDAO().getProfessor(username) != null)
+            userstyle = "Professor";
+        else
+            throw(new Exception("No such username in both databases"));
+    }
     public String execute() {
         if (!session.containsKey("username"))
             return "unlogged";
         if (username.equals("")) {
             username = (String)session.get("username");
             userstyle = (String)session.get("userstyle");
+        } else {
+            try {
+                findUserStyle(username);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         session.put("watchedUsername", username);
         session.put("watchedUserstyle", userstyle);

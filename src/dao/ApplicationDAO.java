@@ -67,13 +67,10 @@ public class ApplicationDAO {
        后续可以考虑将ArrayList泛化为实现了iterable接口的对象.
      */
     public ArrayList<Application> findAllApplicationByUser(String username) {
-        String sql = "";
-        sql = "select * from application WHERE userFrom=? OR userTo=?";
+        String sql = "select * from application WHERE userFrom='"+username+"' OR userTo='"+username+"'";
         ArrayList<Application> result = new ArrayList<Application>();
         try{
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, username);
-            ps.setString(2, username);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Application Temp = new Application();
