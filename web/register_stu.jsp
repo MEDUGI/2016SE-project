@@ -19,31 +19,30 @@
     <script src="js/jquery.min.js"></script>
     <script>
         function select_school() {
-            var id=$("#area").val();
+            var id = $("#area").val();
             var url = "school.action";
             var params = {
-                'id':id
+                'id': id
             };
-
-            $.post(url,params,callback);
+            $.post(url, params,callback);
         }
 
-        function callback(result,status) {
-            if (status == 'success') {
-                if (result != null) {
-                    var school = $("#school");
-                    school.empty();
-                    school.append("<option value = $('#school')>" + result + "</option>");
-                    //TODO: add correct value for this element
-                }
+        function callback(results,status) {
+            if (status == "success") {
+                school = $("#school");
+                school.empty();
+                results = results.substring(1,results.length-1);
+                results.split(",").forEach(function (item){
+                    school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+                });
             }
-
         }
 
     </script>
 </head>
 <body class="login-page">
 <%@include file="head.jsp"%>
+<s:debug> </s:debug>
 <div class="login-form">
     <div class="login-content">
 
@@ -103,12 +102,13 @@
                         毕业院校
                     </div>
                     <select class="form-control selectpicker" data-style="btn-info" id="area" name="area" onchange="select_school();">
+                        <option value = "null"> 未选择 </option>
                         <option value = '0'> 北京 </option>
                         <option value = '1'> 哈尔滨 </option>
                     </select>
 
                     <select class="form-control" id="school" name="school">
-                        <option value="0"> none </option>
+                        <option value="null"> 未选择 </option>
                     </select>
 
                     <!-- <input type="text" class="form-control" name="school" autocomplete="off" /> -->
