@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="register-login" extends="struts-default">
+        <default-action-ref name="index"></default-action-ref>
+        <action name="index">
+            <result type="redirectAction">indexAction</result>
+        </action>
+        <action name="indexAction" class="action.frames.indexActionClass">
+            <result name="logged" type="redirectAction">mainpage</result>
+            <result name="unlogged">/login.jsp</result>
+        </action>
+        <action name="register_stu" class="action.loginAndRegist.register_stu">
+            <result name="SUCCESS" type="redirectAction">mainpage</result>
+            <result name="error" type="redirectAction">errorAction</result>
+        </action>
+
+        <action name="register_teacher" class="action.loginAndRegist.register_teacher">
+            <result name="SUCCESS" type="redirectAction">mainpage</result>
+            <result name="error" type="redirectAction">errorAction</result>
+        </action>
+
+        <action name="login_admin" class="action.loginAndRegist.login_admin">
+            <result name="SUCCESS">/admin.jsp</result>
+            <result name="error" type="redirectAction">errorAction</result>
+        </action>
+
+        <action name="login_normal" class="action.loginAndRegist.login_normal">
+            <result name="success" type="redirectAction">mainpage</result>
+            <result name="error" type="redirectAction">errorAction</result>
+        </action>
+
+        <action name="change_password" class="action.loginAndRegist.change_password">
+            <result name="error" type="redirectAction">errorAction</result>
+            <result name="SUCCESS">/index.jsp</result>
+        </action>
+        <action name="logout" class="action.loginAndRegist.LogoutAction">
+            <result name="success" type="redirectAction">mainpage</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+    </package>
+
+    <package name="mainpagePack" extends="struts-default">
+        <action name="mainpage" class="action.personalInfo.mainpageAction">
+            <result name="success">/index.jsp</result>
+            <result name="unlogged">/index.jsp</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+        <action name="showChangePage" class="action.personalInfo.showChangePageAction">
+            <result name="success">/showChangePage.jsp</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+        <action name="changeInformation" class="action.personalInfo.ChangeInformationAction">
+            <result name="success" type="redirectAction">mainpage</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+        <action name="create_resume" class="action.personalInfo.create_resumeAction">
+            <result name="success">/create_resume.jsp</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+        <action name="school" class="action.personalInfo.school" method="execute">
+        </action>
+    </package>
+
+    <package name="sendAndReceiveMessage" extends="struts-default">
+        <action name="editMessage" class="action.messages.editMessage">
+            <result name="SUCCESS"> /mail.jsp </result>
+        </action>
+        <action name="sendMessage" class="action.messages.sendMessage">
+            <result name="success" type="redirectAction">mainpage</result>
+        </action>
+        <action name="showMessages" class="action.messages.showMessagesAction">
+            <result name="success">
+                /mail.jsp
+            </result>
+        </action>
+        <action name="replyMessage" class="action.messages.ReplyMessageAction">
+            <result name="success">
+                /ReplyMessage.jsp
+            </result>
+        </action>
+        <action name="deleteMessage" class="action.messages.DeleteMessageAction">
+            <result name="success" type="redirectAction">showMessages</result>
+        </action>
+        <action name="markRead" class="action.messages.MarkReadAction">
+            <result name="success" type="redirectAction">showMessages</result>
+        </action>
+        <action name="showSingleMessage" class="action.messages.ShowSingleMessageAction">
+            <result name="success">/SingleMessage.jsp</result>
+        </action>
+    </package>
+
+    <package name="Application" extends="struts-default">
+        <action name="editApplicatin" class="action.applications.editApplication">
+            <result name="SUCCESS"> /editApplication.jsp </result>
+        </action>
+        <action name="showApplications" class="action.applications.ShowApplicationsAction">
+            <result name="success">/showApplications.jsp</result>
+        </action>
+        <action name="putUpApplication" class="action.applications.putUpApplication">
+            <result name="SUCCESS">
+                /applysucceed.jsp
+            </result>
+            <result name="OUT_OF_AMOUNT">
+                /outofamount.jsp
+            </result>
+            <result name="MESSAGE_INVALID">
+                /invalidmessage.jsp
+            </result>
+        </action>
+        <action name="sendApplication" class="action.applications.sendApplicationClass">
+            <result name="SUCCESS">
+                /sendMessageSucceed.jsp
+            </result>
+        </action>
+        <action name="replyApplication" class="action.applications.replyApplicationAction">
+            <result name= "success" type="redirectAction">showApplications</result>
+            <result name="error">/errorPage.jsp</result>
+        </action>
+        <action name="modifyApplication" class="action.applications.modifyApplicationAction">
+            <result name= "success">
+                /modifyApplication.jsp
+            </result>
+        </action>
+    </package>
+
+    <package name="Recommand" extends="struts-default">
+        <action name="recommand" class="action.personalInfo.recommand">
+            <result name="SUCCESS">
+                /recommand.jsp
+            </result>
+        </action>
+    </package>
+    <package name="commonPackage" extends="struts-default">
+        <action name="errorAction" class="action.frames.ErrorActionClass">
+            <result name="success">
+                /errorPage.jsp
+            </result>
+        </action>
+    </package>
+</struts>

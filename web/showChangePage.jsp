@@ -23,14 +23,15 @@
       var mainaward = "";
 
       function add_award () {
-          var mail = $("#mailAddress").prev();
-          mainaward += mail.find("input").val() + ";";
-          alert(mainaward);
-          mail.after("<div class=\"form-group\"> <div class= \"input-group\"> <div class=\"input-group-addon\" id=\"tips\">获奖情况</div> <input class=\"form-control\" type=\"text\" value=\"\"> <a href=\"javascript:;add_award()\">添加新奖项</a><br> </div> </div>");
+          if ($("#awards").find("input")[$("#awards").find("input").length - 1].value != "") {
+              var last = $("#awards");
+              mainaward += $("#awards").find("input")[$("#awards").find("input").length - 1].value + ";";
+              last.append("<div class =  \"form-group col-md-2 col-sm-2\"> <button type = \"button\"  class = \"form-control btn-primary btn-group-sm\" onclick=\"add_award()\">+</button> </div>");
+              last.append(" <div class =  \"form-group col-md-10 col-sm-10\"> <input  class=\"form-control\" type=\"text\" > <br> </div>");
+          }
       }
-
       function sum_sumbit() {
-          $("#mainaward").val = mainaward;
+          $("#mainaward").val = mainaward.substring(0,mainaward.length-1);
           $("#form-login-2").submit();
       }
   </script>
@@ -74,15 +75,20 @@
           </div>
 
           <div class="form-group">
-              <div class="input-group">
+              <div class="input-group" id = "awards">
                   <div class="input-group-addon" id="tips">获奖情况</div>
-                  <input id = "mainaward" class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>">
-                  <a href="javascript:;add_award()">添加新奖项</a><br>
+                  <div class = "form-group col-md-2 col-sm-2">
+                      <button type ="button"  class = "form-control btn-primary btn-group-sm" onclick="add_award()">+</button>
+                   </div>
+                  <div class =  "form-group col-md-10 col-sm-10">
+                    <input id = "mainaward" class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>">
+                      <br>
+                  </div>
               </div>
           </div>
 
 
-          <div class="form-group" id="mailAddress">
+          <div class="form-group">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">邮件地址</div>
                   <input class="form-control" name="emailAddress" type="text" value="<s:property value='emailAddress'/>"><br>

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 /**
  * Created by 李沅泽 on 2016/11/16.
  */
-public class RecommandStudent{
+public class RecommandForStudent {
 
-    public ArrayList execWithRestraint(Student stu) {
+    public ArrayList<Professor> execWithRestraint(Student stu) {
         return new ProfessorDAO().getProfessorRecomentation(stu);
     }
 }
