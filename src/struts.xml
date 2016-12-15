@@ -40,7 +40,7 @@
         </action>
         <action name="logout" class="action.loginAndRegist.LogoutAction">
             <result name="success" type="redirectAction">mainpage</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
     </package>
 
@@ -48,19 +48,19 @@
         <action name="mainpage" class="action.personalInfo.mainpageAction">
             <result name="success">/index.jsp</result>
             <result name="unlogged">/index.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
         <action name="showChangePage" class="action.personalInfo.showChangePageAction">
             <result name="success">/showChangePage.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
         <action name="changeInformation" class="action.personalInfo.ChangeInformationAction">
             <result name="success" type="redirectAction">mainpage</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
         <action name="create_resume" class="action.personalInfo.create_resumeAction">
             <result name="success">/create_resume.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/errorPage.jsp</result>
         </action>
         <action name="school" class="action.personalInfo.school" method="execute">
         </action>
@@ -137,7 +137,7 @@
     <package name="commonPackage" extends="struts-default">
         <action name="errorAction" class="action.frames.ErrorActionClass">
             <result name="success">
-                /error.jsp
+                /errorPage.jsp
             </result>
         </action>
     </package>
