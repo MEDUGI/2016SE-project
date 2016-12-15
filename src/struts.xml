@@ -24,11 +24,6 @@
             <result name="error" type="redirectAction">errorAction</result>
         </action>
 
-        <action name="login_admin" class="action.loginAndRegist.login_admin">
-            <result name="SUCCESS">/admin.jsp</result>
-            <result name="error" type="redirectAction">errorAction</result>
-        </action>
-
         <action name="login_normal" class="action.loginAndRegist.login_normal">
             <result name="success" type="redirectAction">mainpage</result>
             <result name="error" type="redirectAction">errorAction</result>
@@ -84,7 +79,7 @@
             </result>
         </action>
         <action name="deleteMessage" class="action.messages.DeleteMessageAction">
-            <result name="success" type="redirectAction">showMessages</result>---
+            <result name="success" type="redirectAction">showMessages</result>
         </action>
         <action name="markRead" class="action.messages.MarkReadAction">
             <result name="success" type="redirectAction">showMessages</result>
