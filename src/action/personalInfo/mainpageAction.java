@@ -42,23 +42,23 @@ public class mainpageAction extends ActionSupport implements SessionAware{
     int messageNumber;
     int applicationNumber;
     Map session;
-    ArrayList<ShortApplication> shortApplications = new ArrayList<>();
-    ArrayList<ShortMessage> shortMessages = new ArrayList<>();
+    ArrayList<ShortApplication> applications = new ArrayList<>();
+    ArrayList<ShortMessage> messages = new ArrayList<>();
 
-    public ArrayList<ShortApplication> getShortApplications() {
-        return shortApplications;
+    public ArrayList<ShortApplication> getApplications() {
+        return applications;
     }
 
-    public void setShortApplications(ArrayList<ShortApplication> shortApplications) {
-        this.shortApplications = shortApplications;
+    public void setApplications(ArrayList<ShortApplication> applications) {
+        this.applications = applications;
     }
 
-    public ArrayList<ShortMessage> getShortMessages() {
-        return shortMessages;
+    public ArrayList<ShortMessage> getMessages() {
+        return messages;
     }
 
-    public void setShortMessages(ArrayList<ShortMessage> shortMessages) {
-        this.shortMessages = shortMessages;
+    public void setMessages(ArrayList<ShortMessage> messages) {
+        this.messages = messages;
     }
 
     public int getMessageNumber() {
@@ -289,16 +289,16 @@ public class mainpageAction extends ActionSupport implements SessionAware{
             }
             if ((application.getTo().equals(user) && application.getStatus() == 0) ||
                     application.getFrom().equals(user) && application.getStatus() == 1) {
-                shortApplications.add(new ShortApplication(application, user));
+                applications.add(new ShortApplication(application, user));
             }
         }
 
         ArrayList<Message> unreadMessages = new MessageDAO().getMessageListByUserID(user, 0, 1);
         for(Message message : unreadMessages)
-            shortMessages.add(new ShortMessage(message));
+            messages.add(new ShortMessage(message));
 
-        messageNumber = shortMessages.size();
-        applicationNumber = shortApplications.size();
+        messageNumber = messages.size();
+        applicationNumber = applications.size();
 
         session.put("messageNumber", messageNumber);
         session.put("applicationNumber", applicationNumber);
