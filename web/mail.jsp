@@ -57,35 +57,17 @@
         
         <!-- Page content -->
         <div id="content" class="col-md-12">
-          
-
-
-
-
-
-
-
 
           <!-- page header -->
           <div class="pageheader">
-            
 
             <h2><i class="fa fa-envelope" style="line-height: 48px;padding-left: 0;"></i> 站内信箱 </h2>
 
-
           </div>
           <!-- /page header -->
-          
-          
-
-
-
 
           <!-- content main container -->
           <div class="main horizontal-mail">
-            
-            
-
 
             <!-- row -->
             <div class="row">
