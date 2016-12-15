@@ -76,15 +76,15 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
 
         ArrayList<Message> sentMessageList = messageDAO.getMessageListByUserID(username, 0, 0);
         sentMessageList.addAll(messageDAO.getMessageListByUserID(username,1,0));
-        sentMessages = (Message[]) sentMessageList.toArray(new Message[sentMessageList.size()]);
+        sentMessages = sentMessageList.toArray(new Message[sentMessageList.size()]);
 
         ArrayList<Message> unreadMessages = messageDAO.getMessageListByUserID(username, 0, 1);
         ArrayList<Message> readMessages = messageDAO.getMessageListByUserID(username, 1, 1);
         unreadMessages.addAll(readMessages);
-        receivedMessages = (Message[]) unreadMessages.toArray(new Message[unreadMessages.size()]);
+        receivedMessages = unreadMessages.toArray(new Message[unreadMessages.size()]);
 
         ArrayList<Message> trashMessagesList = messageDAO.getMessageListByUserID(username, 2, 1);
-        trashMessages = (Message[]) trashMessagesList.toArray(new Message[trashMessagesList.size()]);
+        trashMessages = trashMessagesList.toArray(new Message[trashMessagesList.size()]);
         return Action.SUCCESS;
     }
 }
