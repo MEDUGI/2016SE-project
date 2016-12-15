@@ -168,18 +168,21 @@ public class StudentDAO {
     public ArrayList<Student> getStudentRecomentation(Professor professor) {
         if (professor.getAcceptedNumber() == professor.getAccomodationNumber())
             return new ArrayList<>();
-        String sql = "select * from studentdb where workingAreas = '" + professor.getWorkingArea() + "';";
-        try {
-            Statement st = dbp.getConn().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            ArrayList<Student> resultList = new ArrayList<>();
-            while(rs.next()) {
-                resultList.add(toStudent(rs));
+        String[] workingAreaList = professor.getWorkingArea().split(",");
+        ArrayList<Student> resultList = new ArrayList<>();
+        String sql;
+        for(String workingArea : workingAreaList) {
+            sql = "select * from studentdb where workingAreas LIKE '%" + workingArea + "%';";
+            try {
+                Statement st = dbp.getConn().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()) {
+                    resultList.add(toStudent(rs));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            return resultList;
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
+        return resultList;
     }
 }
