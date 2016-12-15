@@ -71,6 +71,33 @@
 
             <!-- row -->
             <div class="row">
+              <div class="col-md-2">
+
+                    <ul class="navigation" id="mail-navigation">
+                        <li class="mark"><i class="fa fa-envelope-o"></i></li>
+                        <li class="compose"><a href="indexAction.action" class="btn btn-red">写信</a></li>
+                        <li class="folders heading">
+                            <h5><i class="fa fa-folder"></i> 文件夹 <a href="#" class="pull-right"><i class="fa fa-plus"></i></a></h5>
+                            <ul>
+                                <li class="active"><a href="#" onclick="showReceivedMessages();"><span class="badge badge-red"><s:property value="unreadNo" /></span>收件箱</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" onclick="showSentMessages();">已发箱</a></li>
+                                <li><a href="#" onclick="showTrashMessages();">垃圾箱</a></li>
+                            </ul>
+                        </li>
+                        <li class="labels heading">
+                            <h5><i class="fa fa-tags"></i> Labels <a href="#" class="pull-right"><i class="fa fa-plus"></i></a></h5>
+                            <ul>
+                                <li class="tag"><a href="#">Family <span class="label label-cyan"></span></a></li>
+                                <li class="tag"><a href="#">Work <span class="label label-red"></span></a></li>
+                                <li class="tag"><a href="#">Shop <span class="label label-orange"></span></a></li>
+                                <li class="tag"><a href="#">Themeforest <span class="label label-amethyst"></span></a></li>
+                                <li class="tag"><a href="#">Google <span class="label label-green"></span></a></li>
+                                <li class="tag"><a href="#">Facebook <span class="label label-hotpink"></span></a></li>
+                            </ul>
+                    </ul>
+
+                </div>
 
               <div class="col-md-10">
 
@@ -78,35 +105,62 @@
                   <table  class="table table-datatable table-custom" id="inboxDataTable">
                     <thead>
                       <tr>
+                        <th class="no-sort controls"></th>
                         <th class="sort-alpha">From</th>
                         <th class="sort-alpha">Subject</th>
                         <th class="sort-amount">Date</th>
                         <th class="text-center no-sort">Attachment</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <s:iterator value="unreadMessages" status="st">
-                          <tr class="odd unread" onclick="showMessage(<s:property value='#st.index'/>);">
+                    <tbody id="received">
+                      <s:iterator value="receivedMessages" status="st" id="msg">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                            <td>
+                                <s:if test="status==1">
+                                    <i class="fa fa-envelope"></i>
+                                </s:if>
+                            </td>
                             <td><s:property value="userFrom" /></td>
                             <td><s:property value="title" /></td>
                             <td><s:property value="date" /></td>
                             <td class="text-center"><i class="fa fa-paperclip"></i></td>
                           </tr>
                       </s:iterator>
-                      <s:iterator value="readMessages" status="st">
-                        <tr class="even" onclick="showMessage(<s:property value='#st.index'/>);">
-                          <td><s:property value="userFrom" /></td>
-                          <td><s:property value="title" /></td>
-                          <td><s:property value="date" /></td>
-                          <td class="text-center"><i class="fa fa-paperclip"></i></td>
-                        </tr>
+                    </tbody>
+                    <tbody style="display:none" id="sent">
+                      <s:iterator value="sentMessages" status="st" id="msg">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                              <td>
+                                  <s:if test="status==1">
+                                      <i class="fa fa-envelope"></i>
+                                  </s:if>
+                              </td>
+                              <td><s:property value="userFrom" /></td>
+                              <td><s:property value="title" /></td>
+                              <td><s:property value="date" /></td>
+                              <td class="text-center"><i class="fa fa-paperclip"></i></td>
+                          </tr>
+                      </s:iterator>
+                    </tbody>
+                    <tbody style="display:none" id="trash">
+                      <s:iterator value="trashMessages" status="st" id="msg">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                              <td>
+                                  <s:if test="status==1">
+                                      <i class="fa fa-envelope"></i>
+                                  </s:if>
+                              </td>
+                              <td><s:property value="userFrom" /></td>
+                              <td><s:property value="title" /></td>
+                              <td><s:property value="date" /></td>
+                              <td class="text-center"><i class="fa fa-paperclip"></i></td>
+                          </tr>
                       </s:iterator>
                     </tbody>
                   </table>
-                </div>              
+                </div>
 
-
-                <div class="mail-content" id="mail-content">
+                  <div class="mail-content" id="mail-content" style="visibility: hidden">
 
                   <div class="message">
 
@@ -126,7 +180,7 @@
                           <button type="button" class="btn btn-default"><i class="fa fa-share"></i></button>
                         </div>
 
-                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-trash-o"></i></button>
+                        <button id="delete" type="button" class="btn btn-default pull-right" onclick="javascript:void(0);"><i class="fa fa-trash-o"></i></button>
 
                       </div>
                     </div>
@@ -187,7 +241,7 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/vendor/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
@@ -207,7 +261,6 @@
 
     <script>
     $(function(){
-
 
       /****************************************************/
       /**************** ADVANCED DATATABLE ****************/
@@ -235,8 +288,6 @@
 
       $('#inboxDataTable_wrapper .dataTables_filter input').attr("placeholder", "在信箱中搜索");
 
-      $('#inboxDataTable_wrapper .heading').html('<h1>站内信箱</h1>');
-
       $('.ColVis_MasterButton').on('click', function(){
         var newtop = $('.ColVis_collection').position().top - 45; 
 
@@ -259,6 +310,7 @@
       $('#mail-inbox .mail-favourite').click(function(){
         $(this).toggleClass('active');
       });
+        $('#inboxDataTable_wrapper .heading').html('<h1>站内信箱</h1>');
 
       //load wysiwyg editor
       $('#message-wysiwyg').summernote({
@@ -293,14 +345,33 @@
       
     </script>
     <script>
-        function showMessage(i) {
-            //var msg=${readMessages.get(i)};
-            var msg=<s:property value="readMessage.get(i)" />;
-            document.getElementById('title').value = msg.title;
-            document.getElementById('From').value = msg.userFrom;
-            document.getElementById('To').value = msg.userTo;
-            document.getElementById('date').value = msg.date;
-            document.getElementById('msgcontent').value = msg.content;
+        function showMessage(userFrom,userTo,title,date,content,id) {
+            document.getElementById('mail-content').style.visibility='visible';
+            document.getElementById('title').innerHTML = title;
+            document.getElementById('From').innerHTML = userFrom;
+            document.getElementById('To').innerHTML = userTo;
+            document.getElementById('date').innerHTML = date;
+            document.getElementById('msgcontent').innerHTML = content;
+            document.getElementById('delete').onclick = function(id) {
+                window.location.href='deleteMessage.action?id='+id;
+                return false;
+            };
+            return false;
+        }
+        function showSentMessages() {
+            document.getElementById('received').style.display = 'none';
+            document.getElementById('sent').style.display = 'table-row-group';
+            document.getElementById('trash').style.display = 'none';
+        }
+        function showReceivedMessages() {
+            document.getElementById('received').style.display = 'table-row-group';
+            document.getElementById('sent').style.display = 'none';
+            document.getElementById('trash').style.display = 'none';
+        }
+        function showTrashMessages() {
+            document.getElementById('received').style.display = 'none';
+            document.getElementById('sent').style.display = 'none';
+            document.getElementById('trash').style.display = 'table-row-group';
         }
     </script>
   </body>

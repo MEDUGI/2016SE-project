@@ -45,6 +45,30 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
+    public Message[] getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(Message[] receivedMessages) {
+        this.receivedMessages = receivedMessages;
+    }
+
+    public Message[] getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(Message[] sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public Message[] getTrashMessages() {
+        return trashMessages;
+    }
+
+    public void setTrashMessages(Message[] trashMessages) {
+        this.trashMessages = trashMessages;
+    }
+
     public String execute() {
         username = (String)session.get("username");
         userstyle = (String)session.get("userstyle");
