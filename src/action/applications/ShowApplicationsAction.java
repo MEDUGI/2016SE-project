@@ -92,6 +92,7 @@ public class ShowApplicationsAction extends ActionSupport implements SessionAwar
         ApplicationDAO applicationDAO = new ApplicationDAO();
         ArrayList<Application> allApplications = applicationDAO.findAllApplicationByUser(username);
         deliverApplications(allApplications);
+        if (myApplication.size() != 0 && receivedApplication.size() != 0) System.out.println("Wrong");
         return Action.SUCCESS;
     }
 }
