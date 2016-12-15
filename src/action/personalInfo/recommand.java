@@ -1,11 +1,10 @@
 package action.personalInfo;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.ApplicationDAO;
 import dao.ProfessorDAO;
 import dao.StudentDAO;
-import entity.RecommandProfessor;
-import entity.RecommandStudent;
-import entity.Tools;
+import entity.*;
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.ArrayList;
@@ -51,18 +50,40 @@ public class recommand extends ActionSupport implements SessionAware {
         this.result = result;
     }
 
+    public ArrayList<Professor> dropAppliedForStudent(String username, ArrayList<Professor> others) {
+        ArrayList<Professor> result = new ArrayList<>();
+        ApplicationDAO applicationDAO = new ApplicationDAO();
+        for(Professor user : others) {
+            if (!applicationDAO.hasApplicationBetween(username, user.getUsername()))
+                result.add(user);
+        }
+        return result;
+    }
+    public ArrayList<Student> dropAppliedForProfessor(String username, ArrayList<Student> others) {
+        ArrayList<Student> result = new ArrayList<>();
+        ApplicationDAO applicationDAO = new ApplicationDAO();
+        for(Student user : others) {
+            if (!applicationDAO.hasApplicationBetween(username, user.getUsername()))
+                result.add(user);
+        }
+        return result;
+    }
+
+
     public String execute() {
         user = (String)session.get("username");
         userstyle = (String)session.get("userstyle");
         if (Tools.examUserWithStyle(user,userstyle)) {
-            if (userstyle == "Student") {
-                RecommandStudent recs = new RecommandStudent();
+            if (userstyle.equals("Student")) {
+                RecommandForStudent recs = new RecommandForStudent();
                 result = recs.execWithRestraint(new StudentDAO().getStudent(user));
+                result = dropAppliedForStudent(user, result);
                 return "SUCCESS";
             }
             else {
-                RecommandProfessor recp = new RecommandProfessor();
+                RecommandForProfessor recp = new RecommandForProfessor();
                 result = recp.execWithRestraint(new ProfessorDAO().getProfessor(user));
+                result = dropAppliedForProfessor(user, result);
                 return "SUCCESS";
             }
         }
