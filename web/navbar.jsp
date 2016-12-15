@@ -273,8 +273,8 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="logout.action" class="dropdown-toggle" data-toggle="dropdown">
+                    <li>
+                        <a href="logout.action">
                             <i class="fa fa-desktop"></i> 登出
                         </a>
                     </li>
