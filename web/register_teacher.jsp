@@ -1,14 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: forandroid
-  Date: 16-11-14
-  Time: 下午9:39
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>导师注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/ico" href="http://tattek.com/minimal/assets/images/favicon.ico" />
+    <!-- Bootstrap -->
+    <link href="assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap-checkbox.css">
+
+    <link href="assets/css/minimal.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <link rel='stylesheet' href='css/jquery-ui.css'>
@@ -17,93 +21,116 @@
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 
     <script src="js/modernizr.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body class="login-page">
-<%@include file="head.jsp"%>
-<div class="login-form">
-    <div class="login-content">
+<body class="bg-1">
 
-        <form action="register_teacher" role="form" id="form_login" method="post">
 
-            <div class="form-group">
+<!-- Wrap all page content here -->
+<div id="wrap">
+    <!-- Make page fluid -->
+    <div class="row">
+        <!-- Page content -->
+        <div id="content" class="col-md-12 full-page login">
 
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        用户名
+
+            <div class="inside-block">
+                <img src="assets/images/logo-big.png" alt class="logo">
+                <h1><strong>欢迎您</strong> 游客</h1>
+                <h5>研究生导师互选推荐系统</h5>
+
+                <form action="register_teacher" role="form" id="form_login" method="post">
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                用户名
+                            </div>
+
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+                        </div>
+
                     </div>
 
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
-                </div>
+                    <div class="form-group">
 
-            </div>
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                密码
+                            </div>
 
-            <div class="form-group">
+                            <input type="password" class="form-control" name="secret" placeholder="Password" autocomplete="off" />
+                        </div>
 
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        密码
+                    </div>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                重复密码
+                            </div>
+
+                            <input type="password" class="form-control" name="secret_repeat" placeholder="Password" autocomplete="off" />
+                        </div>
+
                     </div>
 
-                    <input type="password" class="form-control" name="secret" placeholder="Password" autocomplete="off" />
-                </div>
+                    <div class="form-group">
 
-            </div>
-            <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                真实姓名
+                            </div>
 
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        重复密码
+                            <input type="text" class="form-control" name="fullname" autocomplete="off" />
+                        </div>
+
                     </div>
 
-                    <input type="password" class="form-control" name="secret_repeat" placeholder="Password" autocomplete="off" />
-                </div>
+                    <div class="form-group">
 
-            </div>
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                工作单位
+                            </div>
 
-            <div class="form-group">
+                            <input type="text" class="form-control" name="employerUnit" autocomplete="off" />
+                        </div>
 
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        真实姓名
                     </div>
 
-                    <input type="text" class="form-control" name="fullname" autocomplete="off" />
-                </div>
+                    <div class="form-group">
 
-            </div>
+                        <div class="input-group">
+                            <div class="input-group-addon" id="tips">
+                                教师编号
+                            </div>
 
-            <div class="form-group">
+                            <input type="text" class="form-control" name="teacher_id" autocomplete="off" />
+                        </div>
 
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        工作单位
                     </div>
-
-                    <input type="text" class="form-control" name="employerUnit" autocomplete="off" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">
-                        教师编号
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-login">
+                            <i class="icon-signin"></i>
+                            Register
+                        </button>
                     </div>
-
-                    <input type="text" class="form-control" name="teacher_id" autocomplete="off" />
-                </div>
-
+                </form>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block btn-login">
-                    <i class="icon-signin"></i>
-                    Register
-                </button>
-            </div>
-        </form>
 
+
+        </div>
+        <!-- /Page content -->
     </div>
-
+</div>
+<!-- Wrap all page content end -->
 </body>
 </html>
