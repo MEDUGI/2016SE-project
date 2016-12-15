@@ -118,4 +118,20 @@ public class ApplicationDAO {
         }
         return i;
     }
+
+    public boolean hasApplicationBetween(String user1, String user2) {
+        String sql = "select * from application WHERE (userFrom="+user1+" AND userTo="+user2+" ) OR (userFrom="+user2+" AND userTo="+user1+" )";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                return true;
+            }
+            ps.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }
