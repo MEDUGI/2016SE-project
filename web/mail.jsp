@@ -114,7 +114,7 @@
                     </thead>
                     <tbody id="received">
                       <s:iterator value="receivedMessages" status="st" id="msg">
-                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                             <td>
                                 <s:if test="status==1">
                                     <i class="fa fa-envelope"></i>
@@ -129,7 +129,7 @@
                     </tbody>
                     <tbody style="display:none" id="sent">
                       <s:iterator value="sentMessages" status="st" id="msg">
-                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                               <td>
                                   <s:if test="status==1">
                                       <i class="fa fa-envelope"></i>
@@ -144,7 +144,7 @@
                     </tbody>
                     <tbody style="display:none" id="trash">
                       <s:iterator value="trashMessages" status="st" id="msg">
-                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${id}');">
+                          <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                               <td>
                                   <s:if test="status==1">
                                       <i class="fa fa-envelope"></i>
@@ -352,16 +352,17 @@
             document.getElementById('To').innerHTML = userTo;
             document.getElementById('date').innerHTML = date;
             document.getElementById('msgcontent').innerHTML = content;
-            document.getElementById('delete').onclick = function(id) {
-                window.location.href='deleteMessage.action?id='+id;
-                return false;
-            };
+            document.getElementById('delete').setAttribute("onclick",'jumpTo('+id+')');
             return false;
+        }
+        function jumpTo(i){
+            window.location.href='deleteMessage.action?id='+i;return false;
         }
         function showSentMessages() {
             document.getElementById('received').style.display = 'none';
             document.getElementById('sent').style.display = 'table-row-group';
             document.getElementById('trash').style.display = 'none';
+            document.getElementById('delete').style.visibility = 'hidden';
             $("#sentLI").addClass("active");
             $("#receivedLI").removeClass("active");
             $("#trashLI").removeClass("active");
@@ -370,11 +371,13 @@
             document.getElementById('received').style.display = 'table-row-group';
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'none';
+            document.getElementById('delete').style.visibility = 'visible';
             $("#sentLI").removeClass("active");
             $("#receivedLI").addClass("active");
             $("#trashLI").removeClass("active");
         }
         function showTrashMessages() {
+            document.getElementById('delete').style.visibility = 'hidden';
             document.getElementById('received').style.display = 'none';
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'table-row-group';
