@@ -1,4 +1,4 @@
-package action;
+package action.applications;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ApplicationDAO;

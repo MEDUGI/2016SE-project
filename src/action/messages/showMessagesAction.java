@@ -1,4 +1,4 @@
-package action;
+package action.messages;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;

@@ -1,4 +1,4 @@
-package action;
+package action.loginAndRegist;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;
