@@ -17,7 +17,7 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
     Map session;
     String username;
     String userstyle;
-    ArrayList<Message> allMessages = new ArrayList<>();
+    Message[] allMessages;
     //TODO: ¼ÓÈë×°ÊÎÆ÷
 
 
@@ -45,11 +45,11 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
-    public ArrayList<Message> getAllMessages() {
+    public Message[] getAllMessages() {
         return allMessages;
     }
 
-    public void setAllMessages(ArrayList<Message> allMessages) {
+    public void setAllMessages(Message[] allMessages) {
         this.allMessages = allMessages;
     }
 
@@ -60,7 +60,7 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
         ArrayList<Message> unreadMessages = messageDAO.getMessageListByUserID(username, 0, 1);
         ArrayList<Message> readMessages = messageDAO.getMessageListByUserID(username, 1, 1);
         unreadMessages.addAll(readMessages);
-        allMessages = unreadMessages;
+        allMessages = (Message[]) unreadMessages.toArray(new Message[unreadMessages.size()]);
         return Action.SUCCESS;
     }
 }
