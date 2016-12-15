@@ -294,8 +294,8 @@
     </script>
     <script>
         function showMessage(i) {
-            alert(i);
-            var msg=<s:property value="readMessages.get(0)" />;
+            //var msg=${readMessages.get(i)};
+            var msg=<s:property value="readMessage.get(i)" />;
             document.getElementById('title').value = msg.title;
             document.getElementById('From').value = msg.userFrom;
             document.getElementById('To').value = msg.userTo;
