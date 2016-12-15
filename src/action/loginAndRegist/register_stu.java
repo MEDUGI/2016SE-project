@@ -97,6 +97,7 @@ public class register_stu extends ActionSupport implements SessionAware{
 
     @Override
     public String execute() {
+
         if (secret.equals("") || secret_repeat.equals("")
                 || school.equals("") || username.equals("") || stu_number.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
@@ -111,7 +112,7 @@ public class register_stu extends ActionSupport implements SessionAware{
             session.put("errorMessage", "用户名已经存在");
             return ERROR;
         }
-
+        school = school.replaceAll("'", "");
         Student stu = new Student(username,secret);
         stu.setStudentNo(stu_number);
         stu.setGraduateSchool(school);
@@ -123,7 +124,7 @@ public class register_stu extends ActionSupport implements SessionAware{
             session.put("userstyle", "Student");
             return "SUCCESS";
         }
-        session.put("errorMessage", "未知的错误发生了，你行走在互联网的荒野");
+        session.put("errorMessage", "An unknown messages happened");
         return ERROR;
     }
 
