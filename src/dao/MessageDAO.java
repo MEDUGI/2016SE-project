@@ -81,6 +81,7 @@ public class MessageDAO {
             ps.close();
         }catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
         return resultList;
     }

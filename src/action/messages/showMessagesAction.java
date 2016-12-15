@@ -17,8 +17,7 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
     Map session;
     String username;
     String userstyle;
-    ArrayList<Message> unreadMessages = new ArrayList<>();
-    ArrayList<Message> readMessages = new ArrayList<>();
+    ArrayList<Message> allMessages = new ArrayList<>();
     //TODO: ¼ÓÈë×°ÊÎÆ÷
 
 
@@ -46,28 +45,22 @@ public class showMessagesAction extends ActionSupport implements SessionAware{
         this.userstyle = userstyle;
     }
 
-    public ArrayList<Message> getUnreadMessages() {
-        return unreadMessages;
+    public ArrayList<Message> getAllMessages() {
+        return allMessages;
     }
 
-    public void setUnreadMessages(ArrayList<Message> unreadMessages) {
-        this.unreadMessages = unreadMessages;
-    }
-
-    public ArrayList<Message> getReadMessages() {
-        return readMessages;
-    }
-
-    public void setReadMessages(ArrayList<Message> readMessages) {
-        this.readMessages = readMessages;
+    public void setAllMessages(ArrayList<Message> allMessages) {
+        this.allMessages = allMessages;
     }
 
     public String execute() {
         username = (String)session.get("username");
         userstyle = (String)session.get("userstyle");
         MessageDAO messageDAO = new MessageDAO();
-        unreadMessages = messageDAO.getMessageListByUserID(username, 0, 1);
-        readMessages = messageDAO.getMessageListByUserID(username, 1, 1);
+        ArrayList<Message> unreadMessages = messageDAO.getMessageListByUserID(username, 0, 1);
+        ArrayList<Message> readMessages = messageDAO.getMessageListByUserID(username, 1, 1);
+        unreadMessages.addAll(readMessages);
+        allMessages = unreadMessages;
         return Action.SUCCESS;
     }
 }
