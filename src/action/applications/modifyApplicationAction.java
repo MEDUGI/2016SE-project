@@ -47,6 +47,7 @@ public class modifyApplicationAction extends ActionSupport{
         userTo = application.getTo();
         message = application.getMessage();
         applicationDAO.deleteStatus(applicationId);
+        applicationDAO.addAppliciation(application);
         return Action.SUCCESS;
     }
 }
