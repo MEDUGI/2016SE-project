@@ -1,4 +1,4 @@
-package action;
+package action.personalInfo;
 
 import com.opensymphony.xwork2.ActionSupport;
 import dao.ProfessorDAO;

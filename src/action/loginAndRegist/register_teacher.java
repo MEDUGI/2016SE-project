@@ -1,21 +1,21 @@
-package action;
+package action.loginAndRegist;
 
 import com.opensymphony.xwork2.ActionSupport;
-import entity.Student;
-import dao.StudentDAO;
+import dao.ProfessorDAO;
+import entity.Professor;
 import entity.Tools;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.servlet.http.Cookie;
 import java.util.Map;
 
 /**
  * Created by forandroid on 16-11-14.
  */
-public class register_stu extends ActionSupport implements SessionAware{
-
-    String username,secret,secret_repeat,school,stu_number,fullname;
+public class register_teacher extends ActionSupport implements SessionAware{
+    String username, secret, secret_repeat, employerUnit, teacher_id, fullname;
+    Map session;
+    boolean isStudent = false;
+    boolean isProfessor = true;
 
     public String getFullname() {
         return fullname;
@@ -24,10 +24,6 @@ public class register_stu extends ActionSupport implements SessionAware{
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
-
-    private Map session;
-    boolean isStudent = true;
-    boolean isProfessor = false;
 
     public Map getSession() {
         return session;
@@ -73,61 +69,55 @@ public class register_stu extends ActionSupport implements SessionAware{
         this.secret_repeat = secret_repeat;
     }
 
-    public String getSchool() {
-        return school;
+    public String getEmployerUnit() {
+        return employerUnit;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public void setEmployerUnit(String employerUnit) {
+        this.employerUnit = employerUnit;
     }
 
-    public String getStu_number() {
-        return stu_number;
+    public String getTeacher_id() {
+        return teacher_id;
     }
 
-    public void setStu_number(String stu_number) {
-        this.stu_number = stu_number;
-    }
-
-    private void addCookie(String name,String value){
-        Cookie cookie = new Cookie(name, value);
-        cookie.setMaxAge(60*60*24*365);
-        ServletActionContext.getResponse().addCookie(cookie);
-    }
-
-    @Override
-    public String execute() {
-        if (secret.equals("") || secret_repeat.equals("")
-                || school.equals("") || username.equals("") || stu_number.equals("")) {
-            session.put("errorMessage", "è¾“å…¥é¡¹ç›®ä¸èƒ½ä¸ºç©º!");
-            return ERROR;
-        }
-        if (!secret_repeat.equals(secret)) {
-            session.put("errorMessage", "ä¸¤æ¬¡å¯†ç ä¸ä¸€è‡´!");
-            return ERROR;
-        }
-
-        if (Tools.usernameExisted(username)) {
-            session.put("errorMessage", "ç”¨æˆ·åå·²ç»å­˜åœ¨");
-            return ERROR;
-        }
-
-        Student stu = new Student(username,secret);
-        stu.setStudentNo(stu_number);
-        stu.setGraduateSchool(school);
-        stu.setFullname(fullname);
-
-        StudentDAO studao = new StudentDAO();
-        if (studao.addStudent(stu)) {
-            session.put("username", username);
-            session.put("userstyle", "Student");
-            return "SUCCESS";
-        }
-        session.put("errorMessage", "æœªçŸ¥çš„é”™è¯¯å‘ç”Ÿäº†ï¼Œä½ è¡Œèµ°åœ¨äº’è”ç½‘çš„è’é‡");
-        return ERROR;
+    public void setTeacher_id(String teacher_id) {
+        this.teacher_id = teacher_id;
     }
 
     public void setSession(Map session) {
         this.session = session;
     }
+
+    @Override
+    public String execute() {
+        if (secret.equals("") || secret_repeat.equals("")
+                || employerUnit.equals("") || username.equals("") || teacher_id.equals("")) {
+            session.put("errorMessage", "ÊäÈëÏîÄ¿²»ÄÜÎª¿Õ!");
+            return ERROR;
+        }
+        if (!secret_repeat.equals(secret)) {
+            session.put("errorMessage", "Á½´ÎÃÜÂë²»Ò»ÖÂ!");
+            return ERROR;
+        }
+
+        if (Tools.usernameExisted(username)) {
+            session.put("errorMessage", "ÓÃ»§ÃûÒÑ¾­´æÔÚ");
+            return ERROR;
+        }
+
+        Professor pro = new Professor(username, secret);
+        pro.setIdentityCardNo(teacher_id);
+        pro.setFullname(fullname);
+        pro.setEmployerUnit(employerUnit);
+        ProfessorDAO prodao = new ProfessorDAO();
+        if (prodao.addProfessor(pro)) {
+            session.put("userstyle","Professor");
+            session.put("username", username);
+            return "SUCCESS";
+        }
+        session.put("errorMessage", "Î´ÖªµÄ´íÎó·¢ÉúÁË£¬ÄãĞĞ×ßÔÚ»¥ÁªÍøµÄ»ÄÒ°");
+        return ERROR;
+    }
 }
+

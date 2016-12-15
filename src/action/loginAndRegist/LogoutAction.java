@@ -1,4 +1,4 @@
-package action;
+package action.loginAndRegist;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Xiangxi on 2016/11/18.
  */
-public class indexActionClass extends ActionSupport implements SessionAware{
+public class LogoutAction extends ActionSupport implements SessionAware{
     Map session;
 
     public Map getSession() {
@@ -21,8 +21,7 @@ public class indexActionClass extends ActionSupport implements SessionAware{
 
     @Override
     public String execute() throws Exception {
-        if (session.containsKey("username"))
-            return "logged";
-        return "unlogged";
+        session.clear();
+        return SUCCESS;
     }
 }
