@@ -166,6 +166,8 @@ public class StudentDAO {
         return null;
     }
     public ArrayList<Student> getStudentRecomentation(Professor professor) {
+        if (professor.getAcceptedNumber() == professor.getAccomodationNumber())
+            return new ArrayList<>();
         String sql = "select * from studentdb where workingAreas = '" + professor.getWorkingArea() + "';";
         try {
             Statement st = dbp.getConn().createStatement();
