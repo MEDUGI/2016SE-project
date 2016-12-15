@@ -79,10 +79,10 @@
                         <li class="folders heading">
                             <h5><i class="fa fa-folder"></i> 文件夹 <a href="#" class="pull-right"><i class="fa fa-plus"></i></a></h5>
                             <ul>
-                                <li class="active"><a href="#" onclick="showReceivedMessages();"><span class="badge badge-red"><s:property value="unreadNo" /></span>收件箱</a></li>
+                                <li id="receivedLI" class="active" onclick="showReceivedMessages();"><a href="#" ><span class="badge badge-red"><s:property value="unreadNo" /></span>收件箱</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#" onclick="showSentMessages();">已发箱</a></li>
-                                <li><a href="#" onclick="showTrashMessages();">垃圾箱</a></li>
+                                <li id="sentLI" onclick="showSentMessages();"><a href="#">已发箱</a></li>
+                                <li id="trashLI" onclick="showTrashMessages();"><a href="#" >垃圾箱</a></li>
                             </ul>
                         </li>
                         <li class="labels heading">
@@ -362,16 +362,25 @@
             document.getElementById('received').style.display = 'none';
             document.getElementById('sent').style.display = 'table-row-group';
             document.getElementById('trash').style.display = 'none';
+            $("#sentLI").addClass("active");
+            $("#receivedLI").removeClass("active");
+            $("#trashLI").removeClass("active");
         }
         function showReceivedMessages() {
             document.getElementById('received').style.display = 'table-row-group';
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'none';
+            $("#sentLI").removeClass("active");
+            $("#receivedLI").addClass("active");
+            $("#trashLI").removeClass("active");
         }
         function showTrashMessages() {
             document.getElementById('received').style.display = 'none';
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'table-row-group';
+            $("#sentLI").removeClass("active");
+            $("#receivedLI").removeClass("active");
+            $("#trashLI").addClass("active");
         }
     </script>
   </body>

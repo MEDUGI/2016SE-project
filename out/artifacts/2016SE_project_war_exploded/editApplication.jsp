@@ -281,6 +281,7 @@
         var content = $('#quick-message-content').code();
         document.getElementById("message").value = content;
         form.submit();
+        alert("您已提交申请!");
     }
 
 </script>

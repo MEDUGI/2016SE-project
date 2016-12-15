@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="css/font-awesome.min.css">
     <script src="js/jquery.min.js"></script>
   <link rel='stylesheet' href='css/jquery-ui.css'>
-  <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
-
+  <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>    <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen.min.css">
+    <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen-bootstrap.css">
   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 
   <script src="js/modernizr.js"></script>
@@ -38,13 +38,15 @@
 
       function select_major () {
           var major = $("#major").val();
-          var domains = [["模式识别","云计算","数据安全","软件工程","修电脑"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+          var domains = [[],["模式识别","云计算","数据安全","软件工程","修电脑"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
           var id = $("#domain");
           id.empty();
+          id.chosen("destroy");
           for (var i = 0; i<domains[parseInt(major)].length; i++) {
               var item = domains[parseInt(major)][i];
               id.append("<option value = " + "\"" + item + "\">" + item + "</option>");
           }
+          id.chosen({disable_search_threshold: 10});
       }
   </script>
 
@@ -76,7 +78,7 @@
           <div class="form-group">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">学分绩</div>
-                  <input class="form-control" name="gpa" type="text" value="<s:property value='gpa'/>"><br>
+                  <input class="form-control" name="gpa" type="text" value="<s:property value='gpa'/>" ><br>
               </div>
           </div>
           <div class="form-group">
@@ -110,12 +112,12 @@
             <div class="form-group">
                 <div class="input-group col-lg-12">
                     <label for="major">专业</label>
-                    <select id = "major" class="chosen-select form-control" onchange="select_major()">
-                        <option value="null"> 未选择 </option>
-                        <option value="0"> 计算机科学与技术 </option>
-                        <option value="1"> 机电专业 </option>
-                        <option value="2"> 航天专业 </option>
-                        <option value="3"> 艺术学科 </option>
+                    <select name="major" id = "major" class="chosen-select form-control" onchange="select_major()">
+                        <option value="0"> 未选择 </option>
+                        <option value="1"> 计算机科学与技术 </option>
+                        <option value="2"> 机电专业 </option>
+                        <option value="3"> 航天专业 </option>
+                        <option value="4"> 艺术学科 </option>
                     </select>
                    <!-- <input class="form-control" name="major" type="text" value="<s:property value='major'/>"><br> -->
                 </div>
@@ -124,7 +126,7 @@
           <div class="form-group">
               <div class="input-group col-lg-12">
                   <label for="domain"> 兴趣领域 </label>
-                  <select id = "domain" class="form-control" multiple>
+                  <select name="workingAreas" data-placeholder="选择相关领域..." multiple="" tabindex="3" class="chosen-select form-control" id="domain">
                   </select>
                   <!--<input class="form-control" name="workingAreas" type="text" value="<s:property value='workingAreas'/>"><br>-->
               </div>
@@ -150,15 +152,29 @@
               </div>
           </div>
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">研究生专业1</div>
-                    <input class="form-control" name="futureMajor1" type="text" value="<s:property value='futureMajor1'/>"><br>
+                <div class="input-group col-lg-12">
+                    <label for="major1">研究生专业1</label>
+                    <select id = "major1" class="chosen-select form-control" name="futureMajor1" value="<s:property value='futureMajor1'/>">
+                        <option value="0"> 未选择 </option>
+                        <option value="1"> 计算机科学与技术 </option>
+                        <option value="2"> 机电专业 </option>
+                        <option value="3"> 航天专业 </option>
+                        <option value="4"> 艺术学科 </option>
+                    </select>
+                    <!-- <input class="form-control" name="major" type="text" value="<s:property value='major'/>"><br> -->
                 </div>
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon" id="tips">研究生专业2</div>
-                    <input class="form-control" name="futureMajor2" type="text" value="<s:property value='futureMajor2'/>"><br>
+                <div class="input-group col-lg-12">
+                    <label for="major2">研究生专业2</label>
+                    <select id = "major2" class="chosen-select form-control" name="futureMajor2" value="<s:property value='futureMajor2'/>">
+                        <option value="0"> 未选择 </option>
+                        <option value="1"> 计算机科学与技术 </option>
+                        <option value="2"> 机电专业 </option>
+                        <option value="3"> 航天专业 </option>
+                        <option value="4"> 艺术学科 </option>
+                    </select>
+                    <!-- <input class="form-control" name="major" type="text" value="<s:property value='major'/>"><br> -->
                 </div>
             </div>
           <div class="form-group">
@@ -247,5 +263,11 @@
       </s:if>
     </div>
   </div>
+  <script src="assets/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script>
+    $(function() {
+        $(".chosen-select").chosen({disable_search_threshold: 10});
+    })
+</script>
 </body>
 </html>

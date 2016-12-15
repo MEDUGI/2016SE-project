@@ -22,11 +22,13 @@
     <link type="text/css" rel="stylesheet" media="all" href="assets/js/vendor/mmenu/css/jquery.mmenu.all.css" />
     <link rel="stylesheet" href="assets/js/vendor/videobackground/css/jquery.videobackground.css">
     <link rel="stylesheet" href="assets/css/vendor/bootstrap-checkbox.css">
-
+    <link rel="stylesheet" href="assets/js/vendor/summernote/css/summernote.css">
+    <link rel="stylesheet" href="assets/js/vendor/summernote/css/summernote-bs3.css">
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen.min.css">
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen-bootstrap.css">
 
     <link href="assets/css/minimal.css" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -142,7 +144,7 @@
                                             <td><s:property value="from"/></td>
                                             <td><s:property value="to"/></td>
                                             <td><s:property value="applydate"/></td>
-                                            <td><s:property value="message"/> </td>
+                                            <td><s:property value="message" escape="false"/></td>
                                             <td><a href="mainpage.action?username=<s:property value="to"/>">查看主页</a></td>
                                             <td><a href="replyApplication.action?isAccepted=true&applicationId=<s:property value="ID"/>">同意</a> <a href="replyApplication.action?isAccepted=false&applicationId=<s:property value="ID"/>">拒绝</a> </td>
                                         </tr>
@@ -190,7 +192,7 @@
                                             <td><s:property value="id"/> </td>
                                             <td><s:property value="to"/></td>
                                             <td><s:property value="applydate"/></td>
-                                            <td><s:property value="message"/> </td>
+                                            <td><s:property value="message" escape="false"/> </td>
                                             <td><a href="modifyApplication.action?applicationId=<s:property value="ID"/> ">修改</a></td>
                                         </tr>
                                     </s:iterator>
@@ -310,6 +312,7 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/js/jquery.js"></script>
+<script src="assets/js/vendor/summernote/summernote.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="assets/js/vendor/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/vendor/mmenu/js/jquery.mmenu.min.js"></script>
@@ -319,12 +322,14 @@
 <script type="text/javascript" src="assets/js/vendor/videobackground/jquery.videobackground.js"></script>
 <script type="text/javascript" src="assets/js/vendor/blockui/jquery.blockUI.js"></script>
 
+
 <script src="assets/js/vendor/chosen/chosen.jquery.min.js"></script>
 
 <script src="assets/js/minimal.min.js"></script>
 
 <script>
     $(function(){
+
 
         //check all checkboxes
         $('table thead input[type="checkbox"]').change(function () {
