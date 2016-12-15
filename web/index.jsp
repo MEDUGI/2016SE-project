@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -63,36 +64,13 @@
         
         <!-- Page content -->
         <div id="content" class="col-md-12">
-          
-
-
-
-
-
-
-
-
           <!-- page header -->
           <div class="pageheader">
-            
-
             <h2><i class="fa fa-tachometer"></i> 个人主页</h2>
-
-
           </div>
           <!-- /page header -->
-          
-          
-
-
-
-
           <!-- content main container -->
           <div class="main">
-            
-            
-
-
             <!-- row -->
             <div class="row">
 
@@ -100,10 +78,6 @@
 
                     <!-- 最新动态 -->
                     <section class="tile transparent recent-activity">
-
-
-
-
                         <!-- tile header -->
                         <div class="tile-header transparent">
                             <h1><strong>最新</strong> 动态</h1>
@@ -484,14 +458,6 @@
 
     <script>
     $(function(){
-
-      // Initialize card flip
-      $('.card.hover').hover(function(){
-        $(this).addClass('flip');
-      },function(){
-        $(this).removeClass('flip');
-      });
-
 
       //todo's
       $('#todolist li label').click(function() {
