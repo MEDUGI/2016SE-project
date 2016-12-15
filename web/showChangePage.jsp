@@ -11,13 +11,30 @@
 <head>
     <title>修改个人信息</title>
   <link rel="stylesheet" href="css/font-awesome.min.css">
-
+    <script src="js/jquery.min.js"></script>
   <link rel='stylesheet' href='css/jquery-ui.css'>
   <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
 
   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 
   <script src="js/modernizr.js"></script>
+
+  <script>
+      var mainaward = "";
+
+      function add_award () {
+          var mail = $("#mailAddress").prev();
+          mainaward += mail.find("input").val() + ";";
+          alert(mainaward);
+          mail.after("<div class=\"form-group\"> <div class= \"input-group\"> <div class=\"input-group-addon\" id=\"tips\">获奖情况</div> <input class=\"form-control\" type=\"text\" value=\"\"> <a href=\"javascript:;add_award()\">添加新奖项</a><br> </div> </div>");
+      }
+
+      function sum_sumbit() {
+          $("#mainaward").val = mainaward;
+          $("#form-login-2").submit();
+      }
+  </script>
+
 </head>
 <body class="login-page">
   <%@include file="head.jsp"%>
@@ -55,13 +72,17 @@
                   <input class="form-control" name="neepScore" type="text" value="<s:property value='neepScore'/>"><br>
               </div>
           </div>
+
           <div class="form-group">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">获奖情况</div>
-                  <input class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>"><br>
+                  <input id = "mainaward" class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>">
+                  <a href="javascript:;add_award()">添加新奖项</a><br>
               </div>
           </div>
-          <div class="form-group">
+
+
+          <div class="form-group" id="mailAddress">
               <div class="input-group">
                   <div class="input-group-addon" id="tips">邮件地址</div>
                   <input class="form-control" name="emailAddress" type="text" value="<s:property value='emailAddress'/>"><br>
@@ -118,7 +139,7 @@
         </form>
       </s:if>
       <s:if test="#session.userstyle=='Professor'">
-          <form action="changeInformation.action" role="form" id="form-login" method="post">
+          <form action="changeInformation.action" role="form" id="form-login-2" method="post">
               <div class="form-group">
                   <div class="input-group">
                       <div class="input-group-addon" id="tips">工作单位</div>
@@ -186,7 +207,7 @@
                   </div>
               </div>
               <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block btn-login">
+                  <button type="button" onclick="sum_sumbit()" class="btn btn-primary btn-block btn-login">
                       <i class="icon-signin"></i>
                       修改信息
                   </button>

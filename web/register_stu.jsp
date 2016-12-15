@@ -42,7 +42,6 @@
 </head>
 <body class="login-page">
 <%@include file="head.jsp"%>
-<s:debug> </s:debug>
 <div class="login-form">
     <div class="login-content">
 
