@@ -158,19 +158,21 @@ public class ProfessorDAO {
         return null;
     }
     public ArrayList<Professor> getProfessorRecomentation(Student student) {
-        String sql = "select * from professordb where workingArea = '" +
-                student.getWorkingAreas() +"'" + "AND acceptedNumber < accomodationNumber";
-        try {
-            Statement st = dbp.getConn().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            ArrayList<Professor> resultList = new ArrayList<>();
-            while(rs.next()) {
-                resultList.add(toProfessor(rs));
+        String[] workingAreasList = student.getWorkingAreas().split(",");
+        ArrayList<Professor> resultList = new ArrayList<>();
+        String sql;
+        for (String workingArea : workingAreasList) {
+            sql = "SELECT * FROM professordb WHERE workingArea LIKE '%" + workingArea + "%'AND acceptedNumber < accomodationNumber;";
+            try {
+                Statement st = dbp.getConn().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()) {
+                    resultList.add(toProfessor(rs));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            return resultList;
-        } catch(Exception e) {
-            e.printStackTrace();
         }
-        return null;
+        return resultList;
     }
 }
