@@ -32,39 +32,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-
-        function select_school() {
-            var id = $("#area").val();
-            var url = "school.action";
-            var params = {
-                'id': id
-            };
-            $.post(url, params,callback);
-        }
-
-
-        function callback(results,status) {
-            if (status == "success") {
-                school = $("#school");
-                school.empty();
-                results = results.substring(1,results.length-1);
-                results.split(",").forEach(function (item){
-                    school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
-                });
-            }
-        }
-
-        function init_area() {
-            var area = $("#area");
-            var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
-            areas.split(",").forEach(function (one) {
-                area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
-            })
-        }
-    </script>
 </head>
-<body class="bg-1" onload="init_area()">
+<body class="bg-1" onload="init()">
 
 
 
@@ -166,7 +135,7 @@
                                                     <button type ="button"  class = "form-control btn-primary btn-group-sm" onclick="add_award()">+</button>
                                                 </div>
                                                 <div class =  "form-group col-md-10 col-sm-10">
-                                                    <input id = "mainaward" class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>">
+                                                    <input id = "mainaward" class="form-control" name="awardsCollection" type="text">
                                                     <br>
                                                 </div>
                                             </div>
@@ -181,7 +150,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="input-group col-lg-12">
+                                            <div class="input-group col-md-12 col-lg-12">
                                                 <label for="major">专业</label>
                                                 <select name="major" id = "major" class="chosen-select form-control" onchange="select_major()">
                                                     <option value="0"> 未选择 </option>
@@ -195,7 +164,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="input-group col-lg-12">
+                                            <div class="input-group col-md-12 col-lg-12">
                                                 <label for="domain"> 兴趣领域 </label>
                                                 <select name="workingAreas" data-placeholder="选择相关领域..." multiple="" tabindex="3" class="chosen-select form-control" id="domain">
                                                 </select>
@@ -413,14 +382,82 @@
 <script src="assets/js/minimal.min.js"></script>
 
 <script>
+
+    function select_school() {
+        var id = $("#area").val();
+        var url = "school.action";
+        var params = {
+            'id': id
+        };
+        $.post(url, params,callback);
+    }
+
+
+    function callback(results,status) {
+        if (status == "success") {
+            school = $("#school");
+            school.empty();
+            results = results.substring(1,results.length-1);
+            results.split(",").forEach(function (item){
+                school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+            });
+        }
+    }
+
+    function init_area() {
+        var area = $("#area");
+        var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
+        areas.split(",").forEach(function (one) {
+            area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
+        })
+    }
+
+    var mainaward = "";
+    function init_awards() {
+
+        var awards = "<s:property value='awardsCollection'/>";
+
+        $("#mainaward").val(awards.split(";")[0]);
+        for (var i = 1; i < awards.split(";").length; i++) {
+            add_award();
+            $("#awards").find("input")[$("#awards").find("input").length - 1].value = awards.split(";")[i];
+        }
+    }
+
+    function init_major() {
+        var major = "<s:property value='major'/>";
+        document.getElementById("major").options[parseInt(major)].selected = true;
+        select_major();
+        var areas = "<s:property value='workingareas'/>";
+        areas.split(",").forEach(function (item){
+            document.getElementById("domain").options[parseInt(item)].selected = true;
+        })
+    }
+
+
+    function init () {
+        $(document).ready(function() {
+            init_area();
+            init_awards();
+            init_major();
+        })
+    }
+</script>
+
+
+
+
+<script>
     $(function(){
         //multiselect input
         $(".chosen-select").chosen({disable_search_threshold: 10});
 
     })
 </script>
+
+
+
 <script>
-    var mainaward = "";
 
     function add_award () {
         if ($("#awards").find("input")[$("#awards").find("input").length - 1].value != "") {
@@ -439,7 +476,8 @@
 
     function select_major () {
         var major = $("#major").val();
-        var domains = [[],["模式识别","云计算","数据安全","软件工程","修电脑"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+        var domains = [[],["模式识别","云计算","数据安全","软件工程","机器学习","硬件维护"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+
         var id = $("#domain");
         id.empty();
         id.chosen("destroy");
