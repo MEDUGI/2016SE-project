@@ -155,8 +155,11 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block btn-login">
                             <i class="icon-signin"></i>
-                            Register
+                            注册
                         </button>
+                        <br>
+                        <span>or</span>
+                        <a class="btn btn-blue" href="mainpage.action">返回主页</a>
                     </div>
                 </form>
             </div>

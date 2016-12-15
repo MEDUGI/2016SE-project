@@ -176,32 +176,135 @@
                             </ul>
                             <s:if test="#session.username==#session.watchedUsername">
                                 <ul id="applications-tab" class="tab-pane fade">
-                                    <s:iterator value="applications" status="st" id="app">
+                                    <s:iterator value="applications" status="st">
                                         <li>
-                                            <span class="user font-slab">发送给 <strong><s:property value="app.to" /></strong></span>
-                                            <span class="subject"><strong><s:if test="app.status==0">
+                                            <span class="user font-slab">发送给 <strong><s:property value="to" /></strong></span>
+                                            <span class="subject"><strong><s:if test="status==0">
                                                 被拒绝
                                             </s:if>
-                                                <s:elseif test="app.status==1">
+                                                <s:elseif test="status==1">
                                                     进入审核流程
                                                 </s:elseif>
                                                 <s:else>
                                                     通过
                                                 </s:else></strong></span>
-                                            <span class="time"><i class="fa fa-clock-o"></i><s:property value="app.applydate" /></span>
+                                            <span class="time"><i class="fa fa-clock-o"></i><s:property value="applyDate" /></span>
                                         </li>
                                     </s:iterator>
+                                    <s:if test="#session.applicationNumber==0">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.applicationNumber<1">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.applicationNumber<2">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.applicationNumber<3">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
                                 </ul>
 
                                 <ul id="messages-tab" class="tab-pane fade">
-                                    <s:iterator value="messages" status="st" id="msg">
-                                        <li>
-                                            <img src="<s:property value="msg.imgURL"/>" class="w35" alt>
-                                            <span class="user font-slab"><strong><s:property value="msg.userFrom" /></strong></span>
-                                            <span class="subject"><strong><s:property value="msg.title" /></strong></span>
-                                            <span class="time"><i class="fa fa-clock-o"></i> <s:property value="msg.date" /></span>
-                                        </li>
-                                    </s:iterator>
+                                    <s:if test="#session.messageNumber>0">
+                                        <s:iterator value="messages" status="st" id="msg">
+                                            <li>
+                                                <img src="<s:property value="imgURL"/>" class="w35" alt>
+                                                <span class="user font-slab"><strong><s:property value="userFrom" /></strong></span>
+                                                <span class="subject"><strong><s:property value="content" escape="false"/></strong></span>
+                                                <span class="time"><i class="fa fa-clock-o"></i> <s:property value="date" /></span>
+                                            </li>
+                                        </s:iterator>
+                                    </s:if>
+
+                                    <s:if test="#session.messageNumber==0">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.messageNumber<1">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.messageNumber<2">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.messageNumber<3">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.messageNumber<4">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
+                                    <s:if test="#session.messageNumber<5">
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </s:if>
                                 </ul>
                             </s:if>
                             <!-- / Tab panes -->
@@ -332,7 +435,7 @@
                                 <li>
                                     <div class="checkbox check-transparent">
                                         <input type="checkbox" value="1" id="todo-01">
-                                        <label for="todo-01"> 和宏志导师联系 </label>
+                                        <label for="todo-01"> 和导师联系 </label>
                                     </div>
                                 </li>
                                 <li>

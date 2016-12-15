@@ -152,7 +152,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-envelope"></i> 消息盒子 <span class="badge badge-red" id="user-inbox"><s:property value="messageNumber" /></span></a>
+                        <a href="showMessages.action"><i class="fa fa-envelope"></i> 消息盒子 <span class="badge badge-red" id="user-inbox"><s:property value="messageNumber" /></span></a>
                     </li>
 
                     <li class="divider"></li>
