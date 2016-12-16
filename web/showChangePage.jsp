@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
+    <link href="${ctx}/assets/combobox/bootstrap-select.min.css" rel="stylesheet">
+    <script src="${ctx}/assets/combobox/bootstrap-select.min.js"></script>
+    <script src="${ctx}/assets/combobox/defaults-zh_CN.js"></script>
+
     <!-- Bootstrap -->
     <link href="assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -22,6 +26,8 @@
     <link rel="stylesheet" href="assets/js/vendor/summernote/css/summernote-bs3.css">
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen.min.css">
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen-bootstrap.css">
+
+
 
     <link href="assets/css/minimal.css" rel="stylesheet">
 
@@ -152,7 +158,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-md-12 col-lg-12">
                                                 <label for="major">专业</label>
-                                                <select name="major" id = "major" class="chosen-select form-control" onchange="select_major()">
+                                                <select autocomplete="off" name="major" id = "major" class="form-control" onload = "init_major()" onchange="select_major()">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -166,7 +172,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-md-12 col-lg-12">
                                                 <label for="domain"> 兴趣领域 </label>
-                                                <select name="workingAreas" data-placeholder="选择相关领域..." multiple="" tabindex="3" class="chosen-select form-control" id="domain">
+                                                <select autocomplete="off" name="workingAreas" multiple tabindex="3" class="form-control" id="domain">
                                                 </select>
                                                 <!--<input class="form-control" name="workingAreas" type="text" value="<s:property value='workingAreas'/>"><br>-->
                                             </div>
@@ -194,7 +200,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-lg-12">
                                                 <label for="major1">研究生专业1</label>
-                                                <select id = "major1" class="chosen-select form-control" name="futureMajor1" value="<s:property value='futureMajor1'/>">
+                                                <select id = "major1" class=" form-control" name="futureMajor1" value="<s:property value='futureMajor1'/>">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -207,7 +213,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-lg-12">
                                                 <label for="major2">研究生专业2</label>
-                                                <select id = "major2" class="chosen-select form-control" name="futureMajor2" value="<s:property value='futureMajor2'/>">
+                                                <select id = "major2" class="form-control" name="futureMajor2" value="<s:property value='futureMajor2'/>">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -421,17 +427,36 @@
         for (var i = 1; i < awards.split(";").length; i++) {
             add_award();
             $("#awards").find("input")[$("#awards").find("input").length - 1].value = awards.split(";")[i];
+
         }
     }
 
     function init_major() {
         var major = "<s:property value='major'/>";
-        document.getElementById("major").options[parseInt(major)].selected = true;
-        select_major();
-        var areas = "<s:property value='workingareas'/>";
-        areas.split(",").forEach(function (item){
-            document.getElementById("domain").options[parseInt(item)].selected = true;
-        })
+        var areas = "<s:property value='workingAreas'/>";
+        var domains = [[],["模式识别","云计算","数据安全","软件工程","机器学习","硬件维护"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+        document.getElementById("major").options[parseInt(major)].setAttribute("selected","selected");
+
+        var id = $("#domain");
+        id.empty();
+        id.chosen("destroy");
+        for (var i = 0; i<domains[parseInt(major)].length; i++) {
+            var item = domains[parseInt(major)][i];
+            var flag = true;
+            areas.split(",").forEach(function (k) {
+                if (i == parseInt(k)) {
+                    id.append("<option value = \"" + i + "\" selected>" + item + "</option>");
+                    flag = false;
+                }
+            })
+            if (flag) {
+                id.append("<option value = " + "\"" + i + "\">" + item + "</option>");
+            }
+        }
+        id.chosen({disable_search_threshold: 10});
+
+
+
     }
 
 
@@ -483,7 +508,7 @@
         id.chosen("destroy");
         for (var i = 0; i<domains[parseInt(major)].length; i++) {
             var item = domains[parseInt(major)][i];
-            id.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+            id.append("<option value = " + "\"" + i + "\">" + item + "</option>");
         }
         id.chosen({disable_search_threshold: 10});
     }

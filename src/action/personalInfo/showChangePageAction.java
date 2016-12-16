@@ -40,7 +40,7 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
     String userstyle;
 
     public ArrayList<String>[] workingAreasList = new ArrayList[4];
-    public String[] majorList = {"null", "è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯", "æœºç”µä¸“ä¸š", "èˆªå¤©ä¸“ä¸š", "è‰ºæœ¯å­¦ç§‘"};
+    public String[] majorList = {"null", "¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ", "»úµç×¨Òµ", "º½Ìì×¨Òµ", "ÒÕÊõÑ§¿Æ"};
 
     public String getFutureMajor1() {
         return futureMajor1;
@@ -236,30 +236,30 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
 
     void generateWorkingAreaList() {
         workingAreasList[0] = new ArrayList<>();
-        workingAreasList[0].add("æ¨¡å¼è¯†åˆ«");
-        workingAreasList[0].add("äº‘è®¡ç®—");
-        workingAreasList[0].add("æ•°æ®å®‰å…¨");
-        workingAreasList[0].add("è½¯ä»¶å·¥ç¨‹");
-        workingAreasList[0].add("ä¿®ç”µè„‘");
+        workingAreasList[0].add("Ä£Ê½Ê¶±ğ");
+        workingAreasList[0].add("ÔÆ¼ÆËã");
+        workingAreasList[0].add("Êı¾İ°²È«");
+        workingAreasList[0].add("Èí¼ş¹¤³Ì");
+        workingAreasList[0].add("ĞŞµçÄÔ");
 
         workingAreasList[1] = new ArrayList<>();
-        workingAreasList[1].add("çƒ§é”…ç‚‰");
-        workingAreasList[1].add("ç”µå™¨");
+        workingAreasList[1].add("ÉÕ¹øÂ¯");
+        workingAreasList[1].add("µçÆ÷");
 
         workingAreasList[2] = new ArrayList<>();
-        workingAreasList[2].add("èˆªç©º");
-        workingAreasList[2].add("èˆªå¤©");
+        workingAreasList[2].add("º½¿Õ");
+        workingAreasList[2].add("º½Ìì");
 
         workingAreasList[3] = new ArrayList<>();
-        workingAreasList[3].add("å“²å­¦");
-        workingAreasList[3].add("ç¾æœ¯");
-        workingAreasList[3].add("éŸ³ä¹");
+        workingAreasList[3].add("ÕÜÑ§");
+        workingAreasList[3].add("ÃÀÊõ");
+        workingAreasList[3].add("ÒôÀÖ");
     }
 
     protected String majorStringToNumber(String input) {
-        for(int i = 0; i < 4; i++) {
+        for(int i = 1; i < 5; i++) {
             if (majorList[i].equals(input))
-                return (i+1)+"";
+                return i+"";
         }
         return "0";
     }
@@ -287,8 +287,16 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
             major = majorStringToNumber(mainpageStudent.getMajor());
             futureMajor1 = majorStringToNumber(mainpageStudent.getFutureMajor1());
             futureMajor2 = majorStringToNumber(mainpageStudent.getFutureMajor2());
+            workingAreas = "";
+            if (major.equals("0"))
+                workingAreas = "0";
+             else {
+                for(String oneWorkingArea : mainpageStudent.getWorkingAreas().split(",")) {
+                    workingAreas = workingAreas + workingAreasList[Integer.parseInt(major)-1].indexOf(oneWorkingArea)+",";
+                }
+                workingAreas = workingAreas.substring(0, workingAreas.length()-1);
+            }
 
-            workingAreas = workingAreasList[Integer.parseInt(major)-1].indexOf(mainpageStudent.getWorkingAreas()) + "";
 
             introduction = mainpageStudent.getIntroduction();
             physicalAddress = mainpageStudent.getPhysicalAddress();

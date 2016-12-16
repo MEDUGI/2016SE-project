@@ -39,7 +39,7 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
 
     public ArrayList<String>[] workingAreasList = new ArrayList[4];
 
-    public String[] majorList = {"null", "è®¡ç®—æœºç§‘å­¦ä¸æŠ€æœ¯", "æœºç”µä¸“ä¸š", "èˆªå¤©ä¸“ä¸š", "è‰ºæœ¯å­¦ç§‘"};
+    public String[] majorList = {"null", "¼ÆËã»ú¿ÆÑ§Óë¼¼Êõ", "»úµç×¨Òµ", "º½Ìì×¨Òµ", "ÒÕÊõÑ§¿Æ"};
 
     public String[] getMajorList() {
         return majorList;
@@ -237,24 +237,24 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
     void generateWorkingAreaList() {
 
         workingAreasList[0] = new ArrayList<>();
-        workingAreasList[0].add("æ¨¡å¼è¯†åˆ«");
-        workingAreasList[0].add("äº‘è®¡ç®—");
-        workingAreasList[0].add("æ•°æ®å®‰å…¨");
-        workingAreasList[0].add("è½¯ä»¶å·¥ç¨‹");
-        workingAreasList[0].add("ä¿®ç”µè„‘");
+        workingAreasList[0].add("Ä£Ê½Ê¶±ğ");
+        workingAreasList[0].add("ÔÆ¼ÆËã");
+        workingAreasList[0].add("Êı¾İ°²È«");
+        workingAreasList[0].add("Èí¼ş¹¤³Ì");
+        workingAreasList[0].add("ĞŞµçÄÔ");
 
         workingAreasList[1] = new ArrayList<>();
-        workingAreasList[1].add("çƒ§é”…ç‚‰");
-        workingAreasList[1].add("ç”µå™¨");
+        workingAreasList[1].add("ÉÕ¹øÂ¯");
+        workingAreasList[1].add("µçÆ÷");
 
         workingAreasList[2] = new ArrayList<>();
-        workingAreasList[2].add("èˆªç©º");
-        workingAreasList[2].add("èˆªå¤©");
+        workingAreasList[2].add("º½¿Õ");
+        workingAreasList[2].add("º½Ìì");
 
         workingAreasList[3] = new ArrayList<>();
-        workingAreasList[3].add("å“²å­¦");
-        workingAreasList[3].add("ç¾æœ¯");
-        workingAreasList[3].add("éŸ³ä¹");
+        workingAreasList[3].add("ÕÜÑ§");
+        workingAreasList[3].add("ÃÀÊõ");
+        workingAreasList[3].add("ÒôÀÖ");
     }
 
     public String execute() {
@@ -269,12 +269,19 @@ public class ChangeInformationAction extends ActionSupport implements SessionAwa
             student.setNeepScore(Double.parseDouble(neepScore));
             student.setAwardsCollection(awardsCollection);
             student.setEmailAddress(emailAddress);
+            int majorNo = Integer.parseInt(major);
+            student.setMajor(majorList[majorNo]);
+            String finalString="";
+            if (majorNo != 0) {
+                for(String workingAreaNumber : workingAreas.split(",")) {
+                    if (workingAreaNumber.charAt(0) == ' ') workingAreaNumber = workingAreaNumber.substring(1);
+                    finalString = finalString + ((workingAreasList[majorNo-1].get(Integer.parseInt(workingAreaNumber)))) + ",";
+                }
+            }
+            student.setWorkingAreas(finalString.substring(0, finalString.length()-1));
 
-            student.setMajor(majorList[Integer.parseInt(major)]);
-            student.setWorkingAreas(workingAreasList[Integer.parseInt(major)-1].get(Integer.parseInt(workingAreas)));
-
-            student.setFutureMajor1(majorList[Integer.parseInt(futureMajor1)-1]);
-            student.setFutureMajor2(majorList[Integer.parseInt(futureMajor2)-1]);
+            student.setFutureMajor1(majorList[Integer.parseInt(futureMajor1)]);
+            student.setFutureMajor2(majorList[Integer.parseInt(futureMajor2)]);
 
             student.setMobileNo(mobileNo);
             student.setFullname(fullname);
