@@ -116,8 +116,11 @@
                       <s:iterator value="receivedMessages" status="st" id="msg">
                           <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                             <td>
-                                <s:if test="status==1">
-                                    <i class="fa fa-envelope"></i>
+                                <s:if test="status==0">
+                                    <div class="checkbox check-transparent">
+                                        <input type="checkbox" value="1" checked id="msg01">
+                                        <i class="fa fa-envelope"></i>1111
+                                    </div>
                                 </s:if>
                             </td>
                             <td><s:property value="userFrom" /></td>
@@ -131,9 +134,6 @@
                       <s:iterator value="sentMessages" status="st" id="msg">
                           <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                               <td>
-                                  <s:if test="status==1">
-                                      <i class="fa fa-envelope"></i>
-                                  </s:if>
                               </td>
                               <td><s:property value="userFrom" /></td>
                               <td><s:property value="title" /></td>
@@ -146,9 +146,6 @@
                       <s:iterator value="trashMessages" status="st" id="msg">
                           <tr class="odd unread" onclick="showMessage('${userFrom}','${userTo}','${title}','${date}','${content}','${ID}');">
                               <td>
-                                  <s:if test="status==1">
-                                      <i class="fa fa-envelope"></i>
-                                  </s:if>
                               </td>
                               <td><s:property value="userFrom" /></td>
                               <td><s:property value="title" /></td>
