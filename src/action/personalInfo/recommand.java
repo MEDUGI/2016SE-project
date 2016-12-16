@@ -53,6 +53,9 @@ public class recommand extends ActionSupport implements SessionAware {
     public ArrayList<Professor> dropAppliedForStudent(String username, ArrayList<Professor> others) {
         ArrayList<Professor> result = new ArrayList<>();
         ApplicationDAO applicationDAO = new ApplicationDAO();
+        for(Application application : applicationDAO.findAllApplicationByUser(username))
+            if (application.getStatus() == 2)
+                return result;
         for(Professor user : others) {
             if (!applicationDAO.hasApplicationBetween(username, user.getUsername()))
                 result.add(user);
@@ -62,6 +65,9 @@ public class recommand extends ActionSupport implements SessionAware {
     public ArrayList<Student> dropAppliedForProfessor(String username, ArrayList<Student> others) {
         ArrayList<Student> result = new ArrayList<>();
         ApplicationDAO applicationDAO = new ApplicationDAO();
+        for(Application application : applicationDAO.findAllApplicationByUser(username))
+            if (application.getStatus() == 2)
+                return result;
         for(Student user : others) {
             if (!applicationDAO.hasApplicationBetween(username, user.getUsername()))
                 result.add(user);

@@ -122,6 +122,32 @@ public class ProfessorDAO {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 professor.setPassword(rs.getString(2));
+                professor.setAcceptedNumber(rs.getInt("acceptedNumber"));
+            }
+            ps.close();
+
+            sql = "delete from professordb where username='"+professor.getUsername()+"'";
+            ps = dbp.getConn().prepareStatement(sql);
+            ps.executeUpdate();
+            ps.close();
+
+            sql = "insert into professordb values (" + toValueString(professor) + ")";
+            Statement st = dbp.getConn().createStatement();
+            st.execute(sql);
+            st.close();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean addAcceptedNoProfessor(Professor professor) {
+        String sql = "select * from professordb where username='"+professor.getUsername()+"'";
+        try{
+            ps = dbp.getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                professor.setPassword(rs.getString(2));
             }
             ps.close();
 

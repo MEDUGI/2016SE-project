@@ -2,6 +2,7 @@ package action.applications;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Result;
 import dao.ApplicationDAO;
 import dao.MessageDAO;
 import dao.ProfessorDAO;
@@ -11,6 +12,7 @@ import entity.Professor;
 import entity.Tools;
 import org.apache.struts2.interceptor.SessionAware;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -58,7 +60,7 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
         if (professor.getAcceptedNumber() == professor.getAccomodationNumber())
             return false;
         professor.setAcceptedNumber(professor.getAcceptedNumber()+1);
-        professorDAO.updateProfessor(professor);
+        professorDAO.addAcceptedNoProfessor(professor);
         return true;
     }
 
@@ -77,9 +79,19 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
             if (application.getStatus() == 1) {
                 boolean updateResult = updateAcceptedNo(application);
                 if (!updateResult) {
-                    session.put("errorMessage", "µ¼Ê¦µÄÕÐÉúÃû¶îÒÑÓÃÍê£¡");
+                    session.put("errorMessage", "ï¿½ï¿½Ê¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£¡");
                     session.put("errorTitle", "Full application");
                     return Action.ERROR;
+                }
+                String studentUsername;
+                if (application.getIsFromStudent() == true) {
+                     studentUsername = application.getFrom();
+                } else
+                    studentUsername = application.getTo();
+                ArrayList<Application> allApplications = applicationDAO.findAllApplicationByUser(studentUsername);
+                for(Application oneApplication : allApplications) {
+                    if (oneApplication.getStatus() != 2)
+                        applicationDAO.deleteStatus(oneApplication.getID());
                 }
             }
         } else {
@@ -90,8 +102,8 @@ public class replyApplicationAction extends ActionSupport implements SessionAwar
             message.setUserTo(opposite);
             message.setDate(Tools.getDateString());
             message.setStatus(0);
-            message.setTitle("¹ØÏµ½¨Á¢Î´³É¹¦");
-            message.setContent("±§Ç¸£¬ÓÉÓÚÖÖÖÖÔ­Òò£¬ÎÒ´ËÊ±²»ÄÜ½ÓÊÜÄãµÄÉêÇë£¬×£ÄãÄÜÕÒµ½ÏÂÒ»¸ö¸ü¼ÓºÏÊÊµÄÑ¡Ôñ!\n£¨±¾ÐÅÏ¢ÓÉÏµÍ³·¢³ö£¬Çë²»Òª»Ø¸´£©");
+            message.setTitle("ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Î´ï¿½É¹ï¿½");
+            message.setContent("ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½Ò´ï¿½Ê±ï¿½ï¿½ï¿½Ü½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬×£ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Óºï¿½ï¿½Êµï¿½Ñ¡ï¿½ï¿½!\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Òªï¿½Ø¸ï¿½ï¿½ï¿½");
             messageDAO.addMessage(message);
         }
         return Action.SUCCESS;
