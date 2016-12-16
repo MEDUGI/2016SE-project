@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <!-- /tile header -->
-                            <div class="tile-widget color transparent-black rounded-top-corners">
+                            <div class="tile-widget color rounded-top-corners transparent">
                                 <form id = "change_form" action="changeInformation.action" role="form" method="post" class="form-horizontal">
                                     <s:if test="#session.userstyle=='Student'">
                                         <div class="form-group">
