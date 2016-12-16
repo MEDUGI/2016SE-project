@@ -240,7 +240,8 @@ public class showChangePageAction extends ActionSupport implements SessionAware{
         workingAreasList[0].add("云计算");
         workingAreasList[0].add("数据安全");
         workingAreasList[0].add("软件工程");
-        workingAreasList[0].add("修电脑");
+        workingAreasList[0].add("机器学习");
+        workingAreasList[0].add("硬件维护");
 
         workingAreasList[1] = new ArrayList<>();
         workingAreasList[1].add("烧锅炉");

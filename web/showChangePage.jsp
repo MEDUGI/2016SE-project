@@ -422,12 +422,13 @@
     function init_awards() {
 
         var awards = "<s:property value='awardsCollection'/>";
+        if (awards != "null") {
+            $("#mainaward").val(awards.split(";")[0]);
+            for (var i = 1; i < awards.split(";").length; i++) {
+                add_award();
+                $("#awards").find("input")[$("#awards").find("input").length - 1].value = awards.split(";")[i];
 
-        $("#mainaward").val(awards.split(";")[0]);
-        for (var i = 1; i < awards.split(";").length; i++) {
-            add_award();
-            $("#awards").find("input")[$("#awards").find("input").length - 1].value = awards.split(";")[i];
-
+            }
         }
     }
 
@@ -446,11 +447,13 @@
             areas.split(",").forEach(function (k) {
                 if (i == parseInt(k)) {
                     id.append("<option value = \"" + i + "\" selected>" + item + "</option>");
+                    id.trigger("chosen:updated");
                     flag = false;
                 }
             })
             if (flag) {
                 id.append("<option value = " + "\"" + i + "\">" + item + "</option>");
+                id.trigger("chosen:updated");
             }
         }
         id.chosen({disable_search_threshold: 10});
@@ -460,11 +463,20 @@
     }
 
 
+    function init_future () {
+        var major1 = "<s:property value='futureMajor1'/>";
+        var major2 = "<s:property value='futureMajor2'/>";
+        document.getElementById("major1").options[parseInt(major1)].setAttribute("selected","selected");
+        document.getElementById("major2").options[parseInt(major2)].setAttribute("selected","selected");
+
+    }
+
     function init () {
         $(document).ready(function() {
             init_area();
             init_awards();
             init_major();
+            init_future();
         })
     }
 </script>
