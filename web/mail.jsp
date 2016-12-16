@@ -119,7 +119,7 @@
                                 <s:if test="status==0">
                                     <div class="checkbox check-transparent">
                                         <input type="checkbox" value="1" checked id="msg01">
-                                        <i class="fa fa-envelope"></i>1111
+                                        <i class="fa fa-envelope"></i>
                                     </div>
                                 </s:if>
                             </td>
