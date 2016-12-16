@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
 
+    <link href="${ctx}/assets/combobox/bootstrap-select.min.css" rel="stylesheet">
+    <script src="${ctx}/assets/combobox/bootstrap-select.min.js"></script>
+    <script src="${ctx}/assets/combobox/defaults-zh_CN.js"></script>
+
     <!-- Bootstrap -->
     <link href="assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -23,6 +27,8 @@
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen.min.css">
     <link rel="stylesheet" href="assets/js/vendor/chosen/css/chosen-bootstrap.css">
 
+
+
     <link href="assets/css/minimal.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -32,39 +38,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-
-        function select_school() {
-            var id = $("#area").val();
-            var url = "school.action";
-            var params = {
-                'id': id
-            };
-            $.post(url, params,callback);
-        }
-
-
-        function callback(results,status) {
-            if (status == "success") {
-                school = $("#school");
-                school.empty();
-                results = results.substring(1,results.length-1);
-                results.split(",").forEach(function (item){
-                    school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
-                });
-            }
-        }
-
-        function init_area() {
-            var area = $("#area");
-            var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
-            areas.split(",").forEach(function (one) {
-                area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
-            })
-        }
-    </script>
 </head>
-<body class="bg-1" onload="init_area()">
+<body class="bg-1" onload="init()">
 
 
 
@@ -166,7 +141,7 @@
                                                     <button type ="button"  class = "form-control btn-primary btn-group-sm" onclick="add_award()">+</button>
                                                 </div>
                                                 <div class =  "form-group col-md-10 col-sm-10">
-                                                    <input id = "mainaward" class="form-control" name="awardsCollection" type="text" value="<s:property value='awardsCollection'/>">
+                                                    <input id = "mainaward" class="form-control" name="awardsCollection" type="text">
                                                     <br>
                                                 </div>
                                             </div>
@@ -181,9 +156,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="input-group col-lg-12">
+                                            <div class="input-group col-md-12 col-lg-12">
                                                 <label for="major">专业</label>
-                                                <select name="major" id = "major" class="chosen-select form-control" onchange="select_major()">
+                                                <select autocomplete="off" name="major" id = "major" class="form-control" onload = "init_major()" onchange="select_major()">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -195,9 +170,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="input-group col-lg-12">
+                                            <div class="input-group col-md-12 col-lg-12">
                                                 <label for="domain"> 兴趣领域 </label>
-                                                <select name="workingAreas" data-placeholder="选择相关领域..." multiple="" tabindex="3" class="chosen-select form-control" id="domain">
+                                                <select autocomplete="off" name="workingAreas" multiple tabindex="3" class="form-control" id="domain">
                                                 </select>
                                                 <!--<input class="form-control" name="workingAreas" type="text" value="<s:property value='workingAreas'/>"><br>-->
                                             </div>
@@ -225,7 +200,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-lg-12">
                                                 <label for="major1">研究生专业1</label>
-                                                <select id = "major1" class="chosen-select form-control" name="futureMajor1" value="<s:property value='futureMajor1'/>">
+                                                <select id = "major1" class=" form-control" name="futureMajor1" value="<s:property value='futureMajor1'/>">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -238,7 +213,7 @@
                                         <div class="form-group">
                                             <div class="input-group col-lg-12">
                                                 <label for="major2">研究生专业2</label>
-                                                <select id = "major2" class="chosen-select form-control" name="futureMajor2" value="<s:property value='futureMajor2'/>">
+                                                <select id = "major2" class="form-control" name="futureMajor2" value="<s:property value='futureMajor2'/>">
                                                     <option value="0"> 未选择 </option>
                                                     <option value="1"> 计算机科学与技术 </option>
                                                     <option value="2"> 机电专业 </option>
@@ -413,14 +388,101 @@
 <script src="assets/js/minimal.min.js"></script>
 
 <script>
+
+    function select_school() {
+        var id = $("#area").val();
+        var url = "school.action";
+        var params = {
+            'id': id
+        };
+        $.post(url, params,callback);
+    }
+
+
+    function callback(results,status) {
+        if (status == "success") {
+            school = $("#school");
+            school.empty();
+            results = results.substring(1,results.length-1);
+            results.split(",").forEach(function (item){
+                school.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+            });
+        }
+    }
+
+    function init_area() {
+        var area = $("#area");
+        var areas = "北京,天津,辽宁,吉林,黑龙江,上海,江苏,浙江,安徽,福建,山东,湖北,湖南,广东,重庆,四川,陕西,甘肃,河北,山西,内蒙古,河南,海南,广西,贵州,云南,西藏,青海,宁夏,新疆,江西,香港,澳门";
+        areas.split(",").forEach(function (one) {
+            area.append ("<option value = " + "\"" + one + "\">" + one + "</option>");
+        })
+    }
+
+    var mainaward = "";
+    function init_awards() {
+
+        var awards = "<s:property value='awardsCollection'/>";
+
+        $("#mainaward").val(awards.split(";")[0]);
+        for (var i = 1; i < awards.split(";").length; i++) {
+            add_award();
+            $("#awards").find("input")[$("#awards").find("input").length - 1].value = awards.split(";")[i];
+
+        }
+    }
+
+    function init_major() {
+        var major = "<s:property value='major'/>";
+        var areas = "<s:property value='workingAreas'/>";
+        var domains = [[],["模式识别","云计算","数据安全","软件工程","机器学习","硬件维护"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+        document.getElementById("major").options[parseInt(major)].setAttribute("selected","selected");
+
+        var id = $("#domain");
+        id.empty();
+        id.chosen("destroy");
+        for (var i = 0; i<domains[parseInt(major)].length; i++) {
+            var item = domains[parseInt(major)][i];
+            var flag = true;
+            areas.split(",").forEach(function (k) {
+                if (i == parseInt(k)) {
+                    id.append("<option value = \"" + i + "\" selected>" + item + "</option>");
+                    flag = false;
+                }
+            })
+            if (flag) {
+                id.append("<option value = " + "\"" + i + "\">" + item + "</option>");
+            }
+        }
+        id.chosen({disable_search_threshold: 10});
+
+
+
+    }
+
+
+    function init () {
+        $(document).ready(function() {
+            init_area();
+            init_awards();
+            init_major();
+        })
+    }
+</script>
+
+
+
+
+<script>
     $(function(){
         //multiselect input
         $(".chosen-select").chosen({disable_search_threshold: 10});
 
     })
 </script>
+
+
+
 <script>
-    var mainaward = "";
 
     function add_award () {
         if ($("#awards").find("input")[$("#awards").find("input").length - 1].value != "") {
@@ -439,13 +501,14 @@
 
     function select_major () {
         var major = $("#major").val();
-        var domains = [[],["模式识别","云计算","数据安全","软件工程","修电脑"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+        var domains = [[],["模式识别","云计算","数据安全","软件工程","机器学习","硬件维护"],["烧锅炉","电器"],["航空","航天"],["哲学","美术","音乐"]];
+
         var id = $("#domain");
         id.empty();
         id.chosen("destroy");
         for (var i = 0; i<domains[parseInt(major)].length; i++) {
             var item = domains[parseInt(major)][i];
-            id.append("<option value = " + "\"" + item + "\">" + item + "</option>");
+            id.append("<option value = " + "\"" + i + "\">" + item + "</option>");
         }
         id.chosen({disable_search_threshold: 10});
     }
