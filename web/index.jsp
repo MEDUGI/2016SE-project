@@ -184,10 +184,10 @@
                                         <li>
                                             <span class="user font-slab">发送给 <strong><s:property value="opposite" /></strong></span>
                                             <span class="subject"><strong><s:if test="status==0">
-                                                被拒绝
+                                                正在等待对方处理
                                             </s:if>
                                                 <s:elseif test="status==1">
-                                                    进入审核流程
+                                                    等待您的审核
                                                 </s:elseif>
                                                 <s:else>
                                                     通过

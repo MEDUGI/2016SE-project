@@ -106,7 +106,7 @@
                     <thead>
                       <tr>
                         <th class="no-sort controls"></th>
-                        <th class="sort-alpha">From</th>
+                        <th class="sort-alpha" id="instant">From</th>
                         <th class="sort-alpha">Subject</th>
                         <th class="sort-amount">Date</th>
                         <th class="text-center no-sort">Attachment</th>
@@ -360,6 +360,7 @@
             document.getElementById('sent').style.display = 'table-row-group';
             document.getElementById('trash').style.display = 'none';
             document.getElementById('delete').style.visibility = 'hidden';
+            document.getElementById('instant').innerHTML = 'To';
             $("#sentLI").addClass("active");
             $("#receivedLI").removeClass("active");
             $("#trashLI").removeClass("active");
@@ -369,6 +370,7 @@
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'none';
             document.getElementById('delete').style.visibility = 'visible';
+            document.getElementById('instant').innerHTML = 'From';
             $("#sentLI").removeClass("active");
             $("#receivedLI").addClass("active");
             $("#trashLI").removeClass("active");
@@ -378,6 +380,7 @@
             document.getElementById('received').style.display = 'none';
             document.getElementById('sent').style.display = 'none';
             document.getElementById('trash').style.display = 'table-row-group';
+            document.getElementById('instant').innerHTML = 'From';
             $("#sentLI").removeClass("active");
             $("#receivedLI").removeClass("active");
             $("#trashLI").addClass("active");

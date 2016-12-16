@@ -90,10 +90,10 @@
                                 <span class="label label-green"><i class="fa fa-user"></i></span>
                                 发送给<s:property value="opposite" /> 的请求已经
                                     <s:if test="status==0">
-                                        被拒绝
+                                        待接受
                                     </s:if>
                                     <s:elseif test="status==1">
-                                        进入审核流程
+                                        正在等待您的审核
                                     </s:elseif>
                                     <s:else>
                                         通过
