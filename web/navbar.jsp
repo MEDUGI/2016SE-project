@@ -82,13 +82,13 @@
 
                 </a>
 
-                <ul class="dropdown-menu wide arrow nopadding bordered">
+                <ul class="dropdown-menu wider arrow nopadding bordered">
                     <li><h1> 你有 <strong><s:property value="#session.applicationNumber"/></strong> 条新的申请动态</h1></li>
                     <s:iterator value="applications" status="st">
                         <li>
                             <a href="#">
                                 <span class="label label-green"><i class="fa fa-user"></i></span>
-                                发送给<s:property value="to" /> 的请求已经
+                                发送给<s:property value="opposite" /> 的请求已经
                                     <s:if test="status==0">
                                         被拒绝
                                     </s:if>
@@ -98,7 +98,7 @@
                                     <s:else>
                                         通过
                                     </s:else>
-                                <span class="small"><s:property value="applydate" /></span>
+                                <span class="small"><s:property value="applyDate" /></span>
                             </a>
                         </li>
                     </s:iterator>

@@ -122,13 +122,11 @@ public class ProfessorDAO {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 professor.setPassword(rs.getString(2));
-                professor.setAcceptedNumber(rs.getInt(10));
             }
             ps.close();
 
             sql = "delete from professordb where username='"+professor.getUsername()+"'";
             ps = dbp.getConn().prepareStatement(sql);
-            ps.setString(1, professor.getUsername());
             ps.executeUpdate();
             ps.close();
 

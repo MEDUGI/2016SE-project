@@ -133,6 +133,10 @@
                                         <span class="user font-slab"><strong>出版文献</strong></span>
                                         <span class="subject"><s:property value="papersPublished" /></span>
                                     </li>
+                                    <li>
+                                        <span class="user font-slab"><strong>已占名额</strong></span>
+                                        <span class="subject"><s:property value="acceptedNumber" /><strong>/</strong><s:property value="accomodationNumber" /></span>
+                                    </li>
                                 </s:if>
                                 <s:elseif test='userstyle == "Student"'>
                                     <li>
@@ -178,7 +182,7 @@
                                 <ul id="applications-tab" class="tab-pane fade">
                                     <s:iterator value="applications" status="st">
                                         <li>
-                                            <span class="user font-slab">发送给 <strong><s:property value="to" /></strong></span>
+                                            <span class="user font-slab">发送给 <strong><s:property value="opposite" /></strong></span>
                                             <span class="subject"><strong><s:if test="status==0">
                                                 被拒绝
                                             </s:if>
