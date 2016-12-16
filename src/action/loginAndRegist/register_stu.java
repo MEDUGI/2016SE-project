@@ -97,7 +97,6 @@ public class register_stu extends ActionSupport implements SessionAware{
 
     @Override
     public String execute() {
-        school = school.substring(1);
         if (secret.equals("") || secret_repeat.equals("")
                 || school.equals("") || username.equals("") || stu_number.equals("")) {
             session.put("errorMessage", "输入项目不能为空!");
